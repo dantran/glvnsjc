@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false">
+  <class name="org.glvnsjc.model.SiteConfig">
+    <id name="id" column="id" type="int">
+      <generator class="native"/>
+    </id>
+
+    <property name="currentSchoolYear" type="int"/>
+    <property name="siteActive" column="isSiteActive" type="boolean"/>
+    <property name="smtpServer" type="string"/>
+    <property name="smtpUserId" type="string"/>
+    <property name="smtpPassword" type="string"/>
+    <property name="feedbackEmail" type="string"/>
+    <property name="headMasterName" type="string"/>
+
+  </class>
+
+</hibernate-mapping>

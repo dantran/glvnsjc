@@ -1,0 +1,117 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" 
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    
+<struts-config>
+  <form-beans>
+    <form-bean name="searchForm" type="org.apache.struts.validator.DynaValidatorForm" dynamic="true">
+      <form-property name="studentId" type="java.lang.String" />
+      <form-property name="lastName" type="java.lang.String" />
+      <form-property name="middleName" type="java.lang.String" />
+      <form-property name="firstName" type="java.lang.String" />
+      <form-property name="birthDate" type="java.lang.String" />
+      <form-property name="phone" type="java.lang.String" />
+      <form-property name="schoolYear" type="java.lang.String" />
+      <form-property name="schoolId" type="java.lang.String" />
+      <form-property name="giaolyClassName" type="java.lang.String" />
+      <form-property name="vietnguClassName" type="java.lang.String" />
+      <form-property name="giaolyClassSubName" type="java.lang.String" />
+      <form-property name="vietnguClassSubName" type="java.lang.String" />
+   </form-bean>
+
+   <form-bean name="awardCertificateSearchForm" type="org.apache.struts.validator.DynaValidatorForm" dynamic="true">
+      <form-property name="studentId" type="java.lang.String" />
+      <form-property name="classType" type="java.lang.String" />
+   </form-bean>
+
+
+  <form-bean name="studentForm" type="org.glvnsjc.view.StudentForm" />
+  <form-bean name="studentsToBeGradedForm" type="org.glvnsjc.view.ClassGradeListForm" /><form-bean name="classSearchForm" type="org.apache.struts.action.DynaActionForm"><form-property name="className" type="java.lang.String" /><form-property name="classType" type="java.lang.String" /></form-bean><form-bean name="studentsToBeSubClassedForm" type="org.glvnsjc.view.StudentsToBeSubClassedForm"><form-property name="classType" type="java.lang.String" /><form-property name="title" type="java.lang.String" /><form-property name="studentClassViews" type="java.util.ArrayList" /><form-property name="className" type="java.lang.String" /></form-bean><form-bean name="lostStudentForm" type="org.apache.struts.validator.DynaValidatorForm"><form-property name="id" type="java.lang.String" /><form-property name="lastName" type="java.lang.String" /><form-property name="middleName" type="java.lang.String" /><form-property name="firstName" type="java.lang.String" /><form-property name="giaolyClassName" type="java.lang.String" /><form-property name="giaolyClassSubName" type="java.lang.String" /><form-property name="vietnguClassName" type="java.lang.String" /><form-property name="vietnguClassSubName" type="java.lang.String" /><form-property name="birthDate" type="java.lang.String" /><form-property name="phone" type="java.lang.String" /><form-property name="title" type="java.lang.String" /><form-property name="submitButtonName" type="java.lang.String" /><form-property name="command" type="java.lang.String" /><form-property name="startAt" type="java.lang.String" /><form-property name="reasonToDelete" type="java.lang.String" initial="Please enter  the reason to be deleled" /></form-bean></form-beans>
+
+  <global-exceptions>
+    <exception type="java.lang.Exception" key="errors.general" handler="org.glvnsjc.action.ActionExceptionHandler" path="/error.jsp" />
+  </global-exceptions>
+
+  <action-mappings>
+    <action name="searchForm" scope="session" path="/search" type="org.glvnsjc.action.student.SearchAction" input="/search.jsp" parameter="action">
+      <forward name="normalList" path="/list.jsp?page=1" redirect="false" /><forward name="transferList" path="/transferlist.jsp?page=1" redirect="false" /><forward name="clear" path="/loadSearch.do" redirect="true" />
+    </action>
+    <action name="studentForm" validate="false" scope="request" path="/load" type="org.glvnsjc.action.student.LoadAction">
+      <forward name="success" path="/student.jsp" redirect="false" />
+    </action>
+    <action name="studentForm" input="/student.jsp" parameter="action" scope="request" path="/dispatch" type="org.glvnsjc.action.student.DispatchAction" validate="true">
+      <forward name="display" path="/student.jsp" />
+      <forward name="list" path="/search.do?action=Search" redirect="true" />
+    </action>
+    
+    <action path="/loadSearch" type="org.glvnsjc.action.student.LoadSearchAction" name="searchForm" scope="session" validate="false">
+      <forward name="success" path="/search.jsp" redirect="false" />
+    </action>
+    
+    <action path="/myStudents" type="org.glvnsjc.action.student.LoadMyStudentsAction" name="searchForm" validate="false" scope="session">
+      <forward name="success" path="/search.do?action=Search" redirect="true" />
+    </action>
+    
+    <action path="/loadStudentsToBeSubClassed" name="studentsToBeSubClassedForm" validate="false" scope="request" type="org.glvnsjc.action.student.LoadStudentsToBeSubClassedAction" roles="Principal">
+      <forward name="success" path="/studentsToBeSubClassed.jsp" redirect="false" />
+    </action>
+    
+    <action path="/updateSubClassedStudents" type="org.glvnsjc.action.student.UpdateSubClassedStudentsAction" name="studentsToBeSubClassedForm" validate="false" scope="request" roles="Principal">
+      <forward name="success" path="/studentsToBeSubClassed.jsp" redirect="false" />
+    </action>
+    
+    <action path="/loadStudentsToBeGraded" name="studentsToBeGradedForm" validate="false" scope="request" type="org.glvnsjc.action.student.LoadStudentsToBeGradedAction">
+      <forward name="success" path="/studentsToBeGraded.jsp" redirect="false" />
+    </action>
+    
+    <action path="/updateStudentGrades" name="studentsToBeGradedForm" validate="false" scope="request" type="org.glvnsjc.action.student.UpdateStudentGradesAction">
+      <forward name="success" path="/studentsToBeGraded.jsp" redirect="false" />
+    </action>
+    
+    <action path="/nextYearReport" scope="request" type="org.glvnsjc.action.student.NextYearReportAction">
+      <forward name="success" path="/nextYearReport.jsp?page=1" redirect="false" />
+    </action>
+    
+    <action path="/searchUnassignedSubClassStudents" type="org.glvnsjc.action.student.SearchUnassignedSubClassStudentsAction" />
+    
+    <action path="/loadStudentsCalendar" type="org.glvnsjc.action.student.LoadStudentsCalendar">
+      <forward name="success" path="/studentsCalendar.jsp" redirect="false" />
+    </action>
+    
+    <action path="/loadLostStudent" type="org.glvnsjc.action.student.LoadLostStudent" name="lostStudentForm" scope="request" validate="false">
+      <forward name="success" path="/lostStudent.jsp" redirect="false" />
+    </action>
+    
+    <action path="/lostStudentDispatch" parameter="action" type="org.glvnsjc.action.student.LostStudentDispatch" name="lostStudentForm" scope="request" input="/lostStudent.jsp">
+      <forward name="display" path="/lostStudent.jsp" redirect="false" />
+      <forward name="list" path="/listLostStudents.do" redirect="false" />
+    </action>
+    
+    <action path="/listLostStudents" type="org.glvnsjc.action.student.ListLostStudents">
+      <forward name="success" path="/listLostStudents.jsp" redirect="false" />
+    </action>
+    
+    <action path="/school2Excel" type="org.glvnsjc.action.student.School2ExcelAction" />
+
+    <action path="/noClassAssignedReport" type="org.glvnsjc.action.student.NoClassReportAction">
+      <forward name="success" redirect="false" path="/noClassAssignedReport.jsp?page=1" />
+    </action>
+    
+    <action path="/giaolyAwardReport" type="org.glvnsjc.action.student.GiaolyAwardReportAction">
+      <forward name="success" redirect="false" path="/giaolyAwardReport.jsp?page=1" />
+    </action>
+    
+    <action path="/vietnguAwardReport" type="org.glvnsjc.action.student.VietnguAwardReportAction">
+      <forward name="success" redirect="false" path="/vietnguAwardReport.jsp?page=1" />
+    </action>
+
+    <action name="awardCertificateSearchForm" path="/createAwardCertificate" type="org.glvnsjc.action.student.CreateAwardPDFAction" scope="request" />
+        
+  </action-mappings>
+  
+  <message-resources parameter="org.glvnsjc.messages" />
+  
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property value="/WEB-INF/validator-rules.xml,/WEB-INF/validator-rules-custom.xml, /WEB-INF/validation-student.xml" property="pathnames" />
+  </plug-in>
+  
+</struts-config>

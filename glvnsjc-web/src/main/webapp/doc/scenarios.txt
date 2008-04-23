@@ -1,0 +1,33 @@
+Startup
+=======
+  1. Self database creation upon startup.
+  2. Self database upgrade upon startup
+
+
+Maintainant:
+===========
+
+  1. Prevent none administrative user from login and termininate all active
+     non administrative users during site maintainant period.
+  2. Scheduled backup to XML file
+  3. Restore from backup XML file
+
+Login Profile
+=============
+
+  1. Search for all members which have login profile per school or all schoolw
+     and current school year. This requires involments of Member, LoginProfile,
+     SchoolYear.
+
+
+Project Note:
+=============
+
+  - 5/25/03: has to clean up glvnsjc inorder to deploy the new one in
+
+
+To Be Done:
+===========
+
+  - School is required when create user with role principal and lower
+

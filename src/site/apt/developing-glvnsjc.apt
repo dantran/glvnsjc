@@ -1,0 +1,104 @@
+ ------
+ Developing GLVNSJC
+ ------
+ Dan T. Tran
+ ------
+ Mon Aug 29 2005
+
+
+Developing GLVNSJC
+
+  The entired GLVNSJC source can be loaded into Eclipse IDE.  
+  The following instructions show you how to setup Eclipse 
+  with GLVNSJC for developing and debugging purposes:
+  
+  The high level steps are:
+  
+  [[1]] Create Eclispe workspace and project files.
+  
+  [[2]] Insert GLVNSJC projects into Eclispe workspace.
+  
+  [[3]] Configure coding style
+  
+  [[4]] Run GLVNSJC web application the first time
+  
+  [[5]] Debug GLVNSJC
+  
+  []
+  
+  
+  The instructions assume that:
+  
+  * You have checked out your source
+  
+  * You have downloaded Eclipse SDK and Eclipse WTP 
+  
+  * You have installed Tomcat 5.5.x
+  
+  []
+  
+  
+* Create Eclispe workspace and project files.
+
+  Run the folloing command from the root of your GLVNSJC source tree:
+  
+
+----------------------
+
+  src\script\create-eclipse-projects.bat
+
+----------------------
+  
+  This command creates/updates glvnsjc workspace and all project files in each modules.
+  
+  
+* Insert GLVNSJC projects into Eclispe workspace
+
+  
+  [[1]] Invoke your local eclispe, when asked to "Select a workspace", enter the full path 
+        to your GLVNSJC source directory
+        
+  [[2]] After your Eclipse workspace started, close the "Welcome screen".  
+        At this time, your workspace is empty. 
+  
+  [[3]] Select File-->Import to display "Import" dialog. Expand "General", 
+        select "Exising project into workspace", and hit next.
+  
+  
+  [[4]] Enter the full path to your GLVNSJC source directory to "Select root directory:" 
+        and hit "Browse" button to display a list of acceptable GLVNSJC projects.
+        
+  [[5]] Hit "Finish" button
+  
+  
+  []
+  
+  
+  You are now should be able to browse LVNSJC source tree.
+  
+  
+* Run GLVNSJC web application the first time.
+
+  
+  [[1]] Right click "glvnsjc-web" project, select "Run as...", and select "Run on server"
+  
+  [[2]] On the "Run on server" dialog, check "Set server as project default", Expand "Apache" to 
+        select "Tomcat 5.5 server", and finally hit "Next" to go to "Tomcat Server" dialog.
+        
+  [[3]] Enter the full path of your Tomcat installation directory and hit "Finish"
+  
+  [[4]] Voala, Eclipse displays GLVNSJC login page.
+
+
+  
+* Debug GLVNSJC web application
+
+
+  [[1]] Set a break point.
+
+  [[2]] Right click "glvnsjc-web" project, select "Debug as...", and select "Debug on server"
+  
+  []
+
+  
+  

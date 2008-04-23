@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.glvnsjc.model.LostStudent">
+    <!--jcs-cache usage="read-write" /-->
+    <id name="id" column="id" type="int">
+      <generator class="native"/>
+    </id>
+
+    <component name="name" class="org.glvnsjc.model.Name">
+      <property name="lastNameRaw"   column="lastName" type="string"/>
+      <property name="middleNameRaw" column="middleName" type="string"/>
+      <property name="firstNameRaw"  column="firstName" type="string"/>
+    </component>
+
+    <many-to-one name="reportedBy" class="org.glvnsjc.model.LoginProfile" cascade="none"  />
+
+    <property name="birthDate"     type="date"/>
+    <property name="phone"         type="string" />
+
+    <component name="giaolyClass" class="org.glvnsjc.model.SchoolClass">
+        <property name="name"    column="giaolyName"    type="org.glvnsjc.model.ClassName" />
+        <property name="subName" column="giaolySubName" type="org.glvnsjc.model.ClassSubName"/>
+    </component>
+
+    <component name="vietnguClass" class="org.glvnsjc.model.SchoolClass">
+        <property name="name"    column="vietnguName" type="org.glvnsjc.model.ClassName"/>
+        <property name="subName" column="vietnguSubName" type="org.glvnsjc.model.ClassSubName"/>
+   </component>
+
+    <property name="notifiedMaster"     type="boolean" not-null="true"/>
+    <property name="createdDate"     type="date" not-null="true"/>
+
+  </class>
+
+</hibernate-mapping>

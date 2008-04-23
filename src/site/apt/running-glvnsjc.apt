@@ -1,0 +1,25 @@
+ ------
+ Running GLVNSJC
+ ------
+ Dan T. Tran
+ ------
+ Mon Aug 29 2005
+
+
+Running GLVNSJC
+
+
+  Change your currently directory to glvnsjc-web and run
+  
+-----------------
+
+  mvn jetty:run
+  
+-----------------
+  
+  Then point your browser to http://localhost:9000
+  
+  
+  
+  
+  

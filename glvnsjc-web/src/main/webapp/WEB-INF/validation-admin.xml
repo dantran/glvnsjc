@@ -1,0 +1,36 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <!-- ========== Default Language Form Definitions ===================== -->
+    <formset>
+
+        <form name="globalConfigForm">
+          <field property="currentSchoolYear" depends="required, integer">
+            <arg0 key="label.currentSchoolYear" />
+          </field>
+        </form>
+        <form name="calendarRange" >
+          <field property="startDate" depends="required, date">
+            <arg0 key="label.startDate" />
+          </field>
+          <field property="endDate" depends="required, date">
+            <arg0 key="label.endDate" />
+          </field>
+        </form>
+
+        <form name="schoolForm" >
+          <field property="shortName" depends="required">
+            <arg0 key="label.schoolName.brief" />
+          </field>
+          <field property="name" depends="required">
+            <arg0 key="label.schoolName" />
+          </field>
+        </form>
+    </formset>
+
+
+
+</form-validation>

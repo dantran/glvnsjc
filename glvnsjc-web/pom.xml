@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.glvnsjc</groupId>
+    <artifactId>glvnsjc</artifactId>
+    <version>1.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>glvnsjc-web</artifactId>
+  
+  <name>glvnsjc-web</name>
+  
+  <packaging>war</packaging>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>org.glvnsjc</groupId>
+      <artifactId>glvnsjc-model</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+<!-- struts -->
+    
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+      <version>1.2.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts-el</artifactId>
+      <version>1.2.9</version>
+    </dependency>
+ 
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+
+       
+    <!-- JSTL -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.3</version>
+      <scope>provided</scope>
+    </dependency>
+
+<!-- security -->
+
+    <dependency>
+      <groupId>securityfilter</groupId>
+      <artifactId>securityfilter</artifactId>
+      <version>2.0</version>
+    </dependency>
+
+<!-- displaytag -->
+
+    <dependency>
+      <groupId>displaytag</groupId>
+      <artifactId>displaytag</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>opensymphony</groupId>
+      <artifactId>sitemesh</artifactId>
+      <version>2.2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.8</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-pool</groupId>
+      <artifactId>commons-pool</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>c3p0</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.8.4.5</version>
+    </dependency>
+
+
+
+
+    <!--  Database -->
+
+
+
+    <!--scheduler-->
+    <dependency>
+      <groupId>quartz</groupId>
+      <artifactId>quartz</artifactId>
+      <version>1.5.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jgs</groupId>
+      <artifactId>jgs-struts</artifactId>
+      <version>0.3-dev</version>
+    </dependency>
+    <dependency>
+      <groupId>jgs</groupId>
+      <artifactId>jgs-quartz</artifactId>
+      <version>0.2.1-dev</version>
+    </dependency>
+
+
+    
+    <dependency>
+      <groupId>poi</groupId>
+      <artifactId>poi-2.0-final</artifactId>
+      <version>20040126</version>
+    </dependency>
+
+    <!-- vni2unicode converter -->
+    <dependency>
+      <groupId>unicodeconverter</groupId>
+      <artifactId>uni</artifactId>
+      <version>1.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.lowagie</groupId>
+      <artifactId>itext</artifactId>
+      <version>1.4.8</version>
+    </dependency>
+    
+    
+      
+  </dependencies>
+  
+  <build>
+  
+    <finalName>glvnsjc</finalName>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native2ascii-maven-plugin</artifactId>
+        <version>1.0-alpha-1</version>
+        <configuration>
+          <encoding>UTF8</encoding>
+          <ext>.ascii</ext>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>native2ascii</goal>
+            </goals>
+          </execution>
+        </executions>
+    <dependencies>
+    <dependency>
+      <groupId>sun.jdk</groupId>
+      <artifactId>tools</artifactId>
+      <version>1.5.0</version>
+      <scope>system</scope>
+      <systemPath>${java.home}/../lib/tools.jar</systemPath>
+    </dependency>
+    </dependencies>
+        
+      </plugin> 
+    </plugins>
+        
+  </build>
+  
+</project>
+

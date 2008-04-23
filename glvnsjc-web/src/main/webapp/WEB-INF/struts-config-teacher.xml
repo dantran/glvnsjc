@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+<form-beans>
+  <form-bean name="userSearchForm" type="org.apache.struts.validator.DynaValidatorForm">
+    <form-property name="schoolPriviledgeOnly" type="java.lang.Boolean" initial="false" />
+    <form-property name="schoolId" type="java.lang.String" />
+    <form-property name="teacherType" type="java.lang.String" initial="Teacher" />
+  </form-bean>
+  <form-bean name="userForm" type="org.glvnsjc.view.LoginProfileForm" />
+  <form-bean name="currentLoginUserProfile" type="org.apache.struts.validator.DynaValidatorForm">
+     <form-property name="userId" type="java.lang.String" />
+     <form-property name="password" type="java.lang.String" />
+     <form-property name="confirmPassword" type="java.lang.String" />
+     <form-property name="name" type="org.glvnsjc.model.Name" />
+     <form-property name="address" type="org.glvnsjc.model.Address" />
+     <form-property name="birthDate" type="java.lang.String" />
+     <form-property name="saintName" type="java.lang.String" />
+     <form-property name="gender" type="java.lang.String" />
+     <form-property name="giaolyClass" type="java.lang.String" />
+     <form-property name="giaolySubClass" type="java.lang.String" />
+     <form-property name="vietnguClass" type="java.lang.String" />
+     <form-property name="vietnguSubClass" type="java.lang.String" />
+  </form-bean>
+  
+  <form-bean name="schoolCalendarForm" type="org.glvnsjc.view.SchoolCalendarForm" />
+</form-beans>
+
+  <global-exceptions>
+    <exception type="java.lang.Exception" key="errors.general" handler="org.glvnsjc.action.ActionExceptionHandler"  path="/error.jsp" />
+  </global-exceptions>
+
+  <action-mappings>
+    <action name="userSearchForm" type="org.glvnsjc.action.teacher.ListAction" scope="session" path="/search" validate="false" input="/search.jsp">
+      <forward name="success" path="/list.jsp" />
+    </action>
+    <action path="/load" type="org.glvnsjc.action.teacher.LoadAction" name="userForm" validate="false" scope="request">
+      <forward name="success" path="/teacher.jsp" redirect="false" />
+    </action>
+    <action path="/dispatch" parameter="action" type="org.glvnsjc.action.teacher.DispatchAction" name="userForm" scope="request" input="/teacher.jsp">
+      <forward name="success" path="/teacher.jsp" redirect="false" />
+      <forward name="update" path="/teacher.jsp" redirect="false" />
+      <forward name="list" path="/search.do" redirect="true" />
+    </action>
+    <action path="/loadsearch" name="userSearchForm" validate="false" scope="session" type="org.glvnsjc.action.teacher.LoadSearchAction">
+      <forward name="success" path="/search.jsp" redirect="false" />
+    </action>
+    <action path="/currenLoginUserProfile" type="org.glvnsjc.action.teacher.LoadCurrentLoginUserProfileAction" name="currentLoginUserProfile" scope="request" validate="false">
+      <forward name="success" path="/currentLoginUserProfile.jsp" redirect="false" />
+    </action>
+    <action path="/updateCurrentLoginUserProfile" type="org.glvnsjc.action.teacher.UpdateCurrentLoginUserProfileAction" name="currentLoginUserProfile" input="/currentLoginUserProfile.jsp" scope="request">
+      <forward name="success" path="/currentLoginUserProfile.jsp" redirect="false" />
+    </action>
+    <action path="/schoolCalendar" type="org.glvnsjc.action.admin.LoadSchoolCalendar" name="schoolCalendarForm" validate="false" scope="request">
+      <forward name="success" path="/schoolCalendar.jsp" redirect="false" />
+    </action>
+  </action-mappings>
+  <message-resources parameter="org.glvnsjc.messages" />
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-rules-custom.xml, /WEB-INF/validation-teacher.xml" property="pathnames" />
+  </plug-in>
+</struts-config>

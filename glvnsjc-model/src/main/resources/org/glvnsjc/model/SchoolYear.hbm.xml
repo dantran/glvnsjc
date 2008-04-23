@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping >
+
+    <class name="org.glvnsjc.model.SchoolYear" table="SchoolYear" >
+    <!--jcs-cache usage="read-write" /-->
+
+       <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+
+        <property name="year" type="int"  >
+          <column name="year" not-null="true" index="SchoolYearMCI"/>
+        </property>
+        <many-to-one name="school" class="org.glvnsjc.model.School" cascade="none" >
+          <column name="school" not-null="true" index="SchoolYearMCI"/>
+        </many-to-one>
+        <many-to-one name="student" class="org.glvnsjc.model.Student"  >
+          <column name="student" not-null="true" index="SchoolYearMCI"/>
+        </many-to-one>
+
+        <property name="hasApplication" type="boolean"/>
+
+        <component name="giaolyClass" class="org.glvnsjc.model.SchoolClass">
+            <property name="name"    column="giaolyName"    type="org.glvnsjc.model.ClassName" />
+            <property name="subName" column="giaolySubName" type="org.glvnsjc.model.ClassSubName"/>
+            <property name="grade"   column="giaolyGrade"   type="org.glvnsjc.model.Grade"/>
+            <property name="comment" column="giaolyComment" type="string" />
+        </component>
+
+        <component name="vietnguClass" class="org.glvnsjc.model.SchoolClass">
+            <property name="name"    column="vietnguName" type="org.glvnsjc.model.ClassName"/>
+            <property name="subName" column="vietnguSubName" type="org.glvnsjc.model.ClassSubName"/>
+            <property name="grade"   column="vietnguGrade" type="org.glvnsjc.model.Grade"/>
+            <property name="comment" column="vietnguComment" type="string"/>
+        </component>
+
+        <property name="comment" type="string"/>
+        
+    </class>
+
+</hibernate-mapping>

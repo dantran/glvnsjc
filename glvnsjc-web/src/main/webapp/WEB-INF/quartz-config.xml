@@ -1,0 +1,25 @@
+<quartz-config>
+  <!-- Create a Trigger -->
+  <trigger-group>
+    <trigger
+      name="backupTrigger"
+      className="org.quartz.CronTrigger">
+      <set-property
+        property="cronExpression"
+        value="00 00 04 * * ?"/> <!--This command is run daily at 4:00AM -->
+
+    </trigger>
+  </trigger-group>
+
+  <!-- Create a Job -->
+  <job-group>
+    <job
+      name="backupJob"
+      className="org.glvnsjc.util.BackupJob"/>
+  </job-group>
+
+  <!-- Schedule the Job/Trigger -->
+  <schedule job="backupJob" trigger="backupTrigger"/>
+
+</quartz-config>
+

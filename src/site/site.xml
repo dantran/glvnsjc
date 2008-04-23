@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="GLVNSJC">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-stylus-skin</artifactId>
+    <version>1.0</version>
+  </skin>
+
+  <body>
+  
+    <menu name="GLVNSJC">
+      <item name="Home" href="/index.html" />
+      <item name="Application Site" href="http://66.218.54.48/glvnsjc" />
+    </menu>
+    
+    <menu name="Developers">
+      <item name="Development Tools" href="/softwares.html" />
+      <item name="Building GLVNSJC" href="/building-glvnsjc.html" />            
+      <item name="Running GLVNSJC" href="/running-glvnsjc.html" />            
+      <item name="Developing GLVNSJC" href="/developing-glvnsjc.html" />            
+    </menu>
+    
+    <menu name="Users">
+      <item name="Search Howto" href="/searchhowto.html" />            
+      <item name="Viet Font" href="/unicode.html" />            
+    </menu>
+    
+    <menu ref="modules" />
+    <menu ref="reports" />
+    
+  </body>
+</project>

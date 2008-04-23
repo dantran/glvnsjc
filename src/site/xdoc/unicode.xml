@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="dantran@yahoo.com">Dan T. Tran</author>
+    <title>GLVNSJCDB</title>
+  </properties>
+
+  <body>
+
+    <section name="Unicode Setup">
+      <p>
+        One of the best example for using UNICODE in Window 2000 and XP is you
+        can create a Microsoft Word document, save it as HTML format, and load
+        the file into your web server. Any one (include those using Mac, Windows 9x)
+        can view the document without installing any Vietnamese font.  However,
+        in order to view a Vietnamese Word document, you must have Vietnamese
+        language support in Window 2000/XP. There is no support for Windows 9x
+        </p>
+      <subsection name="Set up Windows 2000" >
+        <ol>
+          <li>Open the <b>Control Panel</b> window using Start -->Settings-->Control Panel. </li>
+          <li>In "Control Panel" window, invoke <b>Regional Options</b> icon to open
+              "Regional Options" dialog </li>
+          <li>In the <b>Regional Options</b> dialog, put a check for <b>Vietnamese</b> in
+              the <b>Language settings for the system</b> (you need to scroll down
+              to the option). Hit OK and Window 2000 will install Vietnamese language support.
+              Prepare to have Windows 2000 installation CD ready. Restart your PC if asked.
+              This step installs the software. </li>
+           <li>In the Input Locale tab, add <b>VI</b> for Vietnamese support.
+               This step activates Vietnamese support. </li>
+         </ol>
+      </subsection>
+
+      <subsection name="Set up Windows XP" >
+        <ol>
+           <li>Open the <b>Regional and Language Option</b> dialog using Start -->
+               Control Panel --> Date, Time, Language, and Regional Options -->
+               Regional and Language Option  </li>
+           <li>In the Regional and Language Option dialog's Language tab, place a
+               check for <b>Install files for complex script and right to left language…</b>
+               and hit OK. Window XP will install a set of languages including Vietnamese.
+               Prepare to have Windows XP installation CD ready. Restart your PC if asked. </li>
+           <li>In the Regional and Language Option dialog's Language tab, hit
+               <b>Details…</b> button to open <b>Text services and input language</b>”
+               dialog. In this dialog, hit <b>Add</b> button in <b>Installed Services</b>
+               box to open <b>Add Input Language</b> dialog and select <b>Vietnamese</b>
+               and <b>US</b> for <b>Input Language</b> and <b>Keyboard Layout...</b>
+               respectively. Hit <b>OK</b></li>
+        </ol>
+      </subsection>
+    </section>
+
+    <section name="Usage">
+      <p>After adding Vietnamese language support to your Windows system, you should see
+         <b>EN</b> (English) in the lower right task bar. Use Left-ALT Shift to
+         toggle between <b>EN</b> and <b>VI</b> (Vietnamese)
+         In <b>VI</b> mode:
+         <ul>
+           <li> numbers from 0 to 9 stand for đ, ă, â, ê, ô, ̀, ̉, ̃, ́, and ̣</li>
+           <li> [ and ] stand for ư and ơ. </li>
+           <li> Use normal shift key for capitalization.</li>
+        </ul>
+      </p>
+    </section>
+
+  </body>
+</document>
+
+
+

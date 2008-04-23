@@ -1,0 +1,59 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <!-- ========== Default Language Form Definitions ===================== -->
+    <formset>
+
+        <form name="userForm">
+          <field property="userId" depends="required">
+            <arg0 key="label.userName" />
+          </field>
+          <field property="password" depends="required,twofields">
+             <arg0 key="label.password" />
+             <arg1 key="label.confirmPassword" />
+             <var>
+                <var-name>secondProperty</var-name>
+                <var-value>confirmPassword</var-value>
+             </var>
+          </field>
+
+            <field property="teacherType" depends="required">
+                 <arg0 key="label.teacherType" />
+            </field>
+        </form>
+
+        <form name="currentLoginUserProfile">
+          <field property="userId" depends="required">
+            <arg0 key="label.userName" />
+          </field>
+          <field property="password" depends="required,twofields">
+             <arg0 key="label.password" />
+             <arg1 key="label.confirmPassword" />
+             <var>
+                <var-name>secondProperty</var-name>
+                <var-value>confirmPassword</var-value>
+             </var>
+          </field>
+          <field property="address.email" depends="required" >
+            <arg0 key="label.email" />
+          </field>
+          <field property="address.phone1" depends="required" >
+            <arg0 key="label.phone1" />
+          </field>
+          <field property="name.lastName" depends="required" >
+            <arg0 key="label.lastName" />
+          </field>
+          <field property="name.firstName" depends="required" >
+            <arg0 key="label.firstName" />
+          </field>
+
+
+      </form>
+    </formset>
+
+
+
+</form-validation>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE securityfilter-config PUBLIC
+    "-//SecurityFilter.org//DTD Security Filter Configuration 1.0//EN"
+    "http://www.securityfilter.org/dtd/securityfilter-config_1_0.dtd">
+
+<securityfilter-config>
+
+  <security-constraint>
+    <display-name>Application Server Configuration Security Constraint</display-name>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/start.do</url-pattern>
+      <url-pattern>/*.do</url-pattern>
+      <url-pattern>/student/*</url-pattern>
+      <url-pattern>/teacher/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Class</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>glvn administrative tasks</display-name>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Master</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/loginerror.jsp</form-error-page>
+       <form-default-page>/start.do</form-default-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description>glvnuser + export/import</description>
+    <role-name>Master</role-name>
+  </security-role>
+  <security-role>
+    <description>Can add, delete, and update student/teacher record</description>
+    <role-name>School</role-name>
+  </security-role>
+
+   <realm className="org.glvnsjc.securityfilter.SecurityRealm" />
+
+</securityfilter-config>

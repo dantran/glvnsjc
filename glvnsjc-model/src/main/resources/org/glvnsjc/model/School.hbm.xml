@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false">
+  <class name="org.glvnsjc.model.School">
+    <id name="id" column="id" type="java.lang.Integer">
+      <generator class="native"/>
+    </id>
+    <property name="name" type="java.lang.String" unique="true" />
+    <property name="shortName" type="java.lang.String" unique="true" />
+
+    <component name="address" class="org.glvnsjc.model.Address" />
+<!--
+      <property name="street1" type="string"/>
+      <property name="street2" type="string"/>
+      <property name="city" type="string"/>
+      <property name="state" type="string"/>
+      <property name="zipCode" type="string"/>
+      <property name="email" type="string"/>
+      <property name="phone1" type="string"/>
+      <property name="phone2" type="string"/>
+    </component>
+-->
+
+  </class>
+
+</hibernate-mapping>

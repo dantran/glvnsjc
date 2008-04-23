@@ -1,0 +1,64 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" 
+  "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+<form-beans>
+    <form-bean name="importForm" type="org.glvnsjc.view.ImportForm" />
+    <form-bean name="exportForm" type="org.apache.struts.validator.DynaValidatorForm" dynamic="true">
+      <form-property name="memberType" type="java.lang.String" />
+      <form-property name="separator" initial="," type="java.lang.String" />
+      <form-property name="encoding" initial="UTF-16" type="java.lang.String" />
+      <form-property name="giaoly" type="java.lang.String" />
+      <form-property name="vietngu" type="java.lang.String" />
+    </form-bean>
+    <form-bean name="glvnClassesForm" type="org.apache.struts.validator.DynaValidatorForm" dynamic="true">
+      <form-property name="giaolyClasses" type="java.lang.String" />
+      <form-property name="vietnguClasses" type="java.lang.String" />
+    </form-bean>
+  <form-bean name="globalConfigForm" type="org.apache.struts.validator.DynaValidatorForm">
+    <form-property name="currentSchoolYear" type="java.lang.String" size="4" />
+  <form-property name="siteActive" type="java.lang.Boolean" initial="false" /><form-property name="feedbackEmail" type="java.lang.String" /><form-property name="smtpServer" type="java.lang.String" /><form-property name="smtpUserId" type="java.lang.String" /><form-property name="smtpPassword" type="java.lang.String" /></form-bean>
+  <form-bean name="calendarRange" type="org.apache.struts.validator.DynaValidatorForm">
+    <form-property name="startDate" type="java.lang.String" />
+    <form-property name="endDate" type="java.lang.String" />
+  </form-bean>
+  <form-bean name="schoolCalendarForm" type="org.glvnsjc.view.SchoolCalendarForm" />
+  <form-bean name="schoolForm" type="org.apache.struts.validator.DynaValidatorForm">
+    <form-property name="command" type="java.lang.String" />
+    <form-property name="id" type="java.lang.String" />
+    <form-property name="shortName" type="java.lang.String" />
+    <form-property name="name" type="java.lang.String" />
+    <form-property name="address" type="org.glvnsjc.model.Address" />
+    <form-property name="submitButton" type="java.lang.String" />
+    <form-property name="title" type="java.lang.String" />
+  </form-bean>
+</form-beans>
+
+  <global-exceptions>
+    <exception type="java.lang.Exception" key="errors.general" handler="org.glvnsjc.action.ActionExceptionHandler" path="/error.jsp" />
+  </global-exceptions>
+
+  <action-mappings>
+    <action forward="/import.jsp" scope="request" path="/loadImport" />
+    <action forward="/export/export.jsp" scope="request" path="/export/start" />
+    <action name="importForm" type="org.glvnsjc.action.admin.ImportDispatchAction" validate="true" input="/import.jsp" parameter="action" scope="request" path="/import">
+      <forward name="view" path="/import/view.jsp?page=1" />
+    </action>
+    <action name="exportForm" type="org.glvn.actions.ExportActions" validate="true" input="/import/export.jsp" parameter="action" scope="request" path="/export/export">
+      <forward name="view" path="/import/view.jsp?page=1" />
+      <forward name="success" path="/import/export.jsp" redirect="true" />
+    </action>
+    <action name="glvnClassesForm" type="org.glvn.actions.LoadGlvnClassesAction" scope="request" path="/loadGlvnClasses">
+      <forward name="success" path="/showGlvnClasses.jsp" />
+    </action>
+    <action name="glvnClassesForm" type="org.glvn.actions.UpdateGlvnClassesAction" scope="request" path="/updateGlvnClasses">
+      <forward name="success" path="/loadGlvnClasses.do" />
+    </action>
+    <action type="org.glvn.actions.DisplayLogAction" path="/showLogs">
+      <forward name="showLogList" path="/showLogList.jsp" />
+    </action>
+  <action path="/saveGlobalConfig" type="org.glvnsjc.action.admin.SaveGlobalConfig" name="globalConfigForm" scope="request" input="/globalconfig.jsp"><forward name="success" path="/globalconfig.jsp" redirect="false" /></action><action path="/loadGlobalConfig" name="globalConfigForm" validate="false" scope="request" type="org.glvnsjc.action.admin.LoadGlobalConfig"><forward name="success" path="/globalconfig.jsp" redirect="false" /></action><action path="/generateCalendar" type="org.glvnsjc.action.admin.GenerateCalendar" name="calendarRange" scope="request" input="/calendarRange.jsp"><forward name="success" path="/schoolCalendar.jsp" redirect="false" /></action><action path="/promptCalendarRange" forward="/calendarRange.jsp" name="calendarRange" scope="request" validate="false" /><action path="/saveSchoolCalendar" type="org.glvnsjc.action.admin.SaveSchoolCalendar" name="schoolCalendarForm" scope="request" input="/schoolCalendar.jsp"><forward name="success" path="/schoolCalendar.jsp" redirect="false" /></action><action path="/loadSchoolCalendar" type="org.glvnsjc.action.admin.LoadSchoolCalendar" name="schoolCalendarForm" validate="false" scope="request"><forward name="success" path="/schoolCalendar.jsp" redirect="false" /></action><action path="/loadSchools" type="org.glvnsjc.action.admin.LoadSchools" roles="Community"><forward name="success" path="/schools.jsp" redirect="false" /></action><action path="/loadSchool" type="org.glvnsjc.action.admin.LoadSchool" name="schoolForm" scope="request" input="/school.jsp" validate="false"><forward name="success" path="/school.jsp" redirect="false" /></action><action path="/dispatchSchool" type="org.glvnsjc.action.admin.DispatchSchool" name="schoolForm" scope="request" input="/school.jsp" parameter="action"><forward name="update" path="/school.jsp" redirect="false" /><forward name="list" path="/loadSchools.do" redirect="true" /></action></action-mappings>
+  <message-resources parameter="org.glvnsjc.messages" />
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property value="/WEB-INF/validator-rules.xml, /WEB-INF/validation-admin.xml" property="pathnames" />
+  </plug-in>
+</struts-config>

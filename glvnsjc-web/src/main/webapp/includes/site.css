@@ -1,0 +1,260 @@
+BODY.treemenu A:LINK{color: #663333;text-decoration: none;}
+BODY.treemenu A:VISITED{text-decoration: none;}
+BODY.treemenu A:ACTIVE{color: #663333;text-decoration: none;}
+BODY.treemenu A:HOVER{color:Red;text-decoration: none;}
+BODY.treemenu A.tracked{color: #ff0000;text-decoration: none ! important}
+H1.titleframe
+{
+	BACKGROUND-COLOR: #cee763;
+	COLOR: #009900;
+	FONT-FAMILY: Verdana, Arial, 'MS Sans Serif';
+	FONT-SIZE: 30pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	FONT-WEIGHT: bold;
+	PADDING-LEFT: 5pt;
+	TEXT-TRANSFORM: capitalize
+}
+
+H1.table
+{
+    BORDER-BOTTOM: black;
+    BORDER-LEFT: black;
+    BORDER-RIGHT: black;
+    BORDER-TOP: black;
+    CLEAR: both;
+    COLOR: gray;
+    FONT-FAMILY: Verdana, Arial, 'MS Sans Serif';
+    FONT-SIZE: 20pt;
+    PADDING-LEFT: 5pt;
+    TEXT-ALIGN: center;
+    TEXT-DECORATION: underline
+}
+TABLE.list
+{
+    BACKGROUND-COLOR: #FFFFFF
+    BORDER-BOTTOM: black;
+    BORDER-LEFT: black;
+    BORDER-RIGHT: black;
+    BORDER-TOP: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: normal;
+    TEXT-INDENT: 5pt
+}
+TR.oddrows
+{
+    BACKGROUND-COLOR: #F7F7F7;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt
+}
+TR.evenrows
+{
+    BACKGROUND-COLOR: #DFDFDF;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt
+}
+
+
+BODY.mainframe
+{
+    BACKGROUND-COLOR: lightgreen;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt
+}
+BODY.treemenu
+{
+    BACKGROUND-COLOR: lightgreen;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt
+}
+BODY.outputframe
+{
+    BACKGROUND-COLOR: #ffffcc;
+    COLOR: red;
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: normal
+}
+BODY.titleframe
+{
+    BACKGROUND-COLOR: #cee763;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt
+}
+TD
+{
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+INPUT
+{
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+TD.list
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: normal
+}
+TH.list
+{
+    BORDER-BOTTOM: white;
+    BORDER-LEFT: white;
+    BORDER-RIGHT: white;
+    BORDER-TOP: white;
+    BACKGROUND-COLOR: #008000;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bolder
+}
+TH
+{
+    BORDER-BOTTOM: white;
+    BORDER-LEFT: white;
+    BORDER-RIGHT: white;
+    BORDER-TOP: white;
+    BACKGROUND-COLOR: #008000;
+    COLOR: white;
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+#outputframe
+{
+    COLOR: red;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal;
+    LEFT: 12pt;
+    POSITION: absolute;
+    TOP: 0pt
+}
+#title
+{
+    COLOR: mediumblue;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold;
+    LEFT: 100px;
+    POSITION: absolute;
+    TOP: 3px
+}
+#footer
+{
+    COLOR: green;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12pt;
+    LEFT: 300px;
+    POSITION: absolute;
+    TOP: 350px
+}
+TD.regular
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt
+}
+TD.highlight
+{
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: 600
+}
+#regular
+{
+    COLOR: green;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: 600;
+    HEIGHT: 280px;
+    LETTER-SPACING: normal;
+    LINE-HEIGHT: normal
+}
+TD.logonframe
+{
+    COLOR: green;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    HEIGHT: 280px
+}
+TABLE.logonframe
+{
+    HEIGHT: 280px;
+    WIDTH: 700px
+}
+INPUT.logonframe
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt
+}
+TR
+{
+}
+HR.mainframe
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small;
+    FONT-WEIGHT: normal
+}
+#italic
+{
+    FONT-SIZE: 11pt;
+    FONT-STYLE: italic
+}
+INPUT.medium
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    WIDTH: 5in
+}
+#small
+{
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 10pt
+}
+#tiny
+{
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 9pt
+}
+BODY.logonframe
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+SELECT
+{
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 7pt
+}
+
+
+
+#titles
+DIV.pageTitleText{
+    background-color: #DFDFDF;
+    font-family: Verdana, Arial;
+    font-size: 4EM
+}
+
+.pageTitleText{
+    background-color: #7171A5;
+    font-family: Verdana, Arial;
+    font-size: 1.5em
+}
+
