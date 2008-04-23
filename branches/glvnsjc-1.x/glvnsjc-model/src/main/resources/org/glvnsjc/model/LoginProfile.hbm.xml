@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="org.glvnsjc.model.LoginProfile" table="LoginProfile">
+
+    <id name="id" column="id" type="int">
+      <generator class="native">
+        <!--param name="student"/-->
+      </generator>
+    </id>
+
+    <property name="userId" type="string" unique="true" not-null="true"/>
+    <property name="password" type="string"/>
+    <property name="privilege" type="org.glvnsjc.model.Privilege" not-null="true" />
+    <property name="removable" type="boolean" not-null="true" />
+    <property name="loginable" type="boolean" not-null="true" />
+    <many-to-one name="school" class="org.glvnsjc.model.School" cascade="none"  />
+
+    <property name="giaolyClass" type="org.glvnsjc.model.ClassName" />
+    <property name="giaolySubClass" type="org.glvnsjc.model.ClassSubName" />
+    <property name="vietnguClass" type="org.glvnsjc.model.ClassName" />
+    <property name="vietnguSubClass" type="org.glvnsjc.model.ClassSubName" />
+    <property name="teacherType" type="org.glvnsjc.model.TeacherType" not-null="true" />
+
+    <component name="name" class="org.glvnsjc.model.Name">
+      <property name="lastNameRaw"   column="lastName" type="string"/>
+      <property name="middleNameRaw" column="middleName" type="string"/>
+      <property name="firstNameRaw"  column="firstName" type="string"/>
+    </component>
+
+    <component name="address" class="org.glvnsjc.model.Address">
+      <property name="street1" type="string"/>
+      <property name="street2" type="string"/>
+      <property name="city" type="string"/>
+      <property name="state" type="string"/>
+      <property name="zipCode" type="string"/>
+      <property name="email" type="string"/>
+      <property name="phone1" type="string"/>
+      <property name="phone2" type="string"/>
+    </component>
+
+    <property name="birthDate" type="string"/>
+    <property name="saintName" type="string"/>
+    <property name="gender" type="org.glvnsjc.model.Gender" />
+
+
+  </class>
+
+</hibernate-mapping>

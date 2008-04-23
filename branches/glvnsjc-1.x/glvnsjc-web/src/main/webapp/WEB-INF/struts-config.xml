@@ -1,0 +1,36 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"    "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <form-beans>
+     <form-bean name="menuTreeBean" type="org.glvnsjc.view.TreeMenuBean" />
+
+  <form-bean name="emptyForm" type="org.apache.struts.action.DynaActionForm" /></form-beans>
+
+  <global-exceptions>
+    <exception type="java.lang.Exception" key="errors.general" handler="org.glvnsjc.action.ActionExceptionHandler" path="/error.jsp" />
+  </global-exceptions>
+
+  <action-mappings>
+    <action type="org.glvnsjc.action.Logout" path="/logout" name="emptyForm" validate="false" scope="request">
+      <forward name="success" path="/index.jsp" redirect="true" contextRelative="true" />
+    </action>
+    <action path="/updatemenu" type="org.glvnsjc.action.UpdateMenuAction" name="menuTreeBean" scope="session"><forward name="input" path="/menutree.jsp" redirect="false" /></action><action path="/loadmenu" type="org.glvnsjc.action.LoadMenuAction" name="menuTreeBean" scope="session"><forward name="success" path="/menutree.jsp" redirect="false" /></action>
+    <action path="/start" type="org.glvnsjc.action.StartAction"><forward name="success" path="/start.jsp" redirect="false" /></action><action path="/banner" type="org.glvnsjc.action.Banner"><forward name="success" path="/banner.jsp" redirect="false" /></action></action-mappings>
+  <message-resources parameter="org.glvnsjc.messages" />
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-rules-custom.xml" property="pathnames" />
+  </plug-in>
+  
+  <plug-in className="org.glvnsjc.plugin.DBAdminPlugIn" />
+ 
+  <plug-in className="org.glvnsjc.view.option.OptionsPlugIn" />
+  <plug-in className="org.glvnsjc.plugin.ConverterPlugIn">
+    <set-property property="dateFormat" value="MM/dd/yyyy" />
+  </plug-in>
+
+  <plug-in className="org.glvnsjc.plugin.QuartzPlugIn" >
+    <set-property property="configPath" value="/WEB-INF/quartz-config.xml"/>
+  </plug-in>
+
+</struts-config>

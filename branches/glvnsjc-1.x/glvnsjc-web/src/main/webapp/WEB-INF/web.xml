@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>GLVN San Jose</display-name>
+
+
+  <filter>
+    <filter-name>Security Filter</filter-name>
+    <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/securityfilter-config.xml</param-value>
+      <description>Configuration file location (this is the default value)</description>
+    </init-param>
+    <init-param>
+      <param-name>validate</param-name>
+      <param-value>true</param-value>
+      <description>Validate config file if set to true</description>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.glvnsjc.util.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>Site Maintainant Filter</filter-name>
+    <filter-class>org.glvnsjc.util.SiteMaintainantFilter</filter-class>
+    <init-param>
+      <param-name>maintainantPage</param-name>
+      <param-value>/errors/maintainant.jsp</param-value>
+    </init-param>
+  </filter>
+  <!-- 
+  <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+  </filter>
+  -->
+
+
+  <filter-mapping>
+    <filter-name>Security Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <servlet-name>action</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Site Maintainant Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  -->
+  
+  <listener>
+    <listener-class>org.glvnsjc.InitServlet</listener-class>
+  </listener>
+      
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config/admin</param-name>
+      <param-value>/WEB-INF/struts-config-admin.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/student</param-name>
+      <param-value>/WEB-INF/struts-config-student.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/teacher</param-name>
+      <param-value>/WEB-INF/struts-config-teacher.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/errors/403.jsp</location>
+  </error-page>
+</web-app>

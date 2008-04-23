@@ -1,0 +1,45 @@
+ ------
+ Building GLVNSJC
+ ------
+ Dan T. Tran
+ ------
+ Mon Aug 29 2005
+
+Building GLVNSJC
+
+ 
+ 
+* Setup GLVNSJC Host
+
+  Add the following line to your c:\windows\system32\drivers\etc\hosts file
+  
+------------
+
+66.218.54.48      glvnsjc
+
+------------
+
+  GLVNSJC build system needs to access to glvnsjc host which is privately hosted
+  ( ie no official domain name )
+  
+  
+* Fetch GLVNSJC Source
+
+----------
+cvs -d :pserver:guest@cvs.dev.java.net:/cvs login
+cvs -z3 -d :pserver:guest@cvs.dev.java.net:/cvs co glvndb/nglvnsjc
+----------
+
+
+* Building GLVNSJC
+
+  Change to the top directory of GLVNSJC source and execute
+  
+----------
+mvn install
+----------
+
+  This command builds all modules, runs all unit testcase, and finally run the full integration test suites
+
+  
+  

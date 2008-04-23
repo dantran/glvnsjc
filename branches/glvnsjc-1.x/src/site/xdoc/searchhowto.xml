@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="dantran@yahoo.com">Dan T. Tran</author>
+    <title>GLVNSJCDB</title>
+  </properties>
+
+  <body>
+    <section name="Student Search">
+      <p>Here are some examples: </p>
+       <p>
+        <ul>
+           <li>Search for all students: Leave all editable fields blank.</li>
+           <li>Search for student with specific student identification:
+               Enter student ID into student ID field. </li>
+           <li>Search for all students with the same birthday:
+               Enter the birth date using strict format of MM//DD/YYYY (i.e. 01/01/2001)</li>
+           <li>Search for all students with similar phone number:
+               Enter wild card phone number ( i.e. %223%) in the phone field.</li>
+           <li>Search for all student with last name "Nguyễn":
+               Enter "Nguy%" into Last Name field. Due to an unresolved Unicode bug,
+               you cannot enter the full last name "Nguyễn"</li>
+           <li>Search for all students start with "Tr" like Trương and Trần:
+               Enter "Tr%" into Last Name field.</li>
+           <li>Search for  all students in Giáo Lý 3A:
+               Enter "3"  and "A" in the  first and second field of Giáo Lý
+               group respesctively. This is multiple fields criteria. </li>
+           <li>Search all students in Giáo Lý 3 include all subclasses:
+               Enter "3" in the first field of Giáo Lý field groups.</li>
+           <li>Search all students who attend both Giaoly 5 and Vietngu 4:
+               Enter  "5" in the first field of Giaoly group and "4" in
+               the first field of Vietngu group. This is multiple fields search criteria.</li>
+          </ul>
+         </p>
+         <p><b>Other Notes:</b>
+           <ul>
+             <li>Last Name, Middle Name, First Name, and Phone fields accept
+                 wide card character ́(%).  For example: Nguy%, %223%.</li>
+             <li>Student ID is the prefer search criteria.  Otherwise use birth
+                 date, combination of last name and first name, or phone to
+                 lookup the student..</li>
+            </ul>
+         </p>
+
+    </section>
+  </body>
+</document>
+
