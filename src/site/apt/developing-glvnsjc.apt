@@ -17,12 +17,10 @@ Developing GLVNSJC
   [[1]] Create Eclispe workspace and project files.
   
   [[2]] Insert GLVNSJC projects into Eclispe workspace.
+    
+  [[3]] Run GLVNSJC web application the first time
   
-  [[3]] Configure coding style
-  
-  [[4]] Run GLVNSJC web application the first time
-  
-  [[5]] Debug GLVNSJC
+  [[4]] Debug GLVNSJC
   
   []
   
@@ -45,14 +43,14 @@ Developing GLVNSJC
 
 ----------------------
 
-  src\script\create-eclipse-projects.bat
+  mvn eclipse:configure-workspace
 
 ----------------------
   
   This command creates/updates glvnsjc workspace and all project files in each modules.
   
   
-* Insert GLVNSJC projects into Eclispe workspace
+* Insert GLVNSJC projects into Eclipse workspace
 
   
   [[1]] Invoke your local eclispe, when asked to "Select a workspace", enter the full path 
