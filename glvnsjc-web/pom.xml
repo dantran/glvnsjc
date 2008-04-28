@@ -169,6 +169,16 @@
   
     <finalName>glvnsjc</finalName>
     
+    <resources>
+      <resource>
+        <directory>${basedir}/target/resources</directory>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+    
+    
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -186,20 +196,67 @@
             </goals>
           </execution>
         </executions>
-    <dependencies>
-    <dependency>
-      <groupId>sun.jdk</groupId>
-      <artifactId>tools</artifactId>
-      <version>1.5.0</version>
-      <scope>system</scope>
-      <systemPath>${java.home}/../lib/tools.jar</systemPath>
-    </dependency>
-    </dependencies>
+       <dependencies>
+         <dependency>
+           <groupId>sun.jdk</groupId>
+           <artifactId>tools</artifactId>
+           <version>1.5.0</version>
+           <scope>system</scope>
+           <systemPath>${java.home}/../lib/tools.jar</systemPath>
+         </dependency>
+        </dependencies>
         
       </plugin> 
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.0-beta-1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>create-build-properties</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <mkdir dir="${secondary.resource.directory}" />
+                <tstamp />
+                <echo file="${build.properties.file}">
+version=${project.version} 
+revision=${buildNumber} 
+timestamp=${DSTAMP}-${TSTAMP}
+                </echo>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      
     </plugins>
         
   </build>
+  
+  <properties>
+    <secondary.resource.directory>${project.build.directory}/resources/org/glvnsjc</secondary.resource.directory>
+    <build.properties.file>${secondary.resource.directory}/build.properties</build.properties.file>
+  </properties>
   
 </project>
 
