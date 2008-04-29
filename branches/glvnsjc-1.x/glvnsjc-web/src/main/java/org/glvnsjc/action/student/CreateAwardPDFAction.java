@@ -40,7 +40,8 @@ extends org.apache.struts.action.Action
         
         //response.setHeader( "Cache-Control", "no-cache" );
         response.setHeader( "Expires", "0" );
-        response.setHeader( "Content-Disposition", "attachment; filename=\"" + "award.pdf" );
+        String awardFileName = this.getAwardFileName( classType, schoolYear );
+        response.setHeader( "Content-Disposition", "attachment; filename=\"" + awardFileName );
         response.setContentType( "application/pdf" );
 
         CreateCertificateAward award = new CreateCertificateAward( schoolYear, classType);
@@ -50,5 +51,31 @@ extends org.apache.struts.action.Action
         
         return ( null );
     }
+    
+    private String getAwardFileName( ClassType classType, SchoolYear schoolYear )
+    {
+        StringBuilder buffer = new StringBuilder();
+        
+        buffer.append( classType.toFriendlyShortName() );
+        
+        if ( classType == ClassType.GIAOLY )
+        {
+            buffer.append( schoolYear.getGiaolyClass().getFullClassName() );
+            buffer.append( "-" );
+            buffer.append( schoolYear.getGiaolyClass().getGrade().getDisplay() );
+        }   
+        else
+        {
+            buffer.append( schoolYear.getVietnguClass().getFullClassName() );            
+            buffer.append( "-" );
+            buffer.append( schoolYear.getGiaolyClass().getGrade().getDisplay() );
+        }
+        
+        buffer.append( ".award.pdf" );
+        
+                
+        return buffer.toString();
+    }
+    
 
 }
