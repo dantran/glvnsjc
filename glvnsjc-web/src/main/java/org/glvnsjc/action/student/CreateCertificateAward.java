@@ -73,6 +73,8 @@ public class CreateCertificateAward
             Paragraph para;
             Font font;
             
+            document.add( emptyPara );
+            
             font = new Font( verdanaBaseFont, 14, Font.ITALIC );
             para = new Paragraph( properties.getProperty( "award.diocese.name" ), font  );
             para.setAlignment( Paragraph.ALIGN_CENTER );
@@ -113,6 +115,7 @@ public class CreateCertificateAward
             document.add( para );
 
             document.add( emptyPara );
+            document.add( emptyPara );
             
             font = new Font( arialBaseFont, 16, Font.BOLDITALIC );
             para = new Paragraph( getAwardDescription(), font  );
@@ -127,18 +130,22 @@ public class CreateCertificateAward
             
             document.add( emptyPara );
 
-            font = new Font( timesBaseFont, 12, Font.BOLDITALIC );
+            font = new Font( timesBaseFont, 16, Font.BOLDITALIC );
             para = new Paragraph( getPrintedDate(), font  );
             para.setAlignment( Paragraph.ALIGN_CENTER );
             document.add( para );
+            
+            document.add( emptyPara );
 
+/*
             URL signatureUrl = classLoader.getResource( "president-signature.jpg" );
             Image signImage = Image.getInstance(signatureUrl);
             signImage.setAlignment(Image.MIDDLE);
             document.add( signImage );
-            
+*/            
             String precident =  properties.getProperty( "award.president.name" ) ;
 
+            font = new Font( timesBaseFont, 16, Font.BOLDITALIC );
              para = new Paragraph( precident, font  );
              para.setAlignment( Paragraph.ALIGN_CENTER );
              document.add( para );
@@ -148,6 +155,8 @@ public class CreateCertificateAward
              document.add( para );
              
              document.add( emptyPara );
+             document.add( emptyPara );
+
              
              para = new Paragraph( getPrincipalName(), font  );
              para.setAlignment( Paragraph.ALIGN_CENTER );
