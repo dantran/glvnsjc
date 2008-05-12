@@ -35,6 +35,10 @@
 
 <display:table name="sessionScope.list" pagesize="30" export="true" requestURI="./vietnguAwardReport.do">
 
+    <display:column media="html" title="Edit" href="./load.do?command=update&startAt=list" paramId="id" paramProperty="student.id" >
+      <img src=../images/edit.gif border=0>
+    </display:column>
+    
     <display:column media="html" title="Print" href="./createAwardCertificate.do?classType=2" paramId="studentId" paramProperty="student.id"  >
          <img src="../images/printer.gif" border="0" alt="Print award certificate" />
     </display:column>
