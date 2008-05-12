@@ -77,6 +77,7 @@
     <module>glvnsjc-model</module>
     <module>glvnsjc-web</module>
     <module>glvnsjc-itest</module>
+    <module>glvnsjc-test</module>
   </modules>
     
   <reporting>
