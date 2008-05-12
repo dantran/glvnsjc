@@ -1,4 +1,4 @@
-package org.glvnsjc.test;
+package com.glvnsjc.test;
 
 import java.io.File;
 

@@ -9,7 +9,8 @@ import junit.framework.TestSuite;
 import org.hibernate.Session;
 
 import org.glvnsjc.model.hibernate.SessionUtil;
-import org.glvnsjc.test.TestCase;
+
+import com.glvnsjc.test.TestCase;
 
 /**
  * @author dtran

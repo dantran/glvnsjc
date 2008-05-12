@@ -5,7 +5,7 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.glvnsjc.test.TestCase;
+import com.glvnsjc.test.TestCase;
 
 public class StudentUtilTest
     extends TestCase
