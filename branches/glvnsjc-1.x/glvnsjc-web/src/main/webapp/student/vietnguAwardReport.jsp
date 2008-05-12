@@ -56,7 +56,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
   <tr >
     <td align="center" nowrap>
-        <a href="exportAllAwardCertificates.do?classType=2">Export All</a>
+        <a href="exportAllAwardCertificates.do?classType=2">Zip Them Up!!!</a>
     </td>
    </tr>
 </table>
