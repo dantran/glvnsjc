@@ -4,7 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import org.hibernate.Session;
 
-import org.glvnsjc.test.TestCase;
+import com.glvnsjc.test.TestCase;
 
 public class SchoolTest
     extends TestCase

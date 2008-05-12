@@ -2,7 +2,7 @@ package org.glvnsjc.util;
 
 import java.io.File;
 
-import org.glvnsjc.test.TestCase;
+import com.glvnsjc.test.TestCase;
 
 public class DBBackupTest
     extends TestCase
