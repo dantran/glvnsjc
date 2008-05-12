@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.glvnsjc.model.Grade;
 import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.School;
 import org.glvnsjc.securityfilter.AppPrincipal;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
@@ -29,27 +30,37 @@ public class GiaolyAwardReportAction
     private static Log log = LogFactory.getLog( GiaolyAwardReportAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
 
     {
 
+        List schoolYears = getAwardList( request );
+        request.getSession().setAttribute( "list", schoolYears );
+
+        return ( mapping.findForward( "success" ) );
+    }
+
+    public static List getAwardList( HttpServletRequest request )
+    {
+        List schoolYears = null;
+
         LoginProfile loginProfile = ( (AppPrincipal) request.getUserPrincipal() ).getLoginProfile();
 
-        //find all giaoly students in the current school year with grade 1,2, or 3
+        School school = loginProfile.getSchool();
 
-        //setup the query
         StringBuffer queryBuff = new StringBuffer();
 
         queryBuff.append( "from org.glvnsjc.model.SchoolYear schoolYear " );
         queryBuff.append( "where schoolYear.year = ? " );
-        
-        if ( loginProfile.getSchool() != null )
+
+        if ( school != null )
         {
             queryBuff.append( "and schoolYear.school = ? " );
         }
-        
-        queryBuff.append( " and ( schoolYear.giaolyClass.grade = ? or schoolYear.giaolyClass.grade = ? or schoolYear.giaolyClass.grade = ?)" );
+
+        queryBuff
+            .append( " and ( schoolYear.giaolyClass.grade = ? or schoolYear.giaolyClass.grade = ? or schoolYear.giaolyClass.grade = ?)" );
         queryBuff.append( " order by schoolYear.giaolyClass.name" );
 
         //setup the params
@@ -59,9 +70,9 @@ public class GiaolyAwardReportAction
         paramList.add( GlobalConfig.getInstance().getCurrentYear() );
         typeList.add( Hibernate.INTEGER );
 
-        if ( loginProfile.getSchool() != null )
+        if ( school != null )
         {
-            paramList.add( loginProfile.getSchool().getId() );
+            paramList.add( school.getId() );
             typeList.add( Hibernate.INTEGER );
         }
 
@@ -74,18 +85,16 @@ public class GiaolyAwardReportAction
 
         Type[] types = new Type[typeList.size()];
         typeList.toArray( types );
-        
+
         try
         {
             Session session = SessionUtil.begin();
-                        
-            Query query = session.createQuery( queryBuff.toString() ) ;
-            
+
+            Query query = session.createQuery( queryBuff.toString() );
+
             query.setParameters( paramList.toArray(), types );
-            
-            List schoolYears = query.list();
-            
-            request.getSession().setAttribute( "list", schoolYears );
+
+            schoolYears = query.list();
 
             SessionUtil.end();
         }
@@ -95,7 +104,7 @@ public class GiaolyAwardReportAction
             SessionUtil.rollback( e );
         }
 
-        return ( mapping.findForward( "success" ) );
-    }
+        return schoolYears;
 
+    }
 }

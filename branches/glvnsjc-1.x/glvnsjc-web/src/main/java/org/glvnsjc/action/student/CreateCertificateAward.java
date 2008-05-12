@@ -10,6 +10,7 @@ import java.util.Properties;
 import org.codehaus.plexus.util.StringUtils;
 import org.glvnsjc.model.ClassType;
 import org.glvnsjc.model.Grade;
+import org.glvnsjc.model.SchoolClass;
 import org.glvnsjc.model.SchoolUtil;
 import org.glvnsjc.model.SchoolYear;
 
@@ -203,14 +204,16 @@ public class CreateCertificateAward
         
         awardName += " " ;
         
-        if ( this.classType.equals( ClassType.GIAOLY ))
+        SchoolClass schoolClass = this.schoolYear.getGiaolyClass();
+        
+        if ( this.classType.equals( ClassType.VIETNGU ))
         {
-            awardName += this.schoolYear.getGiaolyClass().getName().getEnumCode();
+            schoolClass = this.schoolYear.getVietnguClass();
         }
-        else
-        {
-            awardName += this.schoolYear.getVietnguClass().getName().getEnumCode();
-        }
+        
+        awardName += schoolClass.getName().getEnumCode();
+        awardName += schoolClass.getSubName();
+        
         
         return awardName.toUpperCase();
     }

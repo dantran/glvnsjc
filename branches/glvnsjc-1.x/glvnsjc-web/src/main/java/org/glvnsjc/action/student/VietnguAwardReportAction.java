@@ -34,6 +34,16 @@ public class VietnguAwardReportAction
 
     {
 
+        List schoolYears = getAwardList( request );
+        request.getSession().setAttribute( "list", schoolYears );
+
+        return ( mapping.findForward( "success" ) );
+    }
+
+    public static List getAwardList( HttpServletRequest request )
+    {
+        List schoolYears = null;   
+     
         LoginProfile loginProfile = ( (AppPrincipal) request.getUserPrincipal() ).getLoginProfile();
 
         //find all vn students in the current school year with grade 1,2, or 3
@@ -82,7 +92,7 @@ public class VietnguAwardReportAction
 
             query.setParameters( paramList.toArray(), types );
 
-            List schoolYears = query.list();
+            schoolYears = query.list();
 
             request.getSession().setAttribute( "list", schoolYears );
             SessionUtil.end();
@@ -93,8 +103,8 @@ public class VietnguAwardReportAction
             log.error( "Error found during loading hornor vienngu student", e );
             SessionUtil.rollback( e );
         }
-
-        return ( mapping.findForward( "success" ) );
+        
+        
+        return schoolYears;
     }
-
 }

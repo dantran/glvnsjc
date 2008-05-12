@@ -85,6 +85,7 @@
         </field>
 
       </form>
+      
     <form name="lostStudentForm">
       <field property="lastName" depends="required">
         <arg0 key="label.lastName" />
