@@ -45,7 +45,7 @@ public class SearchAction
         LoginProfile loginProfile = ActionUtil.getCurrentUserLoginProfile( request );
         DynaActionForm theForm = (DynaActionForm) form;
 
-        //overide school and school year search when privilege is principal or less
+        //override school and school year search when privilege is principal or less
         if ( !request.isUserInRole( Privilege.COMMUNITY.toString() ) )
         {
             theForm.set( "schoolId", loginProfile.getSchool().getId().toString() );

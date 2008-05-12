@@ -36,7 +36,9 @@
 
   <action-mappings>
     <action name="searchForm" scope="session" path="/search" type="org.glvnsjc.action.student.SearchAction" input="/search.jsp" parameter="action">
-      <forward name="normalList" path="/list.jsp?page=1" redirect="false" /><forward name="transferList" path="/transferlist.jsp?page=1" redirect="false" /><forward name="clear" path="/loadSearch.do" redirect="true" />
+      <forward name="normalList" path="/list.jsp?page=1" redirect="false" />
+      <forward name="transferList" path="/transferlist.jsp?page=1" redirect="false" />
+      <forward name="clear" path="/loadSearch.do" redirect="true" />
     </action>
     <action name="studentForm" validate="false" scope="request" path="/load" type="org.glvnsjc.action.student.LoadAction">
       <forward name="success" path="/student.jsp" redirect="false" />
