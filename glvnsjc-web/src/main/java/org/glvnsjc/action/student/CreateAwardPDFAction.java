@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.glvnsjc.model.ClassType;
+import org.glvnsjc.model.SchoolClass;
 import org.glvnsjc.model.SchoolYear;
 import org.glvnsjc.model.StudentUtil;
 
@@ -40,7 +41,7 @@ extends org.apache.struts.action.Action
         
         //response.setHeader( "Cache-Control", "no-cache" );
         response.setHeader( "Expires", "0" );
-        String awardFileName = this.getAwardFileName( classType, schoolYear );
+        String awardFileName = getAwardFileName( classType, schoolYear );
         response.setHeader( "Content-Disposition", "attachment; filename=\"" + awardFileName );
         response.setContentType( "application/pdf" );
 
@@ -52,24 +53,22 @@ extends org.apache.struts.action.Action
         return ( null );
     }
     
-    private String getAwardFileName( ClassType classType, SchoolYear schoolYear )
+    public static String getAwardFileName( ClassType classType, SchoolYear schoolYear )
     {
         StringBuilder buffer = new StringBuilder();
         
         buffer.append( classType.toFriendlyShortName() );
         
-        if ( classType == ClassType.GIAOLY )
+        SchoolClass schoolClass = schoolYear.getGiaolyClass();
+        
+        if ( classType == ClassType.VIETNGU )
         {
-            buffer.append( schoolYear.getGiaolyClass().getFullClassName() );
-            buffer.append( "-" );
-            buffer.append( schoolYear.getGiaolyClass().getGrade().getDisplay() );
-        }   
-        else
-        {
-            buffer.append( schoolYear.getVietnguClass().getFullClassName() );            
-            buffer.append( "-" );
-            buffer.append( schoolYear.getGiaolyClass().getGrade().getDisplay() );
+            schoolClass = schoolYear.getVietnguClass();            
         }
+
+        buffer.append( schoolClass.getFullClassName() );
+        buffer.append( "-" );
+        buffer.append( schoolClass.getGrade().getDisplay() );
         
         buffer.append( ".award.pdf" );
         
