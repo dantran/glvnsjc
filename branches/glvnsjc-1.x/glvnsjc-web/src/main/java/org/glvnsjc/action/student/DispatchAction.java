@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
@@ -64,8 +65,16 @@ public class DispatchAction
                                  HttpServletResponse response )
         throws Exception
     {
-
-        return ( mapping.findForward( "list" ) );
+        StudentForm theForm = (StudentForm) form;
+        
+        String startAt = theForm.getStartAt() ;
+        
+        if ( StringUtils.isBlank( startAt ))
+        {
+            startAt = "list";
+        }
+        
+        return ( mapping.findForward( startAt ) );
     }
     
     public ActionForward add( ActionMapping mapping, ActionForm form, HttpServletRequest request,
