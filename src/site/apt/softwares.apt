@@ -9,27 +9,27 @@ Software Requirements
 
  In order to build and test GLVNSJC, You need to install the following packages on your local PC:
  
- * Concurrent Version Control (CVS)
+ * Subversion Client
 
- * JSE JDK 5
+ * {{{http://java.sun.com/javase/downloads/index_jdk5.jsp}JSE JDK 5}}
 
- * Maven 2.0.x
+ * {{{http://maven.apache.org/download}Maven 2.0.x}}
  
- * Tomcat 5.5.x
+ * {{{http://tomcat.apache.org/download-55.cgi}Tomcat 5.5.x}}
  
  []
  
  
-* Installing CVS
+* Installing Subversion
 
-  CVS is used to checkout GLVNSJC source. There are many free open source packages available.  However
-  it is recommended to use Cygwin's CVS.
+  Subversion is used to checkout GLVNSJC source. There are many free open source packages available.  However
+  it is recommended to use Cygwin's SVN.
   
   * Click {{{http://www.cygwin.com/setup.exe}here}} to run Cygwin Setup.
   
   * Following the instructions and accept all default prompts until "Select Package" screen.
   
-  * On "Select Packages" screen, make sure to select "CVS: Concurrent Control System" in "Net" category.
+  * On "Select Packages" screen, make sure to select "Subversion Control System" in "Net" category.
   
   * When the setup completes, add c:\cygwin\bin to your PATH environment.
   
@@ -40,7 +40,7 @@ Software Requirements
 
   JSE JDK 5.x is required to build and test GLVNSJC
   
-  * Click {{{http://java.sun.com/javase/downloads/index.jsp}here}} to download and install SUN JSE JDK 5.x.
+  * Download {{{http://java.sun.com/javase/downloads/index_jdk5.jsp}JSE JDK 5}} and install.
   
   * When the setup completes, add JAVA_HOME to your environment and %JAVA_HOME%\bin to your path.
   
