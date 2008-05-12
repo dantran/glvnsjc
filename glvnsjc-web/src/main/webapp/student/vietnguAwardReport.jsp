@@ -35,7 +35,7 @@
 
 <display:table name="sessionScope.list" pagesize="30" export="true" requestURI="./vietnguAwardReport.do">
 
-    <display:column media="html" title="Edit" href="./load.do?command=update&startAt=list" paramId="id" paramProperty="student.id" >
+    <display:column media="html" title="Edit" href="./load.do?command=update&startAt=vietnguAwardList" paramId="id" paramProperty="student.id" >
       <img src=../images/edit.gif border=0>
     </display:column>
     
