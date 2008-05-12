@@ -19,6 +19,13 @@
 
     <dependency>
       <groupId>org.glvnsjc</groupId>
+      <artifactId>glvnsjc-test</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glvnsjc</groupId>
       <artifactId>glvnsjc-common</artifactId>
       <version>${project.version}</version>
     </dependency>

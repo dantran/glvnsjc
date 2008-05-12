@@ -33,11 +33,13 @@
    <name>glvnsjc-itest-integration</name>
 
    <dependencies>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>3.8.1</version>
-      </dependency>
+   
+    <dependency>
+      <groupId>org.glvnsjc</groupId>
+      <artifactId>glvnsjc-test</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+   
       <dependency>
          <groupId>htmlunit</groupId>
          <artifactId>htmlunit</artifactId>

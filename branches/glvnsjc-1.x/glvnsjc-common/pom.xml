@@ -17,6 +17,13 @@
   <dependencies>
 
     <dependency>
+      <groupId>org.glvnsjc</groupId>
+      <artifactId>glvnsjc-test</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.7.0</version>
@@ -37,14 +44,9 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>1.2</version>
+      <version>1.5.1</version>
     </dependency>    
 
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-archiver</artifactId>
-      <version>1.0-alpha-6</version>
-    </dependency>
 
     <dependency>
       <groupId>javax.mail</groupId>
