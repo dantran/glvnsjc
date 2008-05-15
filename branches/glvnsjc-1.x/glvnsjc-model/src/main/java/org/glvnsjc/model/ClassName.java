@@ -62,7 +62,15 @@ public class ClassName
         {
             if ( this.equals( classNameList[i] ) )
             {
-                return classNameList[i + 1];
+                if ( this.equals( C12 ) )
+                {
+                    return C12; // stay, no more class 
+                }
+                else
+                {
+                    return classNameList[i + 1];
+                }
+
             }
         }
         return UNASSIGNED;
