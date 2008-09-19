@@ -65,7 +65,7 @@
     <repository>
       <id>glvnsjc</id>
       <name>glvnsjc maven repository</name>
-      <url>http://glvnsjc.homedns.org/webdav/maven2</url>
+      <url>http://glvnsjc.homedns.org:8080/archiva/repository/internal</url>
       <releases>
         <enabled>true</enabled>
       </releases>

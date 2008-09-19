@@ -146,6 +146,8 @@
 
     <action path="/school2Excel" type="org.glvnsjc.action.student.School2ExcelAction" />
 
+    <action path="/studentStats" type="org.glvnsjc.action.student.StudentStatsAction" />
+
     <action path="/noClassAssignedReport" type="org.glvnsjc.action.student.NoClassReportAction">
       <forward name="success" redirect="false" path="/noClassAssignedReport.jsp?page=1" />
     </action>
