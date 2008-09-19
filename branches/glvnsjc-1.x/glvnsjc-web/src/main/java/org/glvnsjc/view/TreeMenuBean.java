@@ -203,7 +203,11 @@ public class TreeMenuBean
                 .setHref( "./student/noClassAssignedReport.do" ) );
             reportFolder.addChild( new TreeNode( "Giaoly Awards", 2 ).setHref( "./student/giaolyAwardReport.do" ) );
             reportFolder.addChild( new TreeNode( "Vietngu Awards", 2 ).setHref( "./student/vietnguAwardReport.do" ) );
-
+            if ( isCommunityPrivilege )
+            {
+                reportFolder.addChild( new TreeNode( "Student Statistics", 2 ).setHref( "./student/studentStats.do" ) );
+            }
+            
             TreeNode helpFolder = new TreeNode( "Documentation", 1 );
             helpFolder.setShowChildren( false );
             helpFolder.addChild( new TreeNode( "Motivation", 2 ).setHref( "./doc/motivations.htm" ) );

@@ -9,6 +9,7 @@ package org.glvnsjc.model;
  * @version 1.0
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class SchoolList
     private Map schoolMapWithIdKey = new HashMap();
 
     private Map schoolMapWithShortNameKey = new HashMap();
+    
+    private List allSchools = null;
 
     public Map schoolMapWithIdKey()
     {
@@ -43,7 +46,7 @@ public class SchoolList
         {
             Session session = SessionUtil.begin();
             
-            List allSchools = session.createQuery( "from org.glvnsjc.model.School school" ).list();
+            allSchools = session.createQuery( "from org.glvnsjc.model.School school" ).list();
             for ( int i = 0; i < allSchools.size(); i++ )
             {
                 School school = (School) allSchools.get( i );
@@ -82,6 +85,7 @@ public class SchoolList
     {
         this.schoolMapWithIdKey.clear();
         this.schoolMapWithShortNameKey.clear();
+        this.allSchools = null;
         load();
     }
 
@@ -93,6 +97,11 @@ public class SchoolList
     public School getSchoolByShortName( String shortName )
     {
         return (School) schoolMapWithShortNameKey.get( shortName );
+    }
+    
+    public List getSchoolList()
+    {
+        return this.allSchools;
     }
 
 }
