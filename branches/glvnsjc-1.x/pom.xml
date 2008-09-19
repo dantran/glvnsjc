@@ -29,19 +29,16 @@
 
   <distributionManagement>
     <repository>
-      <id>glvnsjc.repo</id>
-      <name>glvnsjc central repository</name>
-      <url>dav:http://glvnsjc.homedns.org/webdav/maven2</url>
+      <id>glvnsjc.release</id>
+      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/internal</url>
     </repository>
     <snapshotRepository>
       <id>glvnsjc.snapshot</id>
-      <name>glvnsjc snapshot repository</name>
-      <url>dav:http://glvnsjc.homedns.org/webdav/snapshots</url>
+      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>glvnsjc.site</id>
-      <name>glvnsjc web site</name>
-      <url>dav:http://glvnsjc.homedns.org/webdav/site</url>
+      <id>glvnsjc.website</id>
+      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/site</url>
     </site>
   </distributionManagement>
 
