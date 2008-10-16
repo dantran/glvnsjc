@@ -201,6 +201,7 @@ public class LostStudentDispatch
             Session session = SessionUtil.begin();
 
             LostStudent dbStudent = (LostStudent) session.load( LostStudent.class, new Integer( theForm.get( "id" ).toString() ) );
+            dbStudent.getReportedBy().getAddress().getEmail(); //force a load
             session.delete( dbStudent );
             
             SessionUtil.end();
@@ -213,6 +214,12 @@ public class LostStudentDispatch
             String message = "Reason: " + theForm.get( "reasonToDelete" ) + "\r\n"
                 + generateMissingStudentInfoForEmail( dbStudent );
             SendMail sendMail = new SendMail( fromEmail, toEmail, "Missing student resolved", message );
+            SiteConfig siteConfig = GlobalConfig.getInstance().getGlobalConfig();
+            
+            sendMail.setSmtpServerHost( siteConfig.getSmtpServer() );
+            sendMail.setSmtpserverUserId( siteConfig.getSmtpUserId() );
+            sendMail.setSmtpserverPassword( siteConfig.getSmtpPassword() );
+            
             ProcessRunnables.getInstance().submit( sendMail );
 
         }
