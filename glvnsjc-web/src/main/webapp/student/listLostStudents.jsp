@@ -35,7 +35,7 @@
 
   <br/>
   
-  <display:table name="requestScope.list" pagesize="30" export="true" requestURI="./list.jsp">
+  <display:table name="sessionScope.list" pagesize="30" export="true" requestURI="./list.jsp">
 
     <display:column media="html" title="Edit" href="./loadLostStudent.do?command=update&startAt=list" paramId="id" paramProperty="id" >
       <img src=../images/edit.gif border=0>
