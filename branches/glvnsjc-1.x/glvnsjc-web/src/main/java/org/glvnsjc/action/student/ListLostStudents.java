@@ -5,19 +5,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.LostStudent;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
  * <tt>ListLostStudents</tt> prepares dynamic search criteria
@@ -67,9 +66,15 @@ public class ListLostStudents
                         
             Query query = session.createQuery( searchStr ) ;
             
-            List schoolYears = query.list();
+            List lostStudents = query.list();
             
-            request.getSession().setAttribute( "list", schoolYears );
+            for ( int i = 0 ; i < lostStudents.size(); ++i)
+            {
+                LostStudent lostStudent = ( LostStudent) lostStudents.get( i );
+                lostStudent.getReportedBy().getName();
+            }
+            
+            request.getSession().setAttribute( "list", lostStudents );
 
             SessionUtil.end();
         }
