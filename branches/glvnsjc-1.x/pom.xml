@@ -6,7 +6,7 @@
   
   <groupId>org.glvnsjc</groupId>
   <artifactId>glvnsjc</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.4</version>
   
   <name>glvnsjc</name>
   
@@ -43,9 +43,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:svn:http://glvnsjc.googlecode.com/svn/branches/glvnsjc-1.x</connection>
-    <developerConnection>scm:svn:https://glvnsjc.googlecode.com/svn/branches/glvnsjc-1.x</developerConnection>
-    <url>http://glvnsjc.googlecode.com/svn/branches/glvnsjc-1.x</url>
+    <connection>scm:svn:http://glvnsjc.googlecode.com/svn/tags/glvnsjc-1.4</connection>
+    <developerConnection>scm:svn:https://glvnsjc.googlecode.com/svn/tags/glvnsjc-1.4</developerConnection>
+    <url>http://glvnsjc.googlecode.com/svn/tags/glvnsjc-1.4</url>
   </scm>
 
   <developers>
