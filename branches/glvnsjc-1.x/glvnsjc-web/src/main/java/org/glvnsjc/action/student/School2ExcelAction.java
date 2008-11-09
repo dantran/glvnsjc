@@ -41,6 +41,10 @@ public class School2ExcelAction
 
     private static final short ADDRESS_WIDTH = (short) ( 256 * 45 );
 
+    private static final short PARENT_WIDTH = (short) ( 256 * 30 );
+
+    private static final short EMAIL_WIDTH = (short) ( 256 * 25 );
+    
     private static final short DOB_WIDTH = (short) ( 256 * 15 );
 
     private static final short LAST_WIDTH = (short) ( 256 * 15 );
@@ -97,11 +101,22 @@ public class School2ExcelAction
         cell.setEncoding( HSSFCell.ENCODING_UTF_16 );
         cell.setCellValue( schoolYear.getStudent().getName().getFirstName() );
 
+        //Parent
+        j++;
+        cell = row.createCell( j );
+        cell.setEncoding( HSSFCell.ENCODING_UTF_16 );
+        cell.setCellValue( schoolYear.getStudent().getParentName().getFullName() );
+
+        //email
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( schoolYear.getStudent().getAddress().getEmail() );
+
         //student address
         j++;
         cell = row.createCell( j );
         cell.setCellValue( schoolYear.getStudent().getAddress().getFullAddress() );
-
+        
         //student phone
         j++;
         cell = row.createCell( j );
@@ -154,6 +169,19 @@ public class School2ExcelAction
         cell.setCellValue( "First" );
         mainSheet.setColumnWidth( j, FIRST_WIDTH );
 
+        //Parent
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "Parent" );
+        cell.setEncoding( HSSFCell.ENCODING_UTF_16 );
+        mainSheet.setColumnWidth( j, PARENT_WIDTH );
+
+        //Email
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "Email" );
+        mainSheet.setColumnWidth( j, EMAIL_WIDTH );
+        
         //student address
         j++;
         cell = row.createCell( j );
