@@ -30,15 +30,15 @@
   <distributionManagement>
     <repository>
       <id>glvnsjc.release</id>
-      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/internal</url>
+      <url>file:///glvnsjc/repositories/releases/glvnsjc-releases</url>
     </repository>
     <snapshotRepository>
       <id>glvnsjc.snapshot</id>
-      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/snapshots</url>
+      <url>file:///glvnsjc/repositories/snapshots/glvnsjc-snapshots</url>
     </snapshotRepository>
     <site>
       <id>glvnsjc.website</id>
-      <url>scp://glvnsjc.homedns.org/cygdrive/g/dev/archiva/repositories/site</url>
+      <url>file:///glvnsjc/repositories/site</url>
     </site>
   </distributionManagement>
 
@@ -57,17 +57,6 @@
     </developer>
   </developers>
 
-
-  <repositories>
-    <repository>
-      <id>glvnsjc</id>
-      <name>glvnsjc maven repository</name>
-      <url>http://glvnsjc.homedns.org:8080/archiva/repository/internal</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-  </repositories>
 
   <modules>
     <module>glvnsjc-common</module>

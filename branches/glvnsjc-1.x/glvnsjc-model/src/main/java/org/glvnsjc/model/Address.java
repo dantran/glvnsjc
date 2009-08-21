@@ -168,6 +168,38 @@ public class Address
         return buffer.toString();
     }
     
+    public String getAddressLine1()
+    {
+        StringBuffer buffer = new StringBuffer();
+        if ( !StringUtil.isBlank( this.street1 ) )
+        {
+            buffer.append( this.street1 );
+        }
+        if ( !StringUtil.isBlank( this.street2 ) )
+        {
+            buffer.append( " " ).append( this.street2 );
+        }
+        return buffer.toString();
+    }
+    
+    public String getAddressLine2()
+    {
+        StringBuffer buffer = new StringBuffer();
+        if ( !StringUtil.isBlank( this.city ) )
+        {
+            buffer.append( this.city );
+        }
+        if ( !StringUtil.isBlank( this.state ) )
+        {
+            buffer.append( ", " ).append( this.state );
+        }
+        if ( !StringUtil.isBlank( this.zipCode ) )
+        {
+            buffer.append( " " ).append( this.zipCode );
+        }
+        return buffer.toString();
+    }
+    
     /*
     public boolean equals(Address obj) 
     {

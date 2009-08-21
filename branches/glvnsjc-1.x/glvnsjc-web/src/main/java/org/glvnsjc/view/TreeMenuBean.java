@@ -1,16 +1,15 @@
 package org.glvnsjc.view;
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.util.MessageResources;
 
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.action.student.DispatchType;
 import org.glvnsjc.model.ClassName;
 import org.glvnsjc.model.ClassType;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.util.StringUtil;
-import org.glvnsjc.model.*;
 
 public class TreeMenuBean
     extends org.apache.struts.action.ActionForm
@@ -203,11 +202,17 @@ public class TreeMenuBean
                 .setHref( "./student/noClassAssignedReport.do" ) );
             reportFolder.addChild( new TreeNode( "Giaoly Awards", 2 ).setHref( "./student/giaolyAwardReport.do" ) );
             reportFolder.addChild( new TreeNode( "Vietngu Awards", 2 ).setHref( "./student/vietnguAwardReport.do" ) );
-            if ( isCommunityPrivilege )
+
+            if ( isPrincipalPrivilege || isCommunityPrivilege )
             {
                 reportFolder.addChild( new TreeNode( "Student Statistics", 2 ).setHref( "./student/studentStats.do" ) );
+
+                reportFolder.addChild( new TreeNode( "Split Class", 2 )
+                    .setHref( "./student/loadStudentsToBeSubClassed.do" ) );
+                reportFolder.addChild( new TreeNode( "Excel Workbook", 2 ).setHref( "./student/school2Excel.do" ) );
+
             }
-            
+
             TreeNode helpFolder = new TreeNode( "Documentation", 1 );
             helpFolder.setShowChildren( false );
             helpFolder.addChild( new TreeNode( "Motivation", 2 ).setHref( "./doc/motivations.htm" ) );

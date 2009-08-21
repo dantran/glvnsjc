@@ -115,7 +115,12 @@ public class School2ExcelAction
         //student address
         j++;
         cell = row.createCell( j );
-        cell.setCellValue( schoolYear.getStudent().getAddress().getFullAddress() );
+        cell.setCellValue( schoolYear.getStudent().getAddress().getAddressLine1() );
+
+        j++;
+        cell = row.createCell( j );
+        
+        cell.setCellValue( schoolYear.getStudent().getAddress().getAddressLine2() );
         
         //student phone
         j++;
@@ -130,13 +135,26 @@ public class School2ExcelAction
         //student GL Class
         j++;
         cell = row.createCell( j );
-        cell.setCellValue( schoolYear.getGiaolyClass().getFullClassName() );
+        cell.setCellValue( schoolYear.getSchool().getShortName() );
+        
+        //student GL Class
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( schoolYear.getGiaolyClass().getName().toString() );
 
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( schoolYear.getGiaolyClass().getSubName().toString() );
+        
         //student VN Class
         j++;
         cell = row.createCell( j );
-        cell.setCellValue( schoolYear.getVietnguClass().getFullClassName() );
+        cell.setCellValue( schoolYear.getVietnguClass().getName().toString() );
 
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( schoolYear.getVietnguClass().getSubName().toString() );
+        
     }
 
     private HSSFSheet createMainSheet( HSSFWorkbook workbook )
@@ -188,6 +206,11 @@ public class School2ExcelAction
         cell.setCellValue( "Address" );
         mainSheet.setColumnWidth( j, ADDRESS_WIDTH );
 
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "Address2" );
+        mainSheet.setColumnWidth( j, ADDRESS_WIDTH );
+        
         //student phone
         j++;
         cell = row.createCell( j );
@@ -200,16 +223,29 @@ public class School2ExcelAction
         cell.setCellValue( "DOB" );
         mainSheet.setColumnWidth( j, DOB_WIDTH );
 
+        //School
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "School" );
+        
         //student GL Class
         j++;
         cell = row.createCell( j );
         cell.setCellValue( "GL" );
 
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "GLS" );
+        
         //student VN Class
         j++;
         cell = row.createCell( j );
         cell.setCellValue( "VN" );
 
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "VNS" );
+        
         return mainSheet;
     }
 
@@ -353,7 +389,7 @@ public class School2ExcelAction
 
         LoginProfile loginProfile = ( (AppPrincipal) request.getUserPrincipal() ).getLoginProfile();
 
-        //find all SchoolYears belogin to a school at current school year
+        //find all SchoolYears belongin to a school at current school year
         //setup the query
         StringBuffer queryBuff = new StringBuffer();
         queryBuff.append( "from org.glvnsjc.model.SchoolYear schoolYear " );
