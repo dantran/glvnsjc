@@ -12,7 +12,6 @@
   
   <organization>
     <name>Giao Ly Viet Ngu St. Patrick, Sanjose, CA</name>
-    <url>http://glvnsjc.homedns.org/webdav/site/index.html</url>
   </organization>
   
   <inceptionYear>2003</inceptionYear>
@@ -25,7 +24,6 @@
     students and instructors historical information.
   </description>
 
-  <url>http://glvnsjc.homedns.org/webdav/site/index.html</url>
 
   <distributionManagement>
     <repository>
