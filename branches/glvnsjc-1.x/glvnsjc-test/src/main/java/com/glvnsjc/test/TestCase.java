@@ -9,40 +9,39 @@ public class TestCase
     {
         super();
     }
-    
-    public TestCase ( String name )
+
+    public TestCase( String name )
     {
         super( name );
     }
-    
-    private static  File baseDir;
-    
-    private static  File testDir;
-    
+
+    private static File baseDir;
+
+    private static File testDir;
+
     protected static File getBasedir()
     {
         if ( baseDir == null )
         {
-            baseDir = new File ( System.getProperty( "basedir", "./" ) );
+            baseDir = new File( System.getProperty( "basedir", "./" ) );
         }
         return baseDir;
     }
-    
+
     protected static File getTestDir()
-    { 
+    {
         if ( testDir == null )
         {
-            testDir = new File ( getBasedir(), "target/glvnscj-test" );
+            testDir = new File( getBasedir(), "target/glvnscj-test" );
         }
         return testDir;
     }
-    
+
     public void setUp()
     {
-        if ( ! getTestDir().isDirectory() ) 
+        if ( !getTestDir().isDirectory() )
         {
             testDir.mkdirs();
         }
     }
 }
-  

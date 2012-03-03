@@ -15,7 +15,7 @@ import org.glvnsjc.model.SchoolYear;
 import org.glvnsjc.model.StudentUtil;
 
 public class CreateAwardPDFAction
-extends org.apache.struts.action.Action
+    extends org.apache.struts.action.Action
 {
 
     private static Log log = LogFactory.getLog( CreateAwardPDFAction.class );
@@ -24,12 +24,12 @@ extends org.apache.struts.action.Action
                                   HttpServletResponse response )
         throws Exception
     {
-        
+
         //use a form to allow jsp to fill in addition argument
         DynaActionForm theForm = (DynaActionForm) form;
-        
+
         Integer studentId = new Integer( (String) theForm.get( "studentId" ) );
-        
+
         ClassType classType = ClassType.GIAOLY;
         int classTypeNum = Integer.parseInt( (String) theForm.get( "classType" ) );
         if ( classTypeNum != ClassType.GIAOLY_CODE )
@@ -38,43 +38,42 @@ extends org.apache.struts.action.Action
         }
 
         SchoolYear schoolYear = StudentUtil.getCurrentSchoolYear( studentId );
-        
+
         //response.setHeader( "Cache-Control", "no-cache" );
         response.setHeader( "Expires", "0" );
         String awardFileName = getAwardFileName( classType, schoolYear );
         response.setHeader( "Content-Disposition", "attachment; filename=\"" + awardFileName );
         response.setContentType( "application/pdf" );
 
-        CreateCertificateAward award = new CreateCertificateAward( schoolYear, classType);
+        CreateCertificateAward award = new CreateCertificateAward( schoolYear, classType );
         award.pdfWrite( response.getOutputStream() );
-        
-        log.info( classType.toFriendlyName() + " Award Certification created for: " + schoolYear.getStudent().getName().getFullName() );
-        
+
+        log.info( classType.toFriendlyName() + " Award Certification created for: "
+            + schoolYear.getStudent().getName().getFullName() );
+
         return ( null );
     }
-    
+
     public static String getAwardFileName( ClassType classType, SchoolYear schoolYear )
     {
         StringBuilder buffer = new StringBuilder();
-        
+
         buffer.append( classType.toFriendlyShortName() );
-        
+
         SchoolClass schoolClass = schoolYear.getGiaolyClass();
-        
+
         if ( classType == ClassType.VIETNGU )
         {
-            schoolClass = schoolYear.getVietnguClass();            
+            schoolClass = schoolYear.getVietnguClass();
         }
 
         buffer.append( schoolClass.getFullClassName() );
         buffer.append( "-" );
         buffer.append( schoolClass.getGrade().getDisplay() );
-        
+
         buffer.append( ".award.pdf" );
-        
-                
+
         return buffer.toString();
     }
-    
 
 }

@@ -13,13 +13,12 @@ public class Banner
     extends org.apache.struts.action.Action
 {
 
-
     //------------------------------------------------------------ Action Methods
 
     //Load a student based on studentId
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

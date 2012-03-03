@@ -1,31 +1,23 @@
 package org.glvnsjc.action.student;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.model.ClassName;
+import org.glvnsjc.model.ClassSubName;
+import org.glvnsjc.model.ClassType;
+import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.hibernate.SessionUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-
-import org.glvnsjc.model.Address;
-import org.glvnsjc.model.ClassType;
-import org.glvnsjc.model.ClassName;
-import org.glvnsjc.model.ClassSubName;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.Name;
-import org.glvnsjc.model.SchoolYear;
-
-import org.glvnsjc.action.ActionUtil;
-
-import org.glvnsjc.model.GlobalConfig;
-import org.glvnsjc.model.hibernate.SessionUtil;
-import org.glvnsjc.util.StringUtil;
 
 public class StudentUtils
 {
@@ -99,7 +91,5 @@ public class StudentUtils
 
         return schoolYears;
     }
-    
 
-    
 }

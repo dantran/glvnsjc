@@ -2,10 +2,8 @@ package org.glvnsjc.model;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.glvnsjc.util.StringUtil;
-
 
 public class Address
     implements Serializable
@@ -37,7 +35,7 @@ public class Address
 
     /** full constructor */
     public Address( java.lang.String street1, java.lang.String street2, java.lang.String city, java.lang.String state,
-                   java.lang.String zipCode, java.lang.String email, java.lang.String phone1, java.lang.String phone2 )
+                    java.lang.String zipCode, java.lang.String email, java.lang.String phone1, java.lang.String phone2 )
     {
         this.street1 = street1;
         this.street2 = street2;
@@ -167,7 +165,7 @@ public class Address
         }
         return buffer.toString();
     }
-    
+
     public String getAddressLine1()
     {
         StringBuffer buffer = new StringBuffer();
@@ -181,7 +179,7 @@ public class Address
         }
         return buffer.toString();
     }
-    
+
     public String getAddressLine2()
     {
         StringBuffer buffer = new StringBuffer();
@@ -199,7 +197,7 @@ public class Address
         }
         return buffer.toString();
     }
-    
+
     /*
     public boolean equals(Address obj) 
     {
@@ -226,10 +224,8 @@ public class Address
                            .append(phone1, rhs.phone1)
                            .append(phone2, rhs.phone2)
                            .isEquals();
- 
+    
      }
      */
-    
 
-     
 }

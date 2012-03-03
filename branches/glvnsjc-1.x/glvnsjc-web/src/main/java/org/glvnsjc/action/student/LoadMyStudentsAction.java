@@ -11,8 +11,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.ClassType;
-import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
 
 /**
  * <tt>LoadMyStudentsAction</tt> load a list of student base on classType and current teacher class assignments
@@ -29,7 +29,7 @@ public class LoadMyStudentsAction
     private static Log log = LogFactory.getLog( LoadMyStudentsAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

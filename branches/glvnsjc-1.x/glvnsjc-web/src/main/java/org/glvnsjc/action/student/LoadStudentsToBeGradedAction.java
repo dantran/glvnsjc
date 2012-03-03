@@ -6,11 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.type.Type;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
@@ -20,12 +15,16 @@ import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.ClassName;
 import org.glvnsjc.model.ClassSubName;
 import org.glvnsjc.model.ClassType;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.SchoolYear;
-import org.glvnsjc.view.ClassGradeListForm;
-import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.glvnsjc.view.ClassGradeListForm;
 import org.glvnsjc.view.StudentGradeView;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
 
 /**
  * <tt>LoadStudentsToBeGradedAction</tt> prepares a a list of students belong to the current login user

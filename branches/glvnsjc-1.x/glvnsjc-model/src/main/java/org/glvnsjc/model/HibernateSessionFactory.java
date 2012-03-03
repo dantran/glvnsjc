@@ -1,22 +1,30 @@
 package org.glvnsjc.model;
 
 /**
- * <p>Title: </p>
- * <p>Description: Singleton to init JDO Persistent Manager Factory</p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description: Singleton to init JDO Persistent Manager Factory
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hsqldb.DatabaseManager;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public class HibernateSessionFactory
 {
@@ -49,11 +57,11 @@ public class HibernateSessionFactory
     {
         return sessionFactory.openSession();
     }
-    
+
     public static Session getCurrentSession()
     {
         return sessionFactory.getCurrentSession();
-    }    
+    }
 
     public static void flush()
         throws HibernateException

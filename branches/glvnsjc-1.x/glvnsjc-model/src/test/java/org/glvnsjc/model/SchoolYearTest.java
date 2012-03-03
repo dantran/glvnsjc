@@ -1,11 +1,11 @@
 package org.glvnsjc.model;
 
-import org.glvnsjc.model.hibernate.SessionUtil;
-import org.hibernate.Session;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import org.glvnsjc.model.hibernate.SessionUtil;
+import org.hibernate.Session;
 
 public class SchoolYearTest
     extends TestCase
@@ -21,7 +21,7 @@ public class SchoolYearTest
     public void testAddSchoolYear()
     {
         SchoolYear schoolYear = null;
-        
+
         try
         {
             Session session = SessionUtil.begin();
@@ -57,9 +57,8 @@ public class SchoolYearTest
         }
         catch ( Exception e )
         {
-            SessionUtil.rollback(  e );
-        }        
-
+            SessionUtil.rollback( e );
+        }
 
         //used by subsequence test
         schoolYearId = schoolYear.getId();
@@ -68,7 +67,7 @@ public class SchoolYearTest
 
     public void testAddSchoolYearWithoutSchool()
     {
-        
+
         SchoolClass glClass = new SchoolClass();
         glClass.setGrade( Grade.FIRST );
         glClass.setName( ClassName.C1 );
@@ -86,7 +85,7 @@ public class SchoolYearTest
         schoolYear.setGiaolyClass( glClass );
         schoolYear.setVietnguClass( vnClass );
 
-        try 
+        try
         {
             Session session = SessionUtil.begin();
             session.save( schoolYear );
@@ -98,7 +97,7 @@ public class SchoolYearTest
         }
 
     }
-    
+
     public void testVerifyAddSchoolYear()
     {
         SchoolYear sy = null;
@@ -117,7 +116,7 @@ public class SchoolYearTest
         }
         catch ( Exception e )
         {
-            SessionUtil.rollback(  e );
+            SessionUtil.rollback( e );
         }
     }
 
@@ -127,7 +126,7 @@ public class SchoolYearTest
         try
         {
             Session session = SessionUtil.begin();
-            sy = (SchoolYear) session.load( SchoolYear.class, schoolYearId );            
+            sy = (SchoolYear) session.load( SchoolYear.class, schoolYearId );
             //must delete in this order
             session.delete( sy );
             session.delete( sy.getSchool() );
@@ -137,15 +136,15 @@ public class SchoolYearTest
         }
         catch ( Exception e )
         {
-            SessionUtil.rollback(  e );
-        }        
+            SessionUtil.rollback( e );
+        }
     }
 
     public void testVerifyDeleteSchoolYear()
     {
-        try 
+        try
         {
-            Session session = SessionUtil.begin();            
+            Session session = SessionUtil.begin();
             SchoolYear sy = (SchoolYear) session.load( SchoolYear.class, schoolYearId );
             fail( "not able to delete school year: " + sy.toString() );
             SessionUtil.end();
@@ -163,7 +162,7 @@ public class SchoolYearTest
         TestSuite st = new TestSuite();
         st.addTest( new SchoolYearTest( "testAddSchoolYear" ) );
         st.addTest( new SchoolYearTest( "testAddSchoolYearWithoutSchool" ) );
-        
+
         st.addTest( new SchoolYearTest( "testVerifyAddSchoolYear" ) );
         st.addTest( new SchoolYearTest( "testDeleteSchoolYear" ) );
         st.addTest( new SchoolYearTest( "testVerifyDeleteSchoolYear" ) );

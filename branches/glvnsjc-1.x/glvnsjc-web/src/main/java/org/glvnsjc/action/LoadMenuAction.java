@@ -1,10 +1,9 @@
 /*
- * This Source code was written by theKM* (the KeyboardMonkey) and is held under
- * The popular ISYM.NSMYP technology agreement (I've Shown You Mine, Now Show Me
- * Yours Please). In which case, writing source that uses this source in part or
- * in whole means that it would be nice of you to show me at least what it does
- * and how my source played a part.
- * All rights reserved... arron@keyboardmonkey.com
+ * This Source code was written by theKM* (the KeyboardMonkey) and is held under The popular
+ * ISYM.NSMYP technology agreement (I've Shown You Mine, Now Show Me Yours Please). In which case,
+ * writing source that uses this source in part or in whole means that it would be nice of you to
+ * show me at least what it does and how my source played a part. All rights reserved...
+ * arron@keyboardmonkey.com
  */
 package org.glvnsjc.action;
 
@@ -29,7 +28,7 @@ public class LoadMenuAction
 
     /* It's a lazy, but reliable way to get our stuff saved to disk */
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

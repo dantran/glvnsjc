@@ -8,9 +8,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,21 +16,22 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.SchoolList;
 import org.glvnsjc.model.Privilege;
+import org.glvnsjc.model.SchoolList;
 import org.glvnsjc.model.SiteConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
-import org.glvnsjc.view.LoginProfileForm;
-import org.glvnsjc.util.StringUtil;
-import org.glvnsjc.util.SendMail;
 import org.glvnsjc.util.ProcessRunnables;
+import org.glvnsjc.util.SendMail;
+import org.glvnsjc.util.StringUtil;
+import org.glvnsjc.view.LoginProfileForm;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-//note: the form must have property named as "action" since the dispatch action
-//  already use this.  Is this a bug in DispatchLookupAction?
+// note: the form must have property named as "action" since the dispatch action
+// already use this. Is this a bug in DispatchLookupAction?
 
 public class DispatchAction
     extends org.apache.struts.actions.LookupDispatchAction
@@ -55,11 +53,11 @@ public class DispatchAction
         throws Exception
     {
         String hql = "from org.glvnsjc.model.LoginProfile profile where profile.userId = :userId";
-        
+
         Query query = session.createQuery( hql ).setParameter( "userId", userId );
-        
+
         List list = query.list();
-        
+
         return ( list.size() != 0 );
     }
 
@@ -74,7 +72,7 @@ public class DispatchAction
     }
 
     public ActionForward add( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                             HttpServletResponse response )
+                              HttpServletResponse response )
         throws Exception
     {
 
@@ -91,7 +89,7 @@ public class DispatchAction
         try
         {
             Session session = SessionUtil.begin();
-            
+
             LoginProfile loginProfile = new LoginProfile();
             BeanUtils.copyProperties( loginProfile, theForm );
             if ( this.isUserIdExist( session, theForm.getUserId() ) )
@@ -108,7 +106,7 @@ public class DispatchAction
             }
 
             session.save( loginProfile );
-            
+
             SessionUtil.end();
 
             //send the object id back to the form
@@ -130,7 +128,7 @@ public class DispatchAction
     }
 
     public ActionForward resetPassword( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                       HttpServletResponse response )
+                                        HttpServletResponse response )
         throws Exception
     {
 
@@ -157,15 +155,15 @@ public class DispatchAction
             SendMail sendMail = new SendMail( from, to, "GLVNSJC Account Notification",
                                               generateAccountResetEmailBody( loginProfile.getName().getFullName(),
                                                                              theForm ) );
-            
+
             SiteConfig siteConfig = GlobalConfig.getInstance().getGlobalConfig();
-            
+
             sendMail.setSmtpServerHost( siteConfig.getSmtpServer() );
             sendMail.setSmtpserverUserId( siteConfig.getSmtpUserId() );
             sendMail.setSmtpserverPassword( siteConfig.getSmtpPassword() );
-            
+
             ProcessRunnables.getInstance().submit( sendMail );
-            
+
             this.saveMessages( request, ActionUtil.createActionMessages( "message.resetPassword.notification" ) );
 
         }
@@ -191,7 +189,7 @@ public class DispatchAction
     }
 
     public ActionForward update( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -249,7 +247,7 @@ public class DispatchAction
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 

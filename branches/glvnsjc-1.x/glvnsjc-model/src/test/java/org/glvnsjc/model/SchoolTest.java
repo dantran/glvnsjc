@@ -2,6 +2,7 @@ package org.glvnsjc.model;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.hibernate.Session;
 
 import com.glvnsjc.test.TestCase;

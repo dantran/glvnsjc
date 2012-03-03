@@ -19,60 +19,60 @@ import org.codehaus.plexus.util.FileUtils;
  */
 public class DBBackup
 {
-    public static File run( File from , File to )
+    public static File run( File from, File to )
         throws IOException
     {
-        if ( ! isDataChanged( from, to ) )
+        if ( !isDataChanged( from, to ) )
         {
             return null;
         }
-        
+
         if ( to.getParentFile().exists() )
         {
             to.getParentFile().mkdirs();
         }
-        
+
         FileUtils.copyFile( from, to );
-        
+
         //compress backup file
-        File compressedBackupFile = new File ( to.getAbsolutePath() + "." + getTimestamp() + ".bz2" );
-        
+        File compressedBackupFile = new File( to.getAbsolutePath() + "." + getTimestamp() + ".bz2" );
+
         BZip2Archiver compressor = new BZip2Archiver();
-        
-        try 
+
+        try
         {
             compressor.addFile( to, FileUtils.filename( to.getPath() ) );
-            
+
             compressor.setDestFile( compressedBackupFile );
-            
+
             compressor.createArchive();
         }
         catch ( ArchiverException e )
         {
-            throw new IOException ( e.getMessage() );
+            throw new IOException( e.getMessage() );
         }
-        
+
         return compressedBackupFile;
     }
-    
+
     private static String getTimestamp()
     {
         SimpleDateFormat dt = new SimpleDateFormat( "yyyyMMddHHmmss" );
-        
+
         StringBuffer buf = new StringBuffer();
-        
+
         Date now = new Date();
-        
+
         buf = dt.format( now, buf, new java.text.FieldPosition( 0 ) );
-        
+
         return buf.toString();
     }
-    
+
     /* check if the previous backup file is same as the current file */
     private static boolean isDataChanged( File dbFile, File previousBackupFile )
         throws IOException
     {
-        if ( ! previousBackupFile.exists() )
+        if ( !previousBackupFile.exists() )
         {
             return true;
         }
@@ -103,5 +103,5 @@ public class DBBackup
 
         return false;
     }
-    
+
 }

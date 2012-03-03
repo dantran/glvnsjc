@@ -8,8 +8,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 import org.glvnsjc.action.ActionUtil;
-import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
 
 /**
  * LoadSearchAction prepares student search form.
@@ -35,7 +35,7 @@ public class LoadSearchAction
     //Load a student based on studentId
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
         DynaActionForm theForm = (DynaActionForm) form;

@@ -53,7 +53,7 @@ public final class ActionExceptionHandler
      *      )
      */
     public ActionForward execute( Exception ex, ExceptionConfig ae, ActionMapping mapping, ActionForm formInstance,
-                                 HttpServletRequest request, HttpServletResponse response )
+                                  HttpServletRequest request, HttpServletResponse response )
         throws ServletException
     {
 
@@ -101,7 +101,7 @@ public final class ActionExceptionHandler
      * @param scope - The scope of the exception mapping.
      */
     protected void storeException( HttpServletRequest request, String property, ActionMessage error,
-                                  ActionForward forward )
+                                   ActionForward forward )
     {
 
         ActionMessages errors = (ActionMessages) request.getAttribute( Globals.ERROR_KEY );

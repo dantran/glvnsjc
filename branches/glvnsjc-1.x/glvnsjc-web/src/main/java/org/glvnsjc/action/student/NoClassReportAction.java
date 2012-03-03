@@ -6,21 +6,20 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.type.Type;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.glvnsjc.model.ClassName;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.securityfilter.AppPrincipal;
 import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.glvnsjc.securityfilter.AppPrincipal;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
 
 public class NoClassReportAction
     extends org.apache.struts.action.Action
@@ -78,7 +77,7 @@ public class NoClassReportAction
             List schoolYears = query.list();
 
             request.getSession().setAttribute( "list", schoolYears );
-            
+
             SessionUtil.end();
         }
         catch ( Exception e )

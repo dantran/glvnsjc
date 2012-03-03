@@ -3,8 +3,6 @@ package org.glvnsjc.action.teacher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,8 +14,9 @@ import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.securityfilter.AppPrincipal;
+import org.hibernate.Session;
 
-//Load a student based on studentId
+// Load a student based on studentId
 
 public class UpdateCurrentLoginUserProfileAction
     extends org.apache.struts.action.Action
@@ -26,14 +25,13 @@ public class UpdateCurrentLoginUserProfileAction
     private static Log log = LogFactory.getLog( UpdateCurrentLoginUserProfileAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
         DynaActionForm theForm = (DynaActionForm) form;
 
         AppPrincipal appPrincipal = (AppPrincipal) request.getUserPrincipal();
         LoginProfile loginProfile = appPrincipal.getLoginProfile();
-
 
         try
         {

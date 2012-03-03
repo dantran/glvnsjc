@@ -1,10 +1,19 @@
 package org.glvnsjc.view.option;
 
 /**
- * <p>Title: </p>
- * <p>Description: A fixed list of avaiable ClassSubName object to init torque</p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description: A fixed list of avaiable ClassSubName object to init torque
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */

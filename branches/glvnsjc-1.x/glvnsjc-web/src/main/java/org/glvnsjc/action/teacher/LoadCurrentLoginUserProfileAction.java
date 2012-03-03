@@ -11,10 +11,9 @@ import org.apache.struts.action.DynaActionForm;
 import org.glvnsjc.model.Address;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Name;
-
 import org.glvnsjc.securityfilter.AppPrincipal;
 
-//Load a student based on studentId
+// Load a student based on studentId
 
 public class LoadCurrentLoginUserProfileAction
     extends org.apache.struts.action.Action

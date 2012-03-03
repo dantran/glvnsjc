@@ -22,9 +22,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.plexus.util.StringUtils;
 
-
-
-
 public class SendMail
     implements Runnable
 {
@@ -46,11 +43,11 @@ public class SendMail
     private List attachments;
 
     private String smtpServerHost;
-    
+
     private String smtpServerUserId;
-    
+
     private String smtpServerPassword;
-    
+
     public SendMail()
     {
     }
@@ -150,22 +147,22 @@ public class SendMail
     {
         this.smtpServerUserId = value;
     }
-    
+
     public String getSmtpServerUserId()
     {
         return this.smtpServerUserId;
     }
-    
+
     public String getSmtpServerPassword()
     {
         return this.smtpServerPassword;
-    } 
-    
+    }
+
     public void setSmtpserverPassword( String value )
     {
         this.smtpServerPassword = value;
     }
-        
+
     public String getSmtpServerHost()
     {
         return this.smtpServerHost;
@@ -175,7 +172,7 @@ public class SendMail
     {
         this.smtpServerHost = value;
     }
-           
+
     public void run()
     {
         try
@@ -193,22 +190,22 @@ public class SendMail
     {
 
         Properties props = System.getProperties();
-        
+
         log.info( "smtpHostAddress: " + this.getSmtpServerHost() );
-        
-        String [] tokens = StringUtils.split( this.getSmtpServerHost(), ":" );
-        
+
+        String[] tokens = StringUtils.split( this.getSmtpServerHost(), ":" );
+
         String smtpHost = tokens[0];
-        
+
         String smtpPort = "25";
-        
+
         if ( tokens.length > 1 )
         {
-        	smtpPort = tokens[1];
+            smtpPort = tokens[1];
         }
-        
-        props.put("mail.smtp.port", smtpPort );
-        
+
+        props.put( "mail.smtp.port", smtpPort );
+
         if ( StringUtil.isBlank( getSmtpServerUserId() ) )
         {
             props.put( "mail.smtp.auth", "false" );

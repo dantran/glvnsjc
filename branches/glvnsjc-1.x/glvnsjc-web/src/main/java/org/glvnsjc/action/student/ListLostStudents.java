@@ -38,16 +38,16 @@ public class ListLostStudents
     //Load a student based on studentId
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 
         LoginProfile loginProfile = ActionUtil.getCurrentUserLoginProfile( request );
-        
+
         //search student that the current login user created
         String searchStr = "from org.glvnsjc.model.LostStudent student where student.reportedBy = "
             + loginProfile.getId();
-        
+
         if ( request.isUserInRole( Privilege.COMMUNITY.toString() ) )
         {
             // get everything for master or better account
@@ -59,21 +59,20 @@ public class ListLostStudents
                 + loginProfile.getSchool().getId();
         }
 
-
         try
         {
             Session session = SessionUtil.begin();
-                        
-            Query query = session.createQuery( searchStr ) ;
-            
+
+            Query query = session.createQuery( searchStr );
+
             List lostStudents = query.list();
-            
-            for ( int i = 0 ; i < lostStudents.size(); ++i)
+
+            for ( int i = 0; i < lostStudents.size(); ++i )
             {
-                LostStudent lostStudent = ( LostStudent) lostStudents.get( i );
+                LostStudent lostStudent = (LostStudent) lostStudents.get( i );
                 lostStudent.getReportedBy().getName();
             }
-            
+
             request.getSession().setAttribute( "list", lostStudents );
 
             SessionUtil.end();
@@ -83,7 +82,7 @@ public class ListLostStudents
             log.error( "Error loading lost students", e );
             SessionUtil.rollback( e );
         }
-        
+
         return mapping.findForward( "success" );
 
     }

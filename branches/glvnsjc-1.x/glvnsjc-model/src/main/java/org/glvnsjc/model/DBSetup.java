@@ -3,16 +3,8 @@ package org.glvnsjc.model;
 import java.util.Calendar;
 import java.util.List;
 
-import org.hibernate.Session;
-
-import org.glvnsjc.model.ClassName;
-import org.glvnsjc.model.ClassSubName;
-import org.glvnsjc.model.Gender;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.Privilege;
-import org.glvnsjc.model.SiteConfig;
-import org.glvnsjc.model.TeacherType;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.hibernate.Session;
 
 /**
  * One time call before access database to make sure we have directory and 
@@ -27,7 +19,7 @@ public class DBSetup
     {
         try
         {
-            Session session  = SessionUtil.begin();
+            Session session = SessionUtil.begin();
             List siteConfigs = session.createQuery( "from org.glvnsjc.model.SiteConfig siteConfig" ).list();
             if ( siteConfigs.size() == 0 )
             {
@@ -51,7 +43,7 @@ public class DBSetup
                 loginProfile.setVietnguSubClass( ClassSubName.UNASSIGNED );
                 session.save( loginProfile );
             }
-            
+
             SessionUtil.end();
         }
         catch ( Exception e )

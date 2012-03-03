@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -15,6 +13,7 @@ import org.glvnsjc.model.HibernateSessionFactory;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.view.SchoolCalendarForm;
 import org.glvnsjc.view.SchoolDayView;
+import org.hibernate.Session;
 
 /**
  * <tt>LoadSchoolCalendar</tt> loads SchoolCalendar from database<br<br>
@@ -28,7 +27,7 @@ public class LoadSchoolCalendar
 {
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

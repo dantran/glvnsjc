@@ -3,8 +3,6 @@ package org.glvnsjc.action.teacher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,8 +14,9 @@ import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.securityfilter.AppPrincipal;
 import org.glvnsjc.view.LoginProfileForm;
+import org.hibernate.Session;
 
-//Load a student based on studentId
+// Load a student based on studentId
 
 public class LoadAction
     extends org.apache.struts.action.Action
@@ -26,7 +25,7 @@ public class LoadAction
     private static Log log = LogFactory.getLog( LoadAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
@@ -44,7 +43,7 @@ public class LoadAction
             try
             {
                 Session session = SessionUtil.begin();
-                
+
                 LoginProfile loginProfile = (LoginProfile) session.load( LoginProfile.class, new Integer( id ) );
                 BeanUtils.copyProperties( theForm, loginProfile );
                 if ( loginProfile.getSchool() != null )
@@ -52,7 +51,7 @@ public class LoadAction
                     theForm.setSchoolId( loginProfile.getSchool().getId().toString() );
                 }
                 theForm.setConfirmPassword( theForm.getPassword() );
-                
+
                 SessionUtil.end();
             }
             catch ( Exception e )

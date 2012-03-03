@@ -1,13 +1,9 @@
 package org.glvnsjc.action.student;
 
 import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
@@ -17,14 +13,15 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.SchoolYear;
 import org.glvnsjc.model.Student;
-import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.view.SchoolYearView;
 import org.glvnsjc.view.StudentForm;
+import org.hibernate.Session;
 
 /**
  * <tt>LoadAction</tt> populates StudentForm based on a student id, it also
@@ -45,7 +42,7 @@ public class LoadAction
     private static Log log = LogFactory.getLog( LoadAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
         StudentForm theForm = (StudentForm) form;
@@ -65,30 +62,30 @@ public class LoadAction
             try
             {
                 Integer id = new Integer( request.getParameter( "id" ) );
-                
+
                 Session session = SessionUtil.begin();
-                                
+
                 Student student = (Student) session.load( Student.class, id );
-                
+
                 BeanUtils.copyProperties( theForm.getStudent(), student );
 
                 //String hsql = "from org.glvnsjc.model.SchoolYear schoolYear where schoolYear.student.id = :id order by schoolYear.year asc";
-                
+
                 //Query query = session.createQuery( hsql ).setParameter( "id", id );
 
                 //List schoolYears = query.list();
-                
+
                 theForm.removeAllSchoolYear();
                 int index = 0;
                 boolean currentSchoolYearFound = false;
-                
+
                 Iterator iterator = student.getSchoolYears().iterator();
-                
+
                 int currentSchoolYear = GlobalConfig.getInstance().getCurrentYear().intValue();
-                
+
                 while ( iterator.hasNext() )
                 {
-                	SchoolYear schoolYear = (SchoolYear)iterator.next();
+                    SchoolYear schoolYear = (SchoolYear) iterator.next();
                     SchoolYearView schoolYearView = theForm.getSchoolYear( index );
                     BeanUtils.copyProperties( schoolYearView, schoolYear );
                     //copy others
@@ -99,11 +96,11 @@ public class LoadAction
                     {
                         currentSchoolYearFound = true;
                         schoolYearView.setEditAllow( true );
-                        
+
                         theForm.setHasAward( true );
                     }
                     index++;
-                	
+
                 }
                 /*
                 for ( index = 0; index < schoolYears.size(); ++index )
@@ -122,7 +119,7 @@ public class LoadAction
                     }
                 }
                 */
-                
+
                 //there is no current schoolYear record found in the database, allow the view to and a new one. Only Master can do this
                 if ( command == DispatchType.UPDATE && request.isUserInRole( Privilege.COMMUNITY.toString() ) )
                 {
@@ -139,14 +136,14 @@ public class LoadAction
                 }
 
                 theForm.setCancelAllow( true );
-                
+
                 SessionUtil.end();
 
             }
             catch ( Exception e )
             {
                 log.error( "Error loading student", e );
-                
+
                 SessionUtil.rollback( e );
             }
         }
@@ -165,8 +162,7 @@ public class LoadAction
         boolean readonlyPage = false;
         if ( command == DispatchType.DELETE )
         {
-            readonlyPage = true;
-            ;
+            readonlyPage = true;;
         }
 
         //disable some field base on privilege

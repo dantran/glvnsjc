@@ -6,11 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.type.Type;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,12 +15,16 @@ import org.apache.struts.action.ActionMapping;
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.ClassName;
 import org.glvnsjc.model.ClassType;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.SchoolYear;
-import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.view.StudentClassView;
 import org.glvnsjc.view.StudentsToBeSubClassedForm;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
 
 /**
  * <tt>LoadStudentsToBeSubClassedAction</tt> prepares a a list of students
@@ -117,7 +116,7 @@ public class LoadStudentsToBeSubClassedAction
                 }
                 studentClassViews.add( classView );
             }
-            
+
             SessionUtil.end();
 
             theForm.setStudentClassViews( studentClassViews );

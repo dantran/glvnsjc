@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,13 +14,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
-import org.glvnsjc.model.Privilege;
+import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.StudentSearchForm;
 import org.glvnsjc.model.StudentUtil;
-import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.util.StringUtil;
-import org.glvnsjc.model.GlobalConfig;
 
 public class SearchAction
     extends org.apache.struts.actions.LookupDispatchAction
@@ -38,7 +37,7 @@ public class SearchAction
     }
 
     public ActionForward search( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -52,11 +51,10 @@ public class SearchAction
             theForm.set( "schoolYear", GlobalConfig.getInstance().getCurrentYear().toString() );
         }
 
-        StudentSearchForm criteria = new StudentSearchForm() ;
+        StudentSearchForm criteria = new StudentSearchForm();
         BeanUtils.copyProperties( criteria, theForm );
-        
-        List list = StudentUtil.search(  criteria );
 
+        List list = StudentUtil.search( criteria );
 
         //tell the view the return list type
         if ( !StringUtil.isBlank( criteria.getSchoolYear() ) )

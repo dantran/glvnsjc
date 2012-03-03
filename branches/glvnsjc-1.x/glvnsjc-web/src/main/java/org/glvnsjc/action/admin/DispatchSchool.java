@@ -20,8 +20,8 @@ import org.glvnsjc.model.SchoolList;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.hibernate.Session;
 
-//note: the form must have property named as "action" since the dispatch action
-//  already use this.  Is this a bug in DispatchLookupAction?
+// note: the form must have property named as "action" since the dispatch action
+// already use this. Is this a bug in DispatchLookupAction?
 
 public class DispatchSchool
     extends org.apache.struts.actions.LookupDispatchAction
@@ -39,7 +39,7 @@ public class DispatchSchool
     }
 
     public ActionForward add( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                             HttpServletResponse response )
+                              HttpServletResponse response )
         throws Exception
     {
 
@@ -63,8 +63,8 @@ public class DispatchSchool
             theForm.set( "id", id.toString() );
             log.info( "Add School: " + form );
             this.saveMessages( request, ActionUtil.createActionMessages( "message.add.success" ) );
-            
-            SchoolList.getInstance().reload();            
+
+            SchoolList.getInstance().reload();
 
         }
         catch ( Exception e )
@@ -78,7 +78,7 @@ public class DispatchSchool
     }
 
     public ActionForward update( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -107,7 +107,7 @@ public class DispatchSchool
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 

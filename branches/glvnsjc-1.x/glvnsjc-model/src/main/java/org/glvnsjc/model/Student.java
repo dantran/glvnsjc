@@ -41,12 +41,11 @@ public class Student
 
     /** persistent field */
     private Set schoolYears = new HashSet();
-    
 
     /** full constructor */
     public Student( java.lang.Integer id, java.util.Date birthDate, java.lang.String saintName,
-                   org.glvnsjc.model.Gender gender, org.glvnsjc.model.Name name, org.glvnsjc.model.Name parentName,
-                   org.glvnsjc.model.Address address )
+                    org.glvnsjc.model.Gender gender, org.glvnsjc.model.Name name, org.glvnsjc.model.Name parentName,
+                    org.glvnsjc.model.Address address )
     {
         this.id = id;
         this.birthDate = birthDate;
@@ -172,11 +171,12 @@ public class Student
     {
         return schoolYears;
     }
+
     public void setSchoolYears( Set schoolYears )
     {
         this.schoolYears = schoolYears;
     }
-    
+
     //////////////////////////////////////// helpers //////////////////////////
     public String toString()
     {

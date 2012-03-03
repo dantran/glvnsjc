@@ -1,14 +1,22 @@
 package org.glvnsjc.model;
 
 /**
- * <p>Title: </p>
- * <p>Description: Singleton to init torque</p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description: Singleton to init torque
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */
-
 
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.hibernate.HibernateException;
@@ -53,7 +61,7 @@ public class GlobalConfig
         catch ( HibernateException e )
         {
             e.printStackTrace();
-            
+
             SessionUtil.rollback( e );
             /*
             Calendar ca = Calendar.getInstance();

@@ -1,38 +1,37 @@
 package org.glvnsjc.action.student;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.util.MessageResources;
 import org.glvnsjc.action.ActionUtil;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.SchoolClass;
+import org.glvnsjc.converter.Convert;
 import org.glvnsjc.model.ClassName;
 import org.glvnsjc.model.ClassSubName;
-import org.glvnsjc.model.Name;
-import org.glvnsjc.model.LostStudent;
 import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.LostStudent;
+import org.glvnsjc.model.Name;
+import org.glvnsjc.model.SchoolClass;
 import org.glvnsjc.model.SiteConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
-import org.glvnsjc.util.SendMail;
-import org.glvnsjc.converter.Convert;
 import org.glvnsjc.util.ProcessRunnables;
+import org.glvnsjc.util.SendMail;
 import org.glvnsjc.util.StringUtil;
+import org.hibernate.Session;
 
 /**
  * <tt>LostStudentDispatch</tt> allow add/delete/update a school year record which consists of
@@ -66,7 +65,7 @@ public class LostStudentDispatch
     }
 
     public ActionForward cancel( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -74,7 +73,7 @@ public class LostStudentDispatch
     }
 
     public ActionForward add( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                             HttpServletResponse response )
+                              HttpServletResponse response )
         throws Exception
     {
 
@@ -100,9 +99,9 @@ public class LostStudentDispatch
             session.save( student );
             //the view does not have the id yet, so set it
             theForm.set( "id", student.getId().toString() );
-            
+
             SessionUtil.end();
-            
+
             log.info( request.getUserPrincipal().getName() + " added a missing student:\n" + form );
             this.saveMessages( request, ActionUtil.createActionMessages( "message.add.success" ) );
 
@@ -111,20 +110,20 @@ public class LostStudentDispatch
             SendMail sendMail = new SendMail( loginProfile.getAddress().getEmail(), feedBackEmail,
                                               "Request to lookup missing student record",
                                               generateMissingStudentInfoForEmail( student ) );
-            
+
             SiteConfig siteConfig = GlobalConfig.getInstance().getGlobalConfig();
-            
+
             sendMail.setSmtpServerHost( siteConfig.getSmtpServer() );
             sendMail.setSmtpserverUserId( siteConfig.getSmtpUserId() );
             sendMail.setSmtpserverPassword( siteConfig.getSmtpPassword() );
-            
+
             ProcessRunnables.getInstance().submit( sendMail );
 
         }
         catch ( Exception e )
         {
             log.error( "Error during adding new lost student.", e );
-            
+
             SessionUtil.rollback( e );
         }
 
@@ -138,7 +137,7 @@ public class LostStudentDispatch
     }
 
     public ActionForward update( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -158,7 +157,7 @@ public class LostStudentDispatch
                 .toString() ) );
             //copy data from form to LostStudent except the reportedBy field
             Form2LostStudent( theForm, dbStudent );
-            
+
             SessionUtil.end();
 
             log.info( request.getUserPrincipal().getName() + " updated a missing student:\n" + form );
@@ -184,7 +183,7 @@ public class LostStudentDispatch
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response )
+                                 HttpServletResponse response )
         throws Exception
     {
 
@@ -200,12 +199,13 @@ public class LostStudentDispatch
         {
             Session session = SessionUtil.begin();
 
-            LostStudent dbStudent = (LostStudent) session.load( LostStudent.class, new Integer( theForm.get( "id" ).toString() ) );
+            LostStudent dbStudent = (LostStudent) session.load( LostStudent.class, new Integer( theForm.get( "id" )
+                .toString() ) );
             dbStudent.getReportedBy().getAddress().getEmail(); //force a load
             session.delete( dbStudent );
-            
+
             SessionUtil.end();
-            
+
             log.info( request.getUserPrincipal().getName() + " removed missing student:\n" + form );
 
             //email notification to the owner of the record
@@ -215,11 +215,11 @@ public class LostStudentDispatch
                 + generateMissingStudentInfoForEmail( dbStudent );
             SendMail sendMail = new SendMail( fromEmail, toEmail, "Missing student resolved", message );
             SiteConfig siteConfig = GlobalConfig.getInstance().getGlobalConfig();
-            
+
             sendMail.setSmtpServerHost( siteConfig.getSmtpServer() );
             sendMail.setSmtpserverUserId( siteConfig.getSmtpUserId() );
             sendMail.setSmtpserverPassword( siteConfig.getSmtpPassword() );
-            
+
             ProcessRunnables.getInstance().submit( sendMail );
 
         }

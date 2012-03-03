@@ -1,6 +1,5 @@
 package org.glvnsjc.plugin;
 
-
 import javax.servlet.ServletException;
 
 import org.apache.commons.logging.Log;

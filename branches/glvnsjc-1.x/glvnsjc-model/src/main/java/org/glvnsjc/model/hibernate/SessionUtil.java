@@ -16,23 +16,23 @@ public class SessionUtil
         session.beginTransaction();
         return session;
     }
-    
+
     public static void end()
     {
         Session session = HibernateSessionFactory.getCurrentSession();
         session.getTransaction().commit();
-    }    
-    
+    }
+
     public static void rollback( Exception e )
     {
         Session session = HibernateSessionFactory.getCurrentSession();
         session.getTransaction().rollback();
         throw new RuntimeException( e );
-    }    
-    
+    }
+
     public static void rollback()
     {
         Session session = HibernateSessionFactory.getCurrentSession();
         session.getTransaction().rollback();
-    }        
+    }
 }

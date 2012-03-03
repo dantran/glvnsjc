@@ -1,6 +1,5 @@
 package org.glvnsjc.action.student;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +48,7 @@ public class StudentStatsAction
         return ( null );
     }
 
-    private HSSFWorkbook createWorkbook( )
+    private HSSFWorkbook createWorkbook()
     {
         HSSFWorkbook workbook = new HSSFWorkbook();
 
@@ -58,7 +57,7 @@ public class StudentStatsAction
         this.createSchoolSheet( workbook, ClassType.GIAOLY );
 
         this.createSchoolSheet( workbook, ClassType.VIETNGU );
-        
+
         return workbook;
     }
 
@@ -82,16 +81,16 @@ public class StudentStatsAction
         mainSheet.setColumnWidth( j, TOTAL_WIDTH );
 
         short rowNo = 1;
-        
+
         List schoolList = SchoolList.getInstance().getSchoolList();
-        
-        for ( int i = 0 ; i < schoolList.size(); ++i )
+
+        for ( int i = 0; i < schoolList.size(); ++i )
         {
-            School school = (School) schoolList.get(i);
-            
+            School school = (School) schoolList.get( i );
+
             String schoolName = school.getShortName();
-            
-            short col = 0; 
+
+            short col = 0;
             row = mainSheet.createRow( rowNo );
 
             //school name
@@ -102,7 +101,7 @@ public class StudentStatsAction
             col++;
             cell = row.createCell( col );
             cell.setCellValue( getStudentCount( school, GlobalConfig.getInstance().getCurrentYear(), null, null ) );
-            
+
             rowNo++;
         }
         return mainSheet;
@@ -112,7 +111,7 @@ public class StudentStatsAction
     {
         HSSFSheet sheet = workbook.createSheet( classType.toFriendlyShortName() );
         HSSFRow row = sheet.createRow( (short) 0 );
-        
+
         //create column titles
         //create column names
         short colNum = 0;
@@ -121,8 +120,8 @@ public class StudentStatsAction
         cell.setCellValue( "School" );
 
         //student full name
-        ClassName[] classNames =  ClassName.classNameList;
-        for ( int i = 0 ; i < classNames.length; ++i )
+        ClassName[] classNames = ClassName.classNameList;
+        for ( int i = 0; i < classNames.length; ++i )
         {
             colNum++;
             cell = row.createCell( colNum );
@@ -131,54 +130,55 @@ public class StudentStatsAction
         }
 
         short rowNo = 1;
-        
+
         List<?> schoolList = SchoolList.getInstance().getSchoolList();
-        
+
         for ( int i = 0; i < schoolList.size(); ++i )
         {
             School school = (School) schoolList.get( i );
-            
+
             String schoolName = school.getShortName();
-            
+
             row = sheet.createRow( rowNo );
 
             //school name
-            colNum = 0;  
+            colNum = 0;
             cell = row.createCell( colNum );
             cell.setCellValue( schoolName );
 
-            for ( int j = 0 ; j < classNames.length; ++j )
+            for ( int j = 0; j < classNames.length; ++j )
             {
                 colNum++;
                 cell = row.createCell( colNum );
-                cell.setCellValue( getStudentCount( school, GlobalConfig.getInstance().getCurrentYear(), classType, classNames[j] ) );
+                cell.setCellValue( getStudentCount( school, GlobalConfig.getInstance().getCurrentYear(), classType,
+                                                    classNames[j] ) );
             }
-            
+
             rowNo++;
         }
 
-        return sheet;        
-        
+        return sheet;
+
     }
-    
-    public static int getStudentCount( School school, Integer schoolYear, ClassType classType, ClassName className  )
+
+    public static int getStudentCount( School school, Integer schoolYear, ClassType classType, ClassName className )
     {
         StudentSearchForm criteria = new StudentSearchForm();
-        
+
         criteria.setSchoolYear( schoolYear.toString() );
         criteria.setSchoolId( school.getId().toString() );
-        
-        if ( ClassType.GIAOLY.equals( classType ))
+
+        if ( ClassType.GIAOLY.equals( classType ) )
         {
             criteria.setGiaolyClassName( className.toString() );
         }
 
-        if ( ClassType.VIETNGU.equals( classType ))
+        if ( ClassType.VIETNGU.equals( classType ) )
         {
             criteria.setGiaolyClassName( className.toString() );
         }
 
         return StudentUtil.search( criteria ).size();
     }
-    
+
 }
