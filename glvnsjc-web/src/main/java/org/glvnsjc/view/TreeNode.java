@@ -1,5 +1,5 @@
-/* NeXt:recursion tutorial
- * next@keyboardmonkey.com
+/*
+ * NeXt:recursion tutorial next@keyboardmonkey.com
  */
 package org.glvnsjc.view;
 

@@ -7,10 +7,10 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
+import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.School;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.action.ActionUtil;
 
 public class LoadSearchAction
     extends org.apache.struts.action.Action
@@ -19,7 +19,7 @@ public class LoadSearchAction
     //Load a student based on studentId
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

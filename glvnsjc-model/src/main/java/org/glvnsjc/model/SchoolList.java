@@ -1,15 +1,23 @@
 package org.glvnsjc.model;
 
 /**
- * <p>Title: </p>
- * <p>Description: Singleton to init torque</p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description: Singleton to init torque
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +34,7 @@ public class SchoolList
     private Map schoolMapWithIdKey = new HashMap();
 
     private Map schoolMapWithShortNameKey = new HashMap();
-    
+
     private List allSchools = null;
 
     public Map schoolMapWithIdKey()
@@ -45,7 +53,7 @@ public class SchoolList
         try
         {
             Session session = SessionUtil.begin();
-            
+
             allSchools = session.createQuery( "from org.glvnsjc.model.School school" ).list();
             for ( int i = 0; i < allSchools.size(); i++ )
             {
@@ -53,7 +61,7 @@ public class SchoolList
                 this.schoolMapWithIdKey.put( school.getId(), school );
                 this.schoolMapWithShortNameKey.put( school.getShortName(), school );
             }
-            
+
             SessionUtil.end();
         }
         catch ( Exception e )
@@ -98,7 +106,7 @@ public class SchoolList
     {
         return (School) schoolMapWithShortNameKey.get( shortName );
     }
-    
+
     public List getSchoolList()
     {
         return this.allSchools;

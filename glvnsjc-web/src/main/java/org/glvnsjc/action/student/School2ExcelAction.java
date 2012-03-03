@@ -1,33 +1,33 @@
 package org.glvnsjc.action.student;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-import java.util.HashMap;
-import java.util.TreeMap;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.glvnsjc.model.GlobalConfig;
+import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.SchoolYear;
+import org.glvnsjc.model.hibernate.SessionUtil;
+import org.glvnsjc.securityfilter.AppPrincipal;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
-import org.apache.poi.hssf.usermodel.*;
-
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.SchoolYear;
-import org.glvnsjc.securityfilter.AppPrincipal;
-import org.glvnsjc.model.GlobalConfig;
-import org.glvnsjc.model.hibernate.SessionUtil;
 
 public class School2ExcelAction
     extends org.apache.struts.action.Action
@@ -44,7 +44,7 @@ public class School2ExcelAction
     private static final short PARENT_WIDTH = (short) ( 256 * 30 );
 
     private static final short EMAIL_WIDTH = (short) ( 256 * 25 );
-    
+
     private static final short DOB_WIDTH = (short) ( 256 * 15 );
 
     private static final short LAST_WIDTH = (short) ( 256 * 15 );
@@ -119,9 +119,9 @@ public class School2ExcelAction
 
         j++;
         cell = row.createCell( j );
-        
+
         cell.setCellValue( schoolYear.getStudent().getAddress().getAddressLine2() );
-        
+
         //student phone
         j++;
         cell = row.createCell( j );
@@ -136,7 +136,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( schoolYear.getSchool().getShortName() );
-        
+
         //student GL Class
         j++;
         cell = row.createCell( j );
@@ -145,7 +145,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( schoolYear.getGiaolyClass().getSubName().toString() );
-        
+
         //student VN Class
         j++;
         cell = row.createCell( j );
@@ -154,7 +154,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( schoolYear.getVietnguClass().getSubName().toString() );
-        
+
     }
 
     private HSSFSheet createMainSheet( HSSFWorkbook workbook )
@@ -199,7 +199,7 @@ public class School2ExcelAction
         cell = row.createCell( j );
         cell.setCellValue( "Email" );
         mainSheet.setColumnWidth( j, EMAIL_WIDTH );
-        
+
         //student address
         j++;
         cell = row.createCell( j );
@@ -210,7 +210,7 @@ public class School2ExcelAction
         cell = row.createCell( j );
         cell.setCellValue( "Address2" );
         mainSheet.setColumnWidth( j, ADDRESS_WIDTH );
-        
+
         //student phone
         j++;
         cell = row.createCell( j );
@@ -227,7 +227,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( "School" );
-        
+
         //student GL Class
         j++;
         cell = row.createCell( j );
@@ -236,7 +236,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( "GLS" );
-        
+
         //student VN Class
         j++;
         cell = row.createCell( j );
@@ -245,7 +245,7 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( "VNS" );
-        
+
         return mainSheet;
     }
 
@@ -413,7 +413,7 @@ public class School2ExcelAction
         typeList.toArray( types );
 
         List schoolYears = null;
-        
+
         try
         {
             Session session = SessionUtil.begin();

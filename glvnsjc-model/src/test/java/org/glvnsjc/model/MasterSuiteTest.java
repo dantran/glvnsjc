@@ -7,10 +7,11 @@ import junit.framework.TestSuite;
 public class MasterSuiteTest
     extends TestCase
 {
-    public static Test suite() {
+    public static Test suite()
+    {
         TestSuite suite = new TestSuite();
         //suite.addTest( ClassSubNameTest.suite() );
         return suite;
-      }
+    }
 
 }

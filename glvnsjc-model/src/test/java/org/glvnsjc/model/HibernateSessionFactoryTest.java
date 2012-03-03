@@ -1,8 +1,8 @@
 package org.glvnsjc.model;
 
-import org.hibernate.Session;
-
 import junit.framework.TestCase;
+
+import org.hibernate.Session;
 
 public class HibernateSessionFactoryTest
     extends TestCase
@@ -18,5 +18,5 @@ public class HibernateSessionFactoryTest
     {
         HibernateSessionFactory.shutdown();
     }
-    
+
 }

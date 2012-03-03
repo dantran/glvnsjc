@@ -1,9 +1,5 @@
 package org.glvnsjc.model.hibernate;
 
-import org.hibernate.HibernateException;
-import org.hibernate.usertype.UserType;
-import org.hibernate.type.NullableType;
-
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.sql.PreparedStatement;
@@ -13,6 +9,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.hibernate.HibernateException;
+import org.hibernate.type.NullableType;
+import org.hibernate.usertype.UserType;
 
 /**
  * Provides a base class for implementations of persistable, type-safe,
@@ -128,8 +128,8 @@ abstract class PersistentEnum
                 // use reflection
                 try
                 {
-                    Method mth = other.getClass().getMethod( "getEnumCode", (Class []) null );
-                    Serializable enumCode = (Serializable) mth.invoke( other, (Object []) null );
+                    Method mth = other.getClass().getMethod( "getEnumCode", (Class[]) null );
+                    Serializable enumCode = (Serializable) mth.invoke( other, (Object[]) null );
                     return this.enumCode.equals( enumCode );
                 }
                 catch ( Exception ignore )
@@ -236,11 +236,10 @@ abstract class PersistentEnum
         return this.getClass();
     }
 
-   
     /**
      *  @see net.sf.hibernate.UserType#equals(java.lang.Object, java.lang.Object)
      */
-    
+
     /*
     public boolean equals( Object x, Object y )
         throws HibernateException
@@ -258,7 +257,7 @@ abstract class PersistentEnum
             return getNullableType().equals( x, y );
         }
     }
-*/
+    */
     /**
      *  @see net.sf.hibernate.UserType#nullSafeGet(java.sql.ResultSet, java.lang.String[], java.lang.Object)
      */

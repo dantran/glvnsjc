@@ -107,7 +107,7 @@ public abstract class PersistentIntegerEnum
         }
         else
         {
-        	return ((PersistentIntegerEnum)x).getEnumCode() == ((PersistentIntegerEnum)y).getEnumCode();
+            return ( (PersistentIntegerEnum) x ).getEnumCode() == ( (PersistentIntegerEnum) y ).getEnumCode();
         }
     }
 

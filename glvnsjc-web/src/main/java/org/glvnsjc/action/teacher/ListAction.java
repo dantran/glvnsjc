@@ -7,17 +7,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.type.Type;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
+import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.Address;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Name;
@@ -26,7 +22,10 @@ import org.glvnsjc.model.School;
 import org.glvnsjc.model.TeacherType;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.util.StringUtil;
-import org.glvnsjc.action.ActionUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
 
 public class ListAction
     extends org.apache.struts.action.Action
@@ -35,7 +34,7 @@ public class ListAction
     private static Log log = LogFactory.getLog( ListAction.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 
@@ -83,13 +82,14 @@ public class ListAction
             searchBuffer.append( " where" ).append( whereClause );
         }
 
-        searchBuffer.append( " order by loginProfile.school.shortName, loginProfile.name.lastNameRaw, loginProfile.name.firstNameRaw" );
+        searchBuffer
+            .append( " order by loginProfile.school.shortName, loginProfile.name.lastNameRaw, loginProfile.name.firstNameRaw" );
         List list = null;
         try
         {
             Session session = SessionUtil.begin();
-            
-            Query query = session.createQuery(  searchBuffer.toString() );
+
+            Query query = session.createQuery( searchBuffer.toString() );
             if ( paramList.size() != 0 )
             {
                 Type[] types = new Type[typeList.size()];
@@ -101,9 +101,9 @@ public class ListAction
             {
                 list = query.list();
             }
-            
+
             SessionUtil.end();
-            
+
         }
         catch ( Exception e )
         {

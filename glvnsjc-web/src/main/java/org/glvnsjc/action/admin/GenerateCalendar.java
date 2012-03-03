@@ -37,7 +37,7 @@ public class GenerateCalendar
     private static Log log = LogFactory.getLog( GenerateCalendar.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 
@@ -59,11 +59,10 @@ public class GenerateCalendar
         GregorianCalendar endCalendar = new GregorianCalendar();
         endCalendar.setTime( endDate );
 
-
         try
         {
             Session session = SessionUtil.begin();
-            
+
             //build a list of saturdays between start and end dates
             //ArrayList schoolDays = new ArrayList();
             SchoolCalendarForm schoolCalendarForm = new SchoolCalendarForm();
@@ -76,7 +75,7 @@ public class GenerateCalendar
                     Date day = calendar.getTime();
                     SchoolDayView schoolDayView = new SchoolDayView( Convert.DateToString( day ) );
                     //merge with the one in DB
-                    
+
                     String hsql = "from org.glvnsjc.model.SchoolDay schoolDay where schoolDay.day = :day";
                     List list = session.createQuery( hsql ).setParameter( "day", day ).list();
                     if ( list.size() != 0 )
@@ -96,9 +95,9 @@ public class GenerateCalendar
             }
 
             request.setAttribute( "schoolCalendarForm", schoolCalendarForm );
-            
+
             SessionUtil.end();
-            
+
         }
         catch ( Exception e )
         {

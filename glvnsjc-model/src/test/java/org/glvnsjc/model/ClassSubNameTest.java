@@ -7,18 +7,18 @@ import junit.framework.TestSuite;
 public class ClassSubNameTest
     extends TestCase
 {
-    public ClassSubNameTest( String name ) 
+    public ClassSubNameTest( String name )
     {
         super( name );
     }
-    
+
     public void testPresentation()
     {
         assertEquals( "A", ClassSubName.A.toString() );
-        
+
         assertEquals( "", ClassSubName.UNASSIGNED.toString() );
     }
-    
+
     public void testEnum()
     {
         assertEquals( new Integer( 1 ), (Integer) ClassSubName.A.getEnumCode() );
@@ -26,13 +26,13 @@ public class ClassSubNameTest
 
     public void testBoundary()
     {
-        int E = ( (Integer)ClassSubName.E.getEnumCode() ).intValue();
+        int E = ( (Integer) ClassSubName.E.getEnumCode() ).intValue();
 
-        int UNASSIGNED = ( (Integer)ClassSubName.UNASSIGNED.getEnumCode() ).intValue();
-        
+        int UNASSIGNED = ( (Integer) ClassSubName.UNASSIGNED.getEnumCode() ).intValue();
+
         assertEquals( 5, E - UNASSIGNED );
     }
-    
+
     public static Test suite()
     {
         TestSuite st = new TestSuite();
@@ -41,5 +41,5 @@ public class ClassSubNameTest
         st.addTest( new ClassSubNameTest( "testBoundary" ) );
         return st;
     }
-    
+
 }

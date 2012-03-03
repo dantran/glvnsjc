@@ -6,9 +6,9 @@ import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import org.hibernate.Session;
 
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.hibernate.Session;
 
 import com.glvnsjc.test.TestCase;
 
@@ -90,7 +90,7 @@ public class StudentTest
         Student student3 = new Student();
         student3.setGender( Gender.FEMALE );
         studentId3 = StudentIdGen.getInstance().nextStudentId();
-        student3.setId( studentId3);
+        student3.setId( studentId3 );
         SchoolYear schoolYear = new SchoolYear();
         schoolYear.setStudent( student3 );
         schoolYear.setYear( 2005 );
@@ -102,11 +102,11 @@ public class StudentTest
             Session session = SessionUtil.begin();
             session.save( student3 );
             SessionUtil.end();
-            
+
             session = SessionUtil.begin();
             School school = (School) session.load( School.class, schoolId );
             schoolYear.setSchool( school );
-            session.save( schoolYear );            
+            session.save( schoolYear );
             SessionUtil.end();
         }
         catch ( Exception e )
@@ -154,12 +154,11 @@ public class StudentTest
         assertEquals( "firstName2", student2.getName().getFirstName() );
         assertEquals( "lastName2", student2.getName().getLastName() );
 
-        
         Student student3 = (Student) session.load( Student.class, studentId3 );
         assertEquals( Gender.FEMALE, student3.getGender() );
         assertEquals( 1, student3.getSchoolYears().size() );
         assertEquals( "S", ( (SchoolYear) student3.getSchoolYears().toArray()[0] ).getSchool().getShortName() );
-         
+
         //must be last to get lazy load working
         session.getTransaction().commit();
 
@@ -177,13 +176,12 @@ public class StudentTest
 
     public void testDeleteStudent()
     {
-        
+
         // testout StudentUtil.deleteStudent
         StudentUtil.deleteStudent( studentId2 );
-        StudentUtil.deleteStudent( studentId3 );   
-        
-        
-        try 
+        StudentUtil.deleteStudent( studentId3 );
+
+        try
         {
             Session session = SessionUtil.begin();
             Student s1 = (Student) session.load( Student.class, studentId1 );
@@ -198,21 +196,21 @@ public class StudentTest
         }
 
         //ensure the delete acually work
-        try 
+        try
         {
             Session session = SessionUtil.begin();
-            List list = session.createQuery( "from org.glvnsjc.model.School ").list();
+            List list = session.createQuery( "from org.glvnsjc.model.School " ).list();
             assertEquals( 0, list.size() );
-            list = session.createQuery( "from org.glvnsjc.model.SchoolYear ").list();
+            list = session.createQuery( "from org.glvnsjc.model.SchoolYear " ).list();
             assertEquals( 0, list.size() );
-            list = session.createQuery( "from org.glvnsjc.model.Student ").list();
+            list = session.createQuery( "from org.glvnsjc.model.Student " ).list();
             assertEquals( 0, list.size() );
             SessionUtil.end();
         }
         catch ( Exception e )
         {
             SessionUtil.rollback( e );
-        }        
+        }
     }
 
     public StudentTest( String name )

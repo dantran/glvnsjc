@@ -23,7 +23,7 @@ public class Logout
     //Load a student based on studentId
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

@@ -1,10 +1,19 @@
 package org.glvnsjc.view.option;
 
 /**
- * <p>Title: </p>
- * <p>Description: Singleton to init torque</p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description: Singleton to init torque
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */
@@ -44,7 +53,8 @@ public class PrivilegeOptions
 
         this.schoolRoleOptions.add( new LabelValueBean( Privilege.CLASS.toString(), Privilege.CLASS.toString() ) );
         this.schoolRoleOptions.add( new LabelValueBean( Privilege.SCHOOL.toString(), Privilege.SCHOOL.toString() ) );
-        this.schoolRoleOptions.add( new LabelValueBean( Privilege.PRINCIPAL.toString(), Privilege.PRINCIPAL.toString() ) );
+        this.schoolRoleOptions
+            .add( new LabelValueBean( Privilege.PRINCIPAL.toString(), Privilege.PRINCIPAL.toString() ) );
 
     }
 

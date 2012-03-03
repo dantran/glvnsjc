@@ -1,6 +1,5 @@
 package org.glvnsjc.util;
 
-
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -12,11 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.HibernateException;
-
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.SiteConfig;
-import org.glvnsjc.model.GlobalConfig;
+import org.hibernate.HibernateException;
 
 public class SiteMaintainantFilter
     implements Filter

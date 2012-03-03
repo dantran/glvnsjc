@@ -8,7 +8,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
-//import org.apache.commons.beanutils.*;
+// import org.apache.commons.beanutils.*;
 
 public final class ApplicationConfigForm
     extends ValidatorForm

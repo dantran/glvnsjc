@@ -1,16 +1,24 @@
 package org.glvnsjc.util;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author not attributable
  * @version 1.0
  */
 
 import java.util.ArrayList;
-
 
 public class StringUtil
 {
@@ -166,7 +174,7 @@ public class StringUtil
         {
             return "    " + fieldName + ":" + obj1 + " ----> " + obj2 + "\n\r";
         }
-        
+
         return "";
-    }    
+    }
 }

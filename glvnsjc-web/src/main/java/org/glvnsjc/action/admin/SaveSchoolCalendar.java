@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,11 +14,12 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.glvnsjc.action.ActionUtil;
-import org.glvnsjc.view.SchoolCalendarForm;
-import org.glvnsjc.view.SchoolDayView;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.SchoolDay;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.glvnsjc.view.SchoolCalendarForm;
+import org.glvnsjc.view.SchoolDayView;
+import org.hibernate.Session;
 
 /**
  * <tt>SaveSchoolCalendar</tt> update school calendar
@@ -35,20 +34,19 @@ public class SaveSchoolCalendar
     private static Log log = LogFactory.getLog( SaveSchoolCalendar.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
-        
+
         if ( !request.isUserInRole( Privilege.ADMIN.toString() ) )
         {
             ActionMessages errors = new ActionMessages();
             errors.add( ActionMessages.GLOBAL_MESSAGE, new ActionMessage( "error.permissionDeny" ) );
             saveErrors( request, errors );
             return ( mapping.getInputForward() );
-        }              
+        }
 
         SchoolCalendarForm theForm = (SchoolCalendarForm) form;
-        
 
         try
         {

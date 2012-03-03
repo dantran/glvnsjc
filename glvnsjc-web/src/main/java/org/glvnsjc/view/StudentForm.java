@@ -54,7 +54,7 @@ public final class StudentForm
     private boolean optionRemoveCurrentYear = false;
 
     private boolean cancelAllow = false;
-    
+
     private boolean hasAward = false;
 
     public StudentForm()
@@ -190,7 +190,7 @@ public final class StudentForm
     {
         this.hasAward = newValue;
     }
-    
+
     public SchoolYearView getSchoolYear( int index )
     {
 

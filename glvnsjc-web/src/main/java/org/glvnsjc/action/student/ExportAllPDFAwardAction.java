@@ -41,13 +41,14 @@ public class ExportAllPDFAwardAction
         }
 
         java.io.File tmpZip = this.exportAndZip( request, classType );
-        
+
         java.io.FileInputStream is = null;
-        
+
         try
         {
             response.setHeader( "Expires", "0" );
-            response.setHeader( "Content-Disposition", "attachment; filename=" + classType.toFriendlyShortName() + ".award.zip" );
+            response.setHeader( "Content-Disposition", "attachment; filename=" + classType.toFriendlyShortName()
+                + ".award.zip" );
 
             is = new java.io.FileInputStream( tmpZip );
             IOUtils.copy( is, response.getOutputStream() );
@@ -100,12 +101,11 @@ public class ExportAllPDFAwardAction
         {
             File.umount( zipDir );
         }
-        
+
         return tmpFile;
-        
+
     }
-    
-    
+
     private List getAwardList( HttpServletRequest request, ClassType classType )
     {
         if ( classType == ClassType.GIAOLY )

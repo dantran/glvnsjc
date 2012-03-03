@@ -3,24 +3,21 @@ package org.glvnsjc.action.admin;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.util.MessageResources;
-
-import org.glvnsjc.model.SchoolList;
 import org.glvnsjc.model.School;
+import org.glvnsjc.model.SchoolList;
 
 public class LoadSchool
     extends org.apache.struts.action.Action
 {
 
-
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 

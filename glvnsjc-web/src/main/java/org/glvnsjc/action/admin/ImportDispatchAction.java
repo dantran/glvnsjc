@@ -19,7 +19,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 import org.glvnsjc.action.ActionUtil;
-//import org.glvnsjc.util.ImportStudent;
 import org.glvnsjc.view.ImportForm;
 
 /**
@@ -45,7 +44,7 @@ public class ImportDispatchAction
     }
 
     public ActionForward importAction( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                      HttpServletResponse response )
+                                       HttpServletResponse response )
         throws Exception
     {
 
@@ -56,7 +55,7 @@ public class ImportDispatchAction
     }
 
     public ActionForward viewAction( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                    HttpServletResponse response )
+                                     HttpServletResponse response )
         throws Exception
     {
 
@@ -84,7 +83,6 @@ public class ImportDispatchAction
         InputStream inputStream = file.getInputStream();
         Charset charset = Charset.forName( encoding );
         BufferedReader reader = new BufferedReader( new InputStreamReader( inputStream, charset ) );
-
 
         try
         {

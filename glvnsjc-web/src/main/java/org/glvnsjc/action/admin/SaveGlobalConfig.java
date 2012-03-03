@@ -3,8 +3,6 @@ package org.glvnsjc.action.admin;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,6 +15,7 @@ import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.SiteConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.hibernate.Session;
 
 /**
  * <tt>SaveGlobalConfig</tt> update the only one SiteConfig from database <br<br>
@@ -33,7 +32,7 @@ public class SaveGlobalConfig
     private static Log log = LogFactory.getLog( SaveGlobalConfig.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 
@@ -43,17 +42,17 @@ public class SaveGlobalConfig
             errors.add( ActionMessages.GLOBAL_MESSAGE, new ActionMessage( "error.permissionDeny" ) );
             saveErrors( request, errors );
             return ( mapping.getInputForward() );
-        }        
+        }
 
         try
         {
-            Session session = SessionUtil.begin(); 
+            Session session = SessionUtil.begin();
             SiteConfig config = (SiteConfig) session.load( SiteConfig.class, LoadGlobalConfig.GLOBAL_CONFIG_ID );
             BeanUtils.copyProperties( config, form );
             SessionUtil.end();
             org.glvnsjc.model.GlobalConfig.getInstance().reload();
             org.glvnsjc.view.option.SchoolYearOptions.getInstance().reload();
-            
+
             this.saveMessages( request, ActionUtil.createActionMessages( "message.update.success" ) );
         }
         catch ( Exception e )

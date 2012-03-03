@@ -6,12 +6,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.glvnsjc.converter.Convert;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.util.StringUtil;
 import org.glvnsjc.util.UnicodeUtil;
-
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -28,7 +26,7 @@ import org.hibernate.type.Type;
 public class StudentUtil
 {
     private static Log log = LogFactory.getLog( StudentUtil.class );
-    
+
     /**
      * remove all database records associate with a student
      * @param studentId
@@ -69,13 +67,13 @@ public class StudentUtil
     public static void updateStudent( Student student, SchoolYear schoolYear, String schoolId )
     {
         logDiff( student, schoolYear );
-        
+
         try
         {
             Session session = SessionUtil.begin();
-            
+
             session.update( student );
- 
+
             if ( schoolYear != null )
             {
                 School school = (School) session.load( School.class, new Integer( schoolId ) );
@@ -103,7 +101,7 @@ public class StudentUtil
             SessionUtil.rollback( e );
         }
     }
-        
+
     public static void addStudent( Student student, SchoolYear schoolYear, String schoolId )
     {
         try
@@ -337,10 +335,10 @@ public class StudentUtil
         {
             buffer.append( " and " );
         }
-        
+
         return whereInserted;
     }
-    
+
     private static boolean buildStudentCriteria( StudentSearchForm form, StringBuffer buffer, String studentVar,
                                                  boolean whereInserted, List paramList, List typeList )
     {
@@ -349,7 +347,7 @@ public class StudentUtil
         if ( !StringUtil.isBlank( studentId ) )
         {
             whereInserted = insertWhereOrAnd( whereInserted, buffer );
-            
+
             buffer.append( studentVar ).append( ".id = ? " );
             paramList.add( Integer.valueOf( studentId ) );
             typeList.add( Hibernate.INTEGER );
@@ -392,7 +390,7 @@ public class StudentUtil
         if ( !StringUtil.isBlank( phone ) )
         {
             whereInserted = insertWhereOrAnd( whereInserted, buffer );
-            
+
             buffer.append( studentVar ).append( ".address.phone1 like ? " );
             paramList.add( phone );
             typeList.add( Hibernate.STRING );
@@ -416,7 +414,7 @@ public class StudentUtil
             buffer.append( studentVar ).append( ".birthDate < ? " );
             paramList.add( birthDate2 );
             typeList.add( Hibernate.DATE );
-            
+
         }
         else if ( !StringUtil.isBlank( birthDateDisplay1 ) )
         {
@@ -425,34 +423,32 @@ public class StudentUtil
             java.util.Date birthDate1 = Convert.StringToDate( birthDateDisplay1 );
             buffer.append( studentVar ).append( ".birthDate = ? " );
             paramList.add( birthDate1 );
-            typeList.add( Hibernate.DATE );            
+            typeList.add( Hibernate.DATE );
         }
 
         return whereInserted;
     }
 
-    
     public static String getNameDiff( Name a1, Name a2 )
     {
         StringBuffer buff = new StringBuffer();
-        
+
         buff.append( StringUtil.displayComparison( "lastName", a1.getLastName(), a2.getLastName() ) );
         buff.append( StringUtil.displayComparison( "firstName", a1.getFirstName(), a2.getFirstName() ) );
         buff.append( StringUtil.displayComparison( "middleName", a1.getMiddleName(), a2.getMiddleName() ) );
-        
+
         return buff.toString();
-    }    
+    }
 
     public static String getNameDiff( Student a1, Student a2 )
     {
         return getNameDiff( a1.getName(), a2.getName() );
     }
-    
-    
+
     public static String getAddressDiff( Address a1, Address a2 )
     {
         StringBuffer buff = new StringBuffer();
-        
+
         buff.append( StringUtil.displayComparison( "street1", a1.getStreet1(), a2.getStreet1() ) );
         buff.append( StringUtil.displayComparison( "street2", a1.getStreet2(), a2.getStreet2() ) );
         buff.append( StringUtil.displayComparison( "city", a1.getCity(), a2.getCity() ) );
@@ -461,28 +457,32 @@ public class StudentUtil
         buff.append( StringUtil.displayComparison( "email", a1.getEmail(), a2.getEmail() ) );
         buff.append( StringUtil.displayComparison( "phone1", a1.getPhone1(), a2.getPhone1() ) );
         buff.append( StringUtil.displayComparison( "phone2", a1.getPhone2(), a2.getPhone2() ) );
-        
+
         return buff.toString();
-    }   
-    
+    }
+
     public static String getAddressDiff( Student a1, Student a2 )
     {
-        return getAddressDiff( a1.getAddress(), a2.getAddress() );        
-    }    
-    
+        return getAddressDiff( a1.getAddress(), a2.getAddress() );
+    }
+
     public static String getSchoolYearDiff( SchoolYear a1, SchoolYear a2 )
     {
         StringBuffer buff = new StringBuffer();
-        
-        buff.append( StringUtil.displayComparison( "GL Class", a1.getGiaolyClass().getFullClassName(), a2.getGiaolyClass().getFullClassName() ) );
-        buff.append( StringUtil.displayComparison( "GL Grade", a1.getGiaolyClass().getGrade(), a2.getGiaolyClass().getGrade() ) );
 
-        buff.append( StringUtil.displayComparison( "VN Class", a1.getVietnguClass().getFullClassName(), a2.getVietnguClass().getFullClassName() ) );
-        buff.append( StringUtil.displayComparison( "VN Grade", a1.getVietnguClass().getGrade(), a2.getVietnguClass().getGrade() ) );
+        buff.append( StringUtil.displayComparison( "GL Class", a1.getGiaolyClass().getFullClassName(), a2
+            .getGiaolyClass().getFullClassName() ) );
+        buff.append( StringUtil.displayComparison( "GL Grade", a1.getGiaolyClass().getGrade(), a2.getGiaolyClass()
+            .getGrade() ) );
+
+        buff.append( StringUtil.displayComparison( "VN Class", a1.getVietnguClass().getFullClassName(), a2
+            .getVietnguClass().getFullClassName() ) );
+        buff.append( StringUtil.displayComparison( "VN Grade", a1.getVietnguClass().getGrade(), a2.getVietnguClass()
+            .getGrade() ) );
 
         return buff.toString();
-    }  
-    
+    }
+
     /**
      * Log changed fields in student record
      * @param student
@@ -491,15 +491,15 @@ public class StudentUtil
     public static void logDiff( Student student, SchoolYear schoolYear )
     {
         StringBuffer buffer = new StringBuffer();
-        
+
         try
         {
             Session session = SessionUtil.begin();
 
             Student dbStudent = (Student) session.load( Student.class, student.getId() );
-            
+
             buffer.append( logStudentDiff( dbStudent, student ) );
- 
+
             if ( schoolYear != null )
             {
                 Iterator iter = dbStudent.getSchoolYears().iterator();
@@ -512,7 +512,7 @@ public class StudentUtil
                         break;
                     }
                 }
-                
+
             }
             SessionUtil.end();
         }
@@ -520,26 +520,25 @@ public class StudentUtil
         {
             SessionUtil.rollback( e );
         }
-        
+
         if ( buffer.toString().length() != 0 )
         {
             log.info( "\r\n" + buffer.toString() );
         }
     }
-    
-    
+
     private static String logStudentDiff( Student orig, Student change )
     {
         StringBuffer buffer = new StringBuffer();
-        
-        buffer.append( getNameDiff( orig, change) );
+
+        buffer.append( getNameDiff( orig, change ) );
         buffer.append( StringUtil.displayComparison( "DOB", orig.getBirthDateDisplay(), change.getBirthDateDisplay() ) );
-        buffer.append( getNameDiff( orig.getParentName(), change.getParentName() ) );        
-        buffer.append( getAddressDiff( orig, change) );
-        
+        buffer.append( getNameDiff( orig.getParentName(), change.getParentName() ) );
+        buffer.append( getAddressDiff( orig, change ) );
+
         return buffer.toString();
     }
-    
+
     /**
      * get the active school year of a student
      * @param studentId
@@ -550,18 +549,18 @@ public class StudentUtil
         Student student = loadStudent( studentId );
         Iterator iterator = student.getSchoolYears().iterator();
         int currentSchoolYear = GlobalConfig.getInstance().getCurrentYear().intValue();
-        
+
         SchoolYear ret = null;
         while ( iterator.hasNext() )
         {
-            SchoolYear schoolYear = (SchoolYear)iterator.next();
+            SchoolYear schoolYear = (SchoolYear) iterator.next();
             if ( schoolYear.getYear() == currentSchoolYear )
             {
                 ret = schoolYear;
                 break;
-            } 
+            }
         }
-        
+
         return ret;
     }
 }

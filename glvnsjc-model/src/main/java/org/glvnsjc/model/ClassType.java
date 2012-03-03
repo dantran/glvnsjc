@@ -58,7 +58,7 @@ public class ClassType
             return ( "Viê\u0323t Ng\u01B0\u0303" );
         }
     }
-    
+
     public String toFriendlyShortName()
     {
         if ( this.code == GIAOLY_CODE )
@@ -69,6 +69,6 @@ public class ClassType
         {
             return ( "VN" );
         }
-    }    
+    }
 
 }

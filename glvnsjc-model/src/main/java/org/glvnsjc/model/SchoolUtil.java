@@ -14,24 +14,24 @@ public class SchoolUtil
     public static String getPrincipalName( School school )
     {
         String principalName = "";
-        
-        Object [] paramList = new Object[2];
-        Type [] typeList = new Type[2];
-        StringBuffer buffer = new StringBuffer( "from org.glvnsjc.model.LoginProfile instructor where instructor.school.id = ? and instructor.teacherType = ? " );
+
+        Object[] paramList = new Object[2];
+        Type[] typeList = new Type[2];
+        StringBuffer buffer = new StringBuffer(
+                                                "from org.glvnsjc.model.LoginProfile instructor where instructor.school.id = ? and instructor.teacherType = ? " );
         paramList[0] = school.getId();
         paramList[1] = TeacherType.PRINCIPAL;
         typeList[0] = Hibernate.INTEGER;
         typeList[1] = Hibernate.custom( TeacherType.class );
-        
+
         try
         {
             Session session = SessionUtil.begin();
             Query query = session.createQuery( buffer.toString() );
             query.setParameters( paramList, typeList );
-           
 
             List list = query.list();
-            
+
             if ( list.size() != 0 )
             {
                 LoginProfile principal = (LoginProfile) list.get( 0 );
@@ -42,12 +42,12 @@ public class SchoolUtil
         catch ( Exception e )
         {
             SessionUtil.rollback( e );
-        }        
-        
+        }
+
         return principalName;
     }
-    
-    public static int getStudentCount( School school, Integer schoolYear, ClassType classType  )
+
+    public static int getStudentCount( School school, Integer schoolYear, ClassType classType )
     {
         StringBuffer queryBuff = new StringBuffer();
         queryBuff.append( "from org.glvnsjc.model.SchoolYear schoolYear " );
@@ -57,18 +57,18 @@ public class SchoolUtil
         //setup the params
         List paramList = new ArrayList();
         List typeList = new ArrayList();
-        
+
         paramList.add( schoolYear );
         typeList.add( Hibernate.INTEGER );
-        
+
         paramList.add( school.getId() );
         typeList.add( Hibernate.INTEGER );
-        
+
         Type[] types = new Type[typeList.size()];
         typeList.toArray( types );
 
         List schoolYears = null;
-        
+
         try
         {
             Session session = SessionUtil.begin();
@@ -88,5 +88,5 @@ public class SchoolUtil
         }
 
         return schoolYears.size();
-    }    
+    }
 }

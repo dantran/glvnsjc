@@ -38,8 +38,8 @@ public class SchoolYear
 
     /** full constructor */
     public SchoolYear( int year, boolean hasApplication, org.glvnsjc.model.School school,
-                      org.glvnsjc.model.Student student, org.glvnsjc.model.SchoolClass giaolyClass,
-                      org.glvnsjc.model.SchoolClass vietnguClass )
+                       org.glvnsjc.model.Student student, org.glvnsjc.model.SchoolClass giaolyClass,
+                       org.glvnsjc.model.SchoolClass vietnguClass )
     {
         this.year = year;
         this.hasApplication = hasApplication;
@@ -56,7 +56,7 @@ public class SchoolYear
 
     /** minimal constructor */
     public SchoolYear( int year, org.glvnsjc.model.School school, org.glvnsjc.model.Student student,
-                      org.glvnsjc.model.SchoolClass giaolyClass, org.glvnsjc.model.SchoolClass vietnguClass )
+                       org.glvnsjc.model.SchoolClass giaolyClass, org.glvnsjc.model.SchoolClass vietnguClass )
     {
         this.year = year;
         this.school = school;
@@ -156,7 +156,7 @@ public class SchoolYear
         {
             return false;
         }
-        
+
         SchoolYear castOther = (SchoolYear) other;
         return new EqualsBuilder().append( this.getId(), castOther.getId() ).isEquals();
     }
@@ -168,20 +168,20 @@ public class SchoolYear
 
     public int compare( Object o1, Object o2 )
     {
-    	int sy1 =  ((SchoolYear) o1).getYear();
-    	int sy2 =  ((SchoolYear) o2).getYear();
-    	
-    	if ( sy1 > sy2 )
-    	{
-    		return 1;
-    	}
-    	else if ( sy1 < sy2)
-    	{
-    		return -1;
-    	}
-    	else
-    	{
-    		return 0;
-    	}
+        int sy1 = ( (SchoolYear) o1 ).getYear();
+        int sy2 = ( (SchoolYear) o2 ).getYear();
+
+        if ( sy1 > sy2 )
+        {
+            return 1;
+        }
+        else if ( sy1 < sy2 )
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

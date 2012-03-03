@@ -4,16 +4,14 @@ import java.security.MessageDigest;
 import java.security.Principal;
 import java.util.Collection;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.glvnsjc.model.LoginProfile;
+import org.glvnsjc.model.hibernate.SessionUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.type.Type;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.glvnsjc.model.HibernateSessionFactory;
-import org.glvnsjc.model.LoginProfile;
-import org.glvnsjc.model.hibernate.SessionUtil;
 import org.securityfilter.realm.SecurityRealmInterface;
 
 public class SecurityRealm

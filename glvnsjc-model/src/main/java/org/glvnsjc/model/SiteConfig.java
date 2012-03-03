@@ -33,7 +33,7 @@ public class SiteConfig
     private String feedbackEmail;
 
     private String headMasterName;
-    
+
     /** full constructor */
     public SiteConfig( Integer currentSchoolYear, boolean siteActive )
     {
@@ -129,7 +129,8 @@ public class SiteConfig
     public void setHeadMasterName( String newValue )
     {
         this.headMasterName = newValue;
-    }    
+    }
+
     public String toString()
     {
         return new ToStringBuilder( this ).append( "id", getId() ).toString();

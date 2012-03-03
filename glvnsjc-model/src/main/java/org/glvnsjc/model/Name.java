@@ -3,8 +3,8 @@ package org.glvnsjc.model;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.glvnsjc.util.StringUtil;
 
+@SuppressWarnings("serial")
 public class Name
     implements Serializable
 {

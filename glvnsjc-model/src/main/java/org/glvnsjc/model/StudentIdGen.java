@@ -27,9 +27,9 @@ public class StudentIdGen
         if ( !s_instanceFlag )
         {
             s_instance = new StudentIdGen();
-            
+
             s_instanceFlag = true;
-            
+
             return s_instance;
         }
         else
@@ -41,22 +41,22 @@ public class StudentIdGen
     public synchronized Integer nextStudentId()
     {
         this.studentId = new Integer( this.studentId.intValue() + 1 );
-        
+
         return this.studentId;
     }
 
     public synchronized void reload()
-    {        
+    {
         String queryString = "select MAX(id) from Student";
 
         Connection conn = null;
         ResultSet rs = null;
         Statement stm = null;
-        
+
         try
         {
             Session session = SessionUtil.begin();
-            
+
             conn = session.connection();
             stm = conn.createStatement();
             rs = stm.executeQuery( queryString );
@@ -64,9 +64,9 @@ public class StudentIdGen
             {
                 studentId = new Integer( rs.getInt( 1 ) );
             }
-            
+
             SessionUtil.end();
-            
+
         }
         catch ( SQLException e )
         {

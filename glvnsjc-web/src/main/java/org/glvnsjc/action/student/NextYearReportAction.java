@@ -6,25 +6,24 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.type.Type;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.Grade;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.SchoolYear;
 import org.glvnsjc.model.Student;
-import org.glvnsjc.securityfilter.AppPrincipal;
-import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.glvnsjc.securityfilter.AppPrincipal;
 import org.glvnsjc.view.NextYearClassSummary;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.type.Type;
 
 public class NextYearReportAction
     extends org.apache.struts.action.Action
@@ -73,7 +72,7 @@ public class NextYearReportAction
             List schoolYears = query.list();
 
             ArrayList list = new ArrayList();
-            
+
             for ( int i = 0; i < schoolYears.size(); ++i )
             {
                 SchoolYear schoolYear = (SchoolYear) schoolYears.get( i );
@@ -108,7 +107,7 @@ public class NextYearReportAction
                 list.add( summary );
 
             }
-            
+
             SessionUtil.end();
 
             request.getSession().setAttribute( "nextYearReport", list );

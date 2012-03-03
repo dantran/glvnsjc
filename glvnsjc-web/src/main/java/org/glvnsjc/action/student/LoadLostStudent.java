@@ -3,20 +3,19 @@ package org.glvnsjc.action.student;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.util.MessageResources;
 import org.glvnsjc.action.ActionUtil;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.LostStudent;
 import org.glvnsjc.model.hibernate.SessionUtil;
+import org.hibernate.Session;
 
 /**
  * <tt>LoadLostStudent</tt> populates StudentForm based on a student id, it also
@@ -37,7 +36,7 @@ public class LoadLostStudent
     private static Log log = LogFactory.getLog( LoadLostStudent.class );
 
     public ActionForward execute( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response )
+                                  HttpServletResponse response )
         throws Exception
     {
 
@@ -57,9 +56,9 @@ public class LoadLostStudent
             try
             {
                 Integer id = new Integer( request.getParameter( "id" ) );
-                
+
                 Session session = SessionUtil.begin();
-                
+
                 LostStudent student = (LostStudent) session.load( LostStudent.class, id );
                 BeanUtils.copyProperties( theForm, student );
                 BeanUtils.copyProperties( theForm, student.getName() );
@@ -69,7 +68,7 @@ public class LoadLostStudent
                 BeanUtils.copyProperty( theForm, "vietnguClassSubName", student.getVietnguClass().getSubName() );
 
                 SessionUtil.end();
-                
+
             }
             catch ( Exception e )
             {

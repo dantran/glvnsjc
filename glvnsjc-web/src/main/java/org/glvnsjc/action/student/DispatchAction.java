@@ -66,17 +66,17 @@ public class DispatchAction
         throws Exception
     {
         StudentForm theForm = (StudentForm) form;
-        
-        String startAt = theForm.getStartAt() ;
-        
-        if ( StringUtils.isBlank( startAt ))
+
+        String startAt = theForm.getStartAt();
+
+        if ( StringUtils.isBlank( startAt ) )
         {
             startAt = "list";
         }
-        
+
         return ( mapping.findForward( startAt ) );
     }
-    
+
     public ActionForward add( ActionMapping mapping, ActionForm form, HttpServletRequest request,
                               HttpServletResponse response )
         throws Exception
@@ -224,7 +224,7 @@ public class DispatchAction
         {
             return ( mapping.getInputForward() );
         }
-        
+
         StudentForm theForm = (StudentForm) form;
 
         // todo ensure a user from one school does not update the other
@@ -245,7 +245,7 @@ public class DispatchAction
             {
                 continue;
             }
-            
+
             schoolYear = new SchoolYear();
             BeanUtils.copyProperties( schoolYear, schoolYearView );
             schoolId = schoolYearView.getSchoolId();
@@ -253,11 +253,11 @@ public class DispatchAction
             //expect only one modifiable schoolYear
             break;
         }
-        
+
         StudentUtil.updateStudent( student, schoolYear, schoolId );
-        
+
         log.info( request.getUserPrincipal().getName() + " updated student:\n" + form );
-        
+
         this.saveMessages( request, ActionUtil.createActionMessages( "message.update.success" ) );
 
         if ( theForm.getStartAt().equals( "list" ) )
@@ -271,7 +271,7 @@ public class DispatchAction
         theForm.setTitle( resources.getMessage( "title.student." + DispatchType.UPDATE ) );
         theForm.setSubmitKey( resources.getMessage( "button." + DispatchType.UPDATE ) );
         return ( mapping.findForward( "display" ) );
- 
+
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
