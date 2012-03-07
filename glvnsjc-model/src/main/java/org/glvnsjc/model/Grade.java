@@ -51,5 +51,9 @@ public class Grade
     {
         return name;
     }
+    
+    public boolean completed() {
+        return this.equals( PASS ) || this.equals( FIRST )  || this.equals( SECOND ) || this.equals( THIRD );
+    }
 
 }

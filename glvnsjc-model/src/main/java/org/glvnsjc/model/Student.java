@@ -26,6 +26,10 @@ public class Student
 
     /** nullable persistent field */
     private String saintName;
+    
+    private org.glvnsjc.model.Baptism baptism;
+    
+    private org.glvnsjc.model.Eucharist eucharist;
 
     /** nullable persistent field */
     private org.glvnsjc.model.Gender gender;
@@ -54,6 +58,8 @@ public class Student
         this.name = name;
         this.parentName = parentName;
         this.address = address;
+        this.baptism = new Baptism();
+        this.eucharist = new Eucharist();
     }
 
     /** default constructor */
@@ -62,6 +68,8 @@ public class Student
         this.name = new Name();
         this.parentName = new Name();
         this.address = new Address();
+        this.baptism = new Baptism();
+        this.eucharist = new Eucharist();
 
     }
 
@@ -111,6 +119,33 @@ public class Student
     {
         this.saintName = saintName;
     }
+    
+    public org.glvnsjc.model.Baptism getBaptism()
+    {
+        if ( this.baptism == null ) {
+            this.baptism = new Baptism();
+        }
+        return baptism;
+    }
+
+    public void setBaptism( org.glvnsjc.model.Baptism baptism )
+    {
+        this.baptism = baptism;
+    }
+
+    public org.glvnsjc.model.Eucharist getEucharist()
+    {
+        if ( this.eucharist == null ) {
+            this.eucharist = new Eucharist();
+        }
+        return eucharist;
+    }
+
+    public void setEucharist( org.glvnsjc.model.Eucharist eucharist )
+    {
+        this.eucharist = eucharist;
+    }
+    
 
     /**
      * @hibernate.property type="org.glvnsjc.model.Gender

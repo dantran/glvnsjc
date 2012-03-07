@@ -1,5 +1,6 @@
 package org.glvnsjc.action.student;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.converter.Convert;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
@@ -68,12 +70,12 @@ public class LoadAction
                 Student student = (Student) session.load( Student.class, id );
 
                 BeanUtils.copyProperties( theForm.getStudent(), student );
-
-                //String hsql = "from org.glvnsjc.model.SchoolYear schoolYear where schoolYear.student.id = :id order by schoolYear.year asc";
-
-                //Query query = session.createQuery( hsql ).setParameter( "id", id );
-
-                //List schoolYears = query.list();
+                
+                theForm.getStudent().setBaptismDate( Convert.DateToString( student.getBaptism().getDate() ) );
+                theForm.getStudent().setBaptismLocation( student.getBaptism().getLocation() );
+                theForm.getStudent().setEucharistDate( Convert.DateToString( student.getEucharist().getDate() ) );
+                theForm.getStudent().setEucharistLocation( student.getEucharist().getLocation() );
+                
 
                 theForm.removeAllSchoolYear();
                 int index = 0;
@@ -102,23 +104,6 @@ public class LoadAction
                     index++;
 
                 }
-                /*
-                for ( index = 0; index < schoolYears.size(); ++index )
-                {
-                    SchoolYear schoolYear = (SchoolYear) schoolYears.get( index );
-                    SchoolYearView schoolYearView = theForm.getSchoolYear( index );
-                    BeanUtils.copyProperties( schoolYearView, schoolYear );
-                    //copy others
-                    schoolYearView.setSchoolId( schoolYear.getSchool().getId().toString() );
-                    schoolYearView.setSchoolName( schoolYear.getSchool().getName() );
-                    //tell the view to allow current schoolYear editable
-                    if ( schoolYear.getYear() == currentSchoolYear )
-                    {
-                        currentSchoolYearFound = true;
-                        schoolYearView.setEditAllow( true );
-                    }
-                }
-                */
 
                 //there is no current schoolYear record found in the database, allow the view to and a new one. Only Master can do this
                 if ( command == DispatchType.UPDATE && request.isUserInRole( Privilege.COMMUNITY.toString() ) )
@@ -149,7 +134,7 @@ public class LoadAction
         }
         else
         {
-            //add case, create blank form of student and one curent schoolYear
+            //add case, create blank form of student and one current schoolYear
             //delay privilege check until the real action happens
             theForm.removeAllSchoolYear();
             SchoolYearView schoolYearView = theForm.getSchoolYear( 0 );
@@ -182,6 +167,7 @@ public class LoadAction
         theForm.setReadonlyPage( readonlyPage );
         theForm.setReadonlySchool( readonlySchool );
         theForm.setReadonlySchoolYear( readonlySchoolYear );
+        theForm.setReadonlyCertificates( ! request.isUserInRole( Privilege.COMMUNITY.toString() ) );
 
         // Set a transactional control token to prevent double posting
         saveToken( request );
@@ -191,6 +177,8 @@ public class LoadAction
             log.debug( loginProfile.getUserId() + " loaded " + theForm.getStudent().getName().getFullName() );
         }
 
+        Collections.sort( theForm.getSchoolYears() );
+        
         return ( mapping.findForward( "success" ) );
     }
 

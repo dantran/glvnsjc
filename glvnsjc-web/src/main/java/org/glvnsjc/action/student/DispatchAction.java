@@ -1,5 +1,6 @@
 package org.glvnsjc.action.student;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
 import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.converter.Convert;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.SchoolYear;
@@ -26,6 +28,7 @@ import org.glvnsjc.model.StudentIdGen;
 import org.glvnsjc.model.StudentUtil;
 import org.glvnsjc.view.SchoolYearView;
 import org.glvnsjc.view.StudentForm;
+import org.glvnsjc.view.StudentView;
 
 /**
  * <tt>DispatchAction</tt> allow add/delete/update a school year record which
@@ -97,7 +100,7 @@ public class DispatchAction
 
         StudentForm theForm = (StudentForm) form;
         Student student = new Student();
-        BeanUtils.copyProperties( student, theForm.getStudent() );
+        copyProperties( student, theForm.getStudent() );
 
         // get the next available student Id, and save
         boolean idGenerateAutomatically = true;
@@ -231,7 +234,7 @@ public class DispatchAction
         // school's student
 
         Student student = new Student();
-        BeanUtils.copyProperties( student, theForm.getStudent() );
+        copyProperties( student, theForm.getStudent() );
 
         // update the schoolYears
         List schoolYears = theForm.getSchoolYears();
@@ -319,6 +322,18 @@ public class DispatchAction
         }
         resetToken( request );
         return bad;
+    }
+
+    private void copyProperties( Student student, StudentView studentView )
+        throws IllegalAccessException, InvocationTargetException
+    {
+
+        BeanUtils.copyProperties( student, studentView );
+        student.getBaptism().setDate( Convert.StringToDate( studentView.getBaptismDate() ) );
+        student.getBaptism().setLocation( studentView.getBaptismLocation() );
+
+        student.getEucharist().setDate( Convert.StringToDate( studentView.getEucharistDate() ) );
+        student.getEucharist().setLocation( studentView.getEucharistLocation() );
     }
 
 }

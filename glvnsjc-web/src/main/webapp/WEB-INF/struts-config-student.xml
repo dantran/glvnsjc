@@ -166,6 +166,8 @@
     <action name="allAwardCertificatesDynaForm" path="/exportAllAwardCertificates"
       type="org.glvnsjc.action.student.ExportAllPDFAwardAction" scope="request" />
 
+    <action path="/updateLastYearEucharistCertification" type="org.glvnsjc.action.student.UpdateLastYearEucharistCertificationAction" />
+
   </action-mappings>
 
   <message-resources parameter="org.glvnsjc.messages" />

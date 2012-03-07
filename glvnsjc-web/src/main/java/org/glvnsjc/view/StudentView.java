@@ -6,6 +6,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.glvnsjc.model.Address;
+import org.glvnsjc.model.Baptism;
+import org.glvnsjc.model.Eucharist;
 import org.glvnsjc.model.Gender;
 import org.glvnsjc.model.Name;
 
@@ -22,9 +24,22 @@ public class StudentView
 
     /** nullable persistent field */
     private String saintName;
+    
+    private String baptismDate;
+    
+    private String baptismLocation;
+    
+    private String eucharistDate;
+    
+    private String eucharistLocation;
 
     /** nullable persistent field */
     private org.glvnsjc.model.Gender gender;
+
+    public void setEucharistLocation( String eucharistLocation )
+    {
+        this.eucharistLocation = eucharistLocation;
+    }
 
     /** persistent field */
     private org.glvnsjc.model.Name name;
@@ -44,6 +59,11 @@ public class StudentView
         this.name = new Name();
         this.parentName = new Name();
         this.address = new Address();
+        
+        this.baptismDate = null;
+        this.baptismLocation = "";
+        this.eucharistDate = null;
+        this.eucharistLocation = "";
     }
 
     public java.lang.String getId()
@@ -70,7 +90,7 @@ public class StudentView
     {
         return this.saintName;
     }
-
+    
     public void setSaintName( java.lang.String saintName )
     {
         this.saintName = saintName;
@@ -115,6 +135,42 @@ public class StudentView
     {
         this.address = address;
     }
+    
+    public String getBaptismDate()
+    {
+        return baptismDate;
+    }
+
+    public void setBaptismDate( String baptismDate )
+    {
+        this.baptismDate = baptismDate;
+    }
+
+    public String getBaptismLocation()
+    {
+        return baptismLocation;
+    }
+
+    public void setBaptismLocation( String baptismLocation )
+    {
+        this.baptismLocation = baptismLocation;
+    }
+
+    public String getEucharistDate()
+    {
+        return eucharistDate;
+    }
+
+    public void setEucharistDate( String eucharistDate )
+    {
+        this.eucharistDate = eucharistDate;
+    }
+
+    public String getEucharistLocation()
+    {
+        return eucharistLocation;
+    }
+    
 
     public String toString()
     {

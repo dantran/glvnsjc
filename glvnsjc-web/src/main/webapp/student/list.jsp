@@ -48,7 +48,7 @@
       <display:column property="student.birthDateDisplay" titleKey="label.DOB" sortable="true"/>
       <display:column property="student.address.phone1" titleKey="label.phone1" sortable="true"/>
       <display:column property="student.gender.display" titleKey="label.gender.brief" sortable="true" />
-      <display:column property="student.parentName.fullName" titleKey="label.parentName"sortable="true"/>
+      <display:column property="student.parentName.fullName" titleKey="label.parentName" sortable="true"/>
     </display:table>
   </c:if>
 
@@ -65,7 +65,7 @@
 
       <display:column property="birthDateDisplay" titleKey="label.DOB" sortable="true"/>
       <display:column property="address.phone1" titleKey="label.phone1" sortable="true"/>
-      <display:column property="gender.display" titleKey="label.gender.brief"sortable="true"/>
+      <display:column property="gender.display" titleKey="label.gender.brief" sortable="true"/>
       <display:column property="parentName.fullName" titleKey="label.parentName" sortable="true"/>
     </display:table>
   </c:if>

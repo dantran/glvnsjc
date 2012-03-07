@@ -45,6 +45,8 @@ public final class StudentForm
 
     private boolean readonlySchool;
 
+    private boolean readonlyCertificates;
+    
     private List schoolYears = new ArrayList( 1 );
 
     //the action will determine wether the user is allow to add and empty
@@ -170,6 +172,17 @@ public final class StudentForm
     {
         this.readonlySchoolYear = newValue;
     }
+    
+    public boolean isReadonlyCertificates()
+    {
+        return readonlyCertificates;
+    }
+
+    public void setReadonlyCertificates( boolean readonlyCertificates )
+    {
+        this.readonlyCertificates = readonlyCertificates;
+    }
+    
 
     public boolean getCancelAllow()
     {
@@ -241,6 +254,7 @@ public final class StudentForm
         this.readonlyPage = false;
         this.readonlySchool = false;
         this.readonlySchoolYear = false;
+        this.readonlyCertificates = false;
     }
 
     /**

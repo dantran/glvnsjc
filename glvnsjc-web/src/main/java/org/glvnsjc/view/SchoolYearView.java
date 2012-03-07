@@ -18,14 +18,17 @@ package org.glvnsjc.view;
  * @version 1.0
  */
 
+import java.util.Comparator;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.glvnsjc.model.ClassName;
 import org.glvnsjc.model.ClassSubName;
 import org.glvnsjc.model.Grade;
 import org.glvnsjc.model.SchoolClass;
+import org.glvnsjc.model.SchoolYear;
 
 public class SchoolYearView
-    implements java.io.Serializable
+    implements java.io.Serializable, Comparator, Comparable 
 {
 
     private boolean editAllow = false;
@@ -172,5 +175,29 @@ public class SchoolYearView
     {
         return ToStringBuilder.reflectionToString( this );
     }
+    
+    public int compare( Object o1, Object o2 )
+    {
+        int sy1 = ( (SchoolYearView) o1 ).getYear();
+        int sy2 = ( (SchoolYearView) o2 ).getYear();
+
+        if ( sy1 > sy2 )
+        {
+            return -1;
+        }
+        else if ( sy1 < sy2 )
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int compareTo( Object o )
+    {
+        return compare( this, o );
+    }    
 
 }
