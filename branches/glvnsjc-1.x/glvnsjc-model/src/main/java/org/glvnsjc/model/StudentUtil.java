@@ -63,6 +63,24 @@ public class StudentUtil
         return student;
 
     }
+    
+    public static Student updateStudent( Student student)
+    {
+        try
+        {
+            Session session = SessionUtil.begin();
+            session.update( student );
+            SessionUtil.end();
+        }
+        catch ( Exception e )
+        {
+            SessionUtil.rollback( e );
+        }
+
+        return student;
+
+    }
+    
 
     public static void updateStudent( Student student, SchoolYear schoolYear, String schoolId )
     {

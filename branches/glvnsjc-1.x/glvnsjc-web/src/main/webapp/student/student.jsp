@@ -136,6 +136,27 @@
       <td > <fmt:message key="label.email" /> </td>
       <td><html-el:text property="student.address.email"  readonly="${studentForm.readonlyPage}" /> </td>
     </tr>
+
+    <tr>
+      <td > <fmt:message key="label.baptismDate" /> </td>
+      <td><html-el:text property="student.baptismDate"  readonly="${studentForm.readonlyCertificates}" /> <fmt:message key="label.dateFormat" /> </td>
+    </tr>
+    
+    <tr>
+      <td > <fmt:message key="label.baptismLoc" /> </td>
+      <td><html-el:text property="student.baptismLocation"  readonly="${studentForm.readonlyCertificates}" /> </td>
+    </tr>
+    
+    <tr>
+      <td > <fmt:message key="label.eucharistDate" /> </td>
+      <td><html-el:text property="student.eucharistDate"  readonly="${studentForm.readonlyCertificates}" /> <fmt:message key="label.dateFormat" /> </td>
+    </tr>
+    
+    <tr>
+      <td > <fmt:message key="label.eucharistLoc" /> </td>
+      <td><html-el:text property="student.eucharistLocation"  readonly="${studentForm.readonlyCertificates}" /> </td>
+    </tr>
+    
 </table>
 
     <!-- Show editable school year list -->
@@ -221,7 +242,7 @@
                          <fmt:message key="label.grade" />
                       </td>
                       <td align="left">
-                        <html-el:select name="schoolYear"  property="vietnguClass.grade" disabled="${studentForm.readonlyPage}"indexed="true" >
+                        <html-el:select name="schoolYear"  property="vietnguClass.grade" disabled="${studentForm.readonlyPage}" indexed="true" >
                           <html-el:options collection="gradeOptions" property="value" labelProperty="label"/>
                         </html-el:select>
                       </td>

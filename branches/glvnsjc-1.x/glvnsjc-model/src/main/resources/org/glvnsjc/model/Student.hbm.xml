@@ -34,11 +34,22 @@
     <property name="birthDate" type="date"/>
     <property name="saintName" type="string"/>
     <property name="gender" type="org.glvnsjc.model.Gender" />
+    
+    <component name="baptism" class="org.glvnsjc.model.Baptism">
+      <property name="date"    column="baptismDate" type="date"/>
+      <property name="location"  column="baptismlocation" type="string"/>
+    </component>
+    
+    <component name="eucharist" class="org.glvnsjc.model.Eucharist">
+      <property name="date"    column="eucharistDate" type="date"/>
+      <property name="location"  column="eucharistlocation" type="string"/>
+    </component>
 
     <set name="schoolYears" inverse="true" cascade="all"  >
     	<key column="student" />
     	<one-to-many class="org.glvnsjc.model.SchoolYear" />
     </set>
+    
   </class>
 
 </hibernate-mapping>

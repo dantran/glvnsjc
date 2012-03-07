@@ -146,6 +146,8 @@ public class TreeMenuBean
                 TreeNode studentAddNode = new TreeNode( "Add", 2 );
                 studentAddNode.setHref( "./student/load.do?command=" + DispatchType.ADD );
                 studentFolder.addChild( studentAddNode );
+                studentFolder.addChild( new TreeNode( "Update Last Year Eucharist Certification", 2 ).setHref( "./student//updateLastYearEucharistCertification.do" ) );
+                
             }
 
             if ( isAdminPrivilege )
