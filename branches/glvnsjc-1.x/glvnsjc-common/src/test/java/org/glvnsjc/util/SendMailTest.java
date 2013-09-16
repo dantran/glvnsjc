@@ -9,6 +9,7 @@ public class SendMailTest
     public void testSend()
         throws Exception
     {
+        /*
         SendMail sendMail = new SendMail( "glvnsjc.web@gmail.com", "dantran@gmail.com", "GLVNSJC Account Notification",
                                           "test" );
         sendMail.setSmtpServerHost( "smtp.gmail.com:465" );
@@ -16,6 +17,7 @@ public class SendMailTest
         sendMail.setSmtpserverPassword( "bogus" );
 
         sendMail.send();
+        */
 
     }
 }
