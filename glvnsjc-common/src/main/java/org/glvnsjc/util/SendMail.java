@@ -203,7 +203,8 @@ public class SendMail
         email.setSubject( this.getSubject() );
         email.setMsg( this.body );
         email.setStartTLSEnabled( true );
-
+        email.setSSLOnConnect( true );
+        
 
         if ( this.to != null )
         {
