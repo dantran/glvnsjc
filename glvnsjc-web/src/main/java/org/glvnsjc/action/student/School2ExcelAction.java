@@ -286,6 +286,12 @@ public class School2ExcelAction
         cell.setCellValue( "DOB" );
         sheet.setColumnWidth( j, DOB_WIDTH );
 
+        //Email
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( "Email" );
+        sheet.setColumnWidth( j, EMAIL_WIDTH );
+        
         return sheet;
     }
 
@@ -321,6 +327,11 @@ public class School2ExcelAction
         j++;
         cell = row.createCell( j );
         cell.setCellValue( schoolYear.getStudent().getBirthDateDisplay() );
+        
+        //email
+        j++;
+        cell = row.createCell( j );
+        cell.setCellValue( schoolYear.getStudent().getAddress().getEmail() );
 
     }
 

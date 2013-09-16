@@ -4,22 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.codehaus.plexus.util.StringUtils;
 
 public class SendMail
@@ -186,7 +176,7 @@ public class SendMail
     }
 
     public void send()
-        throws AddressException, MessagingException
+        throws EmailException
     {
 
         Properties props = System.getProperties();
@@ -204,87 +194,44 @@ public class SendMail
             smtpPort = tokens[1];
         }
 
-        props.put( "mail.smtp.port", smtpPort );
+        Email email = new SimpleEmail();
+        email.setSmtpPort( Integer.parseInt( smtpPort ) );
+        email.setAuthenticator( new DefaultAuthenticator( smtpServerUserId, smtpServerPassword ) );
+        email.setDebug( false );
+        email.setHostName( smtpHost );
+        email.setFrom( from );
+        email.setSubject( this.getSubject() );
+        email.setMsg( this.body );
+        email.setStartTLSEnabled( true );
 
-        if ( StringUtil.isBlank( getSmtpServerUserId() ) )
-        {
-            props.put( "mail.smtp.auth", "false" );
-        }
-        else
-        {
-            props.put( "mail.smtp.auth", "true" );
-        }
 
-        Session session = Session.getInstance( props, null );
-        Message message = new MimeMessage( session );
-        message.setFrom( new InternetAddress( this.getFrom().trim() ) );
-        message.setSubject( this.getSubject() );
-
-        int i = 0;
-        if ( this.getTo() != null )
+        if ( this.to != null )
         {
-            for ( i = 0; i < this.getTo().size(); ++i )
+            for ( int i = 0; i < this.to.size(); ++i )
             {
-                message.addRecipient( Message.RecipientType.TO, new InternetAddress( this.getTo().get( i ).toString()
-                    .trim() ) );
+                email.addTo( this.to.get( i ).toString() );
             }
         }
 
-        if ( this.getCc() != null )
+        if ( this.cc != null )
         {
-            for ( i = 0; i < this.getCc().size(); ++i )
+            for ( int i = 0; i < this.cc.size(); ++i )
             {
-                message.addRecipient( Message.RecipientType.CC, new InternetAddress( this.getCc().get( i ).toString()
-                    .trim() ) );
+                email.addCc( this.cc.get( i ).toString() );
             }
         }
 
-        if ( this.getBcc() != null )
+        if ( this.bcc != null )
         {
-            for ( i = 0; i < this.getBcc().size(); ++i )
+            for ( int i = 0; i < this.bcc.size(); ++i )
             {
-                message.addRecipient( Message.RecipientType.BCC, new InternetAddress( this.getBcc().get( i ).toString()
-                    .trim() ) );
+                email.addBcc( this.cc.get( i ).toString() );
             }
         }
-
-        if ( this.getAttachments() != null && this.getAttachments().size() != 0 )
-        {
-            Multipart multipart = new MimeMultipart();
-
-            BodyPart bodyText = new MimeBodyPart();
-            bodyText.setText( this.getBody() );
-            multipart.addBodyPart( bodyText );
-
-            //associate file attachments to the email
-            for ( i = 0; i < this.getAttachments().size(); ++i )
-            {
-                BodyPart bodyFile = new MimeBodyPart();
-                FileDataSource fileSource = new FileDataSource( this.getAttachments().get( i ).toString() );
-                bodyFile.setDataHandler( new DataHandler( fileSource ) );
-                bodyFile.setFileName( fileSource.getName() );
-                multipart.addBodyPart( bodyFile );
-            }
-
-            message.setContent( multipart );
-        }
-        else
-        {
-            //email has no attachments
-            message.setText( this.getBody() );
-        }
-
-        Transport transport = session.getTransport( "smtp" );
-        transport.connect( smtpHost, getSmtpServerUserId(), getSmtpServerPassword() );
-        try
-        {
-            message.saveChanges();
-            transport.sendMessage( message, message.getAllRecipients() );
-        }
-        finally
-        {
-            transport.close();
-        }
+        
+        //fixme add attachment
+        
+        email.send();
 
     }
 
