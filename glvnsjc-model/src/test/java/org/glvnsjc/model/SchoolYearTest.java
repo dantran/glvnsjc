@@ -57,6 +57,7 @@ public class SchoolYearTest
         }
         catch ( Exception e )
         {
+            e.printStackTrace();
             SessionUtil.rollback( e );
         }
 
