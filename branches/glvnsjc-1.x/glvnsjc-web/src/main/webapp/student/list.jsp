@@ -49,6 +49,7 @@
       <display:column property="student.address.phone1" titleKey="label.phone1" sortable="true"/>
       <display:column property="student.gender.display" titleKey="label.gender.brief" sortable="true" />
       <display:column property="student.parentName.fullName" titleKey="label.parentName" sortable="true"/>
+      <display:column property="student.address.email" titleKey="label.email" sortable="true"/>
     </display:table>
   </c:if>
 
@@ -67,6 +68,7 @@
       <display:column property="address.phone1" titleKey="label.phone1" sortable="true"/>
       <display:column property="gender.display" titleKey="label.gender.brief" sortable="true"/>
       <display:column property="parentName.fullName" titleKey="label.parentName" sortable="true"/>
+      <display:column property="address.email" titleKey="label.email" sortable="true"/>
     </display:table>
   </c:if>
 </logic-el:present>
@@ -86,6 +88,7 @@
       <display:column property="student.address.phone1" titleKey="label.phone1" sortable="true"/>
       <display:column property="student.gender.display" titleKey="label.gender.brief" sortable="true"/>
       <display:column property="student.parentName.fullName" titleKey="label.parentName" sortable="true"/>
+      <display:column property="student.address.email" titleKey="label.email" sortable="true"/>
     </display:table>
   </c:if>
 
@@ -100,6 +103,7 @@
       <display:column property="address.phone1" titleKey="label.phone1" sortable="true"/>
       <display:column property="gender.display" titleKey="label.gender.brief" sortable="true"/>
       <display:column property="parentName.fullName" titleKey="label.parentName" sortable="true"/>
+      <display:column property="address.email" titleKey="label.email" sortable="true"/>
   </display:table>
   </c:if>
 
