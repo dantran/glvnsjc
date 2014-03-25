@@ -24,6 +24,10 @@ public class SchoolYearTest
 
         try
         {
+        	//must init this instance first so that it does not close the hibernate session
+        	// of this test
+        	StudentIdGen.getInstance();
+
             Session session = SessionUtil.begin();
             School school = new School( "schoolTest1", "ST1", null );
             session.save( school );
