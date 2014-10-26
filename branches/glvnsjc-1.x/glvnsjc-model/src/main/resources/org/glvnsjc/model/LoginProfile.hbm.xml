@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="org.glvnsjc.model.LoginProfile" table="LoginProfile">
+  <class name="org.glvnsjc.model.LoginProfile" table="LoginProfile" lazy="false">
 
     <id name="id" column="id" type="int">
       <generator class="native">
@@ -46,7 +46,7 @@
     <property name="saintName" type="string" />
     <property name="gender" type="org.glvnsjc.model.Gender" />
 
-    <set name="certificates" inverse="true" cascade="all">
+    <set name="certificates" inverse="true" cascade="all" lazy="false">
       <key column="teacher" />
       <one-to-many class="org.glvnsjc.model.Certificate" />
     </set>

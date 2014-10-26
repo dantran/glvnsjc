@@ -62,7 +62,6 @@ public class LoginProfileTest
         {
             Session session = SessionUtil.begin();
             user = (LoginProfile) session.load( LoginProfile.class, userId );
-            user.getCertificates().size();
             SessionUtil.end();
         }
         catch ( Exception e )
@@ -99,7 +98,6 @@ public class LoginProfileTest
         {
             Session session = SessionUtil.begin();
             user = (LoginProfile) session.load( LoginProfile.class, userId );
-            user.getCertificates().size();
             SessionUtil.end();
         }
         catch ( Exception e )
@@ -133,7 +131,6 @@ public class LoginProfileTest
         {
             Session session = SessionUtil.begin();
             user = (LoginProfile) session.load( LoginProfile.class, userId );
-            user.getCertificates();
             session.save( user );
         }
         catch ( Exception e )
