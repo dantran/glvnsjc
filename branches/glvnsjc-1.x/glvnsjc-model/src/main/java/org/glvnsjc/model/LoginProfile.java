@@ -2,6 +2,8 @@ package org.glvnsjc.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -62,6 +64,8 @@ public class LoginProfile
     private boolean removable = true;
 
     private boolean loginable = false;
+
+    private Set certificates = new HashSet();
 
     public LoginProfile()
     {
@@ -247,6 +251,18 @@ public class LoginProfile
         this.loginable = newValue;
     }
 
+    public Set getCertificates()
+    {
+        return certificates;
+    }
+
+    public void setCertificates( Set certificates )
+    {
+        this.certificates = certificates;
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+
     public String toString()
     {
         return new ToStringBuilder( this ).append( "id", getId() ).toString();
@@ -265,7 +281,7 @@ public class LoginProfile
         return new HashCodeBuilder().append( getId() ).toHashCode();
     }
 
-    //helpers
+    // helpers
     public String getGiaolyClassFullName()
     {
         if ( this.giaolyClass != null )

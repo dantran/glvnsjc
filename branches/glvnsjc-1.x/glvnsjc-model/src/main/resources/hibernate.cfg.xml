@@ -31,6 +31,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
 
+        <!--  this must match with the one under src/test/resources  -->
         <mapping resource="org/glvnsjc/model/LoginProfile.hbm.xml"/>
         <mapping resource="org/glvnsjc/model/LostStudent.hbm.xml"/>
         <mapping resource="org/glvnsjc/model/School.hbm.xml"/>
@@ -38,6 +39,8 @@
         <mapping resource="org/glvnsjc/model/SchoolYear.hbm.xml"/>
         <mapping resource="org/glvnsjc/model/SiteConfig.hbm.xml"/>
         <mapping resource="org/glvnsjc/model/Student.hbm.xml"/>
+        <mapping resource="org/glvnsjc/model/Certificate.hbm.xml"/>
+
 
     </session-factory>
 
