@@ -1,5 +1,8 @@
 package org.glvnsjc.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -10,9 +13,7 @@ import org.glvnsjc.model.Address;
 import org.glvnsjc.model.Name;
 
 /**
- *
- * @struts.form
- *      name="userForm"
+ * @struts.form name="userForm"
  */
 
 public class LoginProfileForm
@@ -20,9 +21,9 @@ public class LoginProfileForm
     implements java.io.Serializable
 {
 
-    private String command; //determine the command to submit in user.jsp
+    private String command; // determine the command to submit in user.jsp
 
-    private String loginRole; // the loginned user role.  Help user.jsp to determine what to display with???
+    private String loginRole; // the loginned user role. Help user.jsp to determine what to display with???
 
     private String id;
 
@@ -44,7 +45,7 @@ public class LoginProfileForm
 
     private String privilege;
 
-    //school info
+    // school info
     private String teacherType;
 
     private String schoolId;
@@ -64,6 +65,8 @@ public class LoginProfileForm
     private boolean removable = true;
 
     private boolean loginable = false;
+
+    private List certificates = new ArrayList( 1 );
 
     public LoginProfileForm()
     {
@@ -297,6 +300,40 @@ public class LoginProfileForm
         this.loginable = newValue;
     }
 
+    // /////////////////////////////////////////////////////////////////////////
+    // required by logic:iterate
+    public List getCertificates()
+    {
+        return this.certificates;
+    }
+
+    public CertificateView getCertificate( int index )
+    {
+
+        while ( index >= certificates.size() )
+        {
+            certificates.add( new CertificateView() );
+        }
+
+        return (CertificateView) certificates.get( index );
+    }
+
+    public void setCertificate( int index, CertificateView certificate )
+    {
+        while ( index >= certificates.size() )
+        {
+            certificates.add( new SchoolYearView() );
+        }
+        this.certificates.set( index, certificate );
+    }
+
+    public int getCertificateSize()
+    {
+        return this.certificates.size();
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+
     public String toString()
     {
         return ToStringBuilder.reflectionToString( this );
@@ -312,11 +349,9 @@ public class LoginProfileForm
     }
 
     /**
-     * Validate the properties that have been set from this HTTP request,
-     * and return an <code>ActionErrors</code> object that encapsulates any
-     * validation errors that have been found.  If no errors are found, return
-     * <code>null</code> or an <code>ActionErrors</code> object with no
-     * recorded error messages.
+     * Validate the properties that have been set from this HTTP request, and return an <code>ActionErrors</code> object
+     * that encapsulates any validation errors that have been found. If no errors are found, return <code>null</code> or
+     * an <code>ActionErrors</code> object with no recorded error messages.
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing

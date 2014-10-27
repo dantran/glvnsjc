@@ -193,8 +193,8 @@
 
       <tr>
         <td><fmt:message key="label.DOB" /></td>
-        <td><html-el:text property="birthDate" readonly="${readonlyForm}" />
-          <fmt:message key="label.dateFormat.short" /></td>
+        <td><html-el:text property="birthDate" readonly="${readonlyForm}" /> <fmt:message
+            key="label.dateFormat.short" /></td>
       </tr>
 
       <tr>
@@ -253,6 +253,33 @@
       </tr>
     </table>
     <br>
+
+    <table cellpadding=2 cellspacing=2 border=2 align="center" width="50%">
+      <!-- Show table header -->
+      <tr>
+        <th align="center"><fmt:message key="label.certificate.description" /></th>
+        <th align="center"><fmt:message key="label.certificate.date" /></th>
+      </tr>
+
+      <c:forEach var="certificate" items="${userForm.certificates}">
+
+        <c:if test="${certificate.editAllow == 'false'}">
+          <tr>
+            <td align="left"><c:out value="${certificate.description}" />
+              <html-el:hidden name="certificate" property="certificateTypeIds" indexed="true" />
+            </td>
+            <td align="left"><c:out value="${certificate.date}" />
+              <html-el:hidden name="certificate" property="date" indexed="true" />
+           </td>
+          </tr>
+        </c:if>
+
+        <c:if test="${certificate.editAllow == 'true'}">
+        </c:if>
+
+      </c:forEach>
+    </table>
+
     <table align="center">
       <tr>
         <td align="left" />
