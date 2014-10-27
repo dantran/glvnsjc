@@ -1,5 +1,6 @@
 package org.glvnsjc.action.teacher;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class DispatchAction
     {
         Map map = new HashMap();
         map.put( "button.add", "add" );
+        map.put( "button.teacher.addCertificate", "addCertificate" );
         map.put( "button.update", "update" );
         map.put( "button.delete", "delete" );
         map.put( "button.teacher.resetPassword", "resetPassword" );
@@ -221,7 +223,9 @@ public class DispatchAction
                     return ( mapping.getInputForward() );
                 }
             }
-            BeanUtils.copyProperties( loginProfile, theForm );
+
+            copyProperties( theForm, loginProfile);
+
             if ( !StringUtil.isBlank( theForm.getSchoolId() ) )
             {
                 loginProfile.setSchool( SchoolList.getInstance().getSchool( Integer.valueOf( theForm.getSchoolId() ) ) );
@@ -244,6 +248,18 @@ public class DispatchAction
 
         return ( mapping.findForward( "update" ) );
 
+    }
+
+    public ActionForward addCertificate( ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                              HttpServletResponse response )
+        throws Exception
+    {
+        LoginProfileForm theForm = (LoginProfileForm) form;
+
+        String cmd = theForm.getCommand();
+
+        //must return to the same CRUD state( ie add or update )
+        return ( mapping.findForward( cmd ) );
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -332,6 +348,12 @@ public class DispatchAction
         }
 
         return errorFound;
+    }
+
+    private void copyProperties( LoginProfileForm from, LoginProfile to )
+        throws IllegalAccessException, InvocationTargetException
+    {
+        BeanUtils.copyProperties( to, from );
     }
 
 }

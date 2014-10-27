@@ -259,22 +259,37 @@
       <tr>
         <th align="center"><fmt:message key="label.certificate.description" /></th>
         <th align="center"><fmt:message key="label.certificate.date" /></th>
+        <c:if test="${userForm.emptyCertificates == 'true'}">
+          <th align="center"><html-el:submit property="action">
+              <fmt:message key="button.teacher.addCertificate" />
+            </html-el:submit></th>
+        </c:if>
+
       </tr>
 
-      <c:forEach var="certificate" items="${userForm.certificates}">
+      <c:forEach var="certificate" items="${userForm.certificateViews}">
 
         <c:if test="${certificate.editAllow == 'false'}">
           <tr>
-            <td align="left"><c:out value="${certificate.description}" />
-              <html-el:hidden name="certificate" property="certificateTypeIds" indexed="true" />
-            </td>
-            <td align="left"><c:out value="${certificate.date}" />
-              <html-el:hidden name="certificate" property="date" indexed="true" />
-           </td>
+            <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
+                property="certificateTypeId" indexed="true" /></td>
+            <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
+                property="date" indexed="true" /></td>
           </tr>
         </c:if>
 
         <c:if test="${certificate.editAllow == 'true'}">
+
+          <html-el:hidden name="certificate" property="editAllow" indexed="true" />
+          <html-el:hidden name="certificate" property="id" indexed="true" />
+
+          <tr>
+            <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
+                property="certificateTypeId" indexed="true" /></td>
+            <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
+                property="date" indexed="true" /></td>
+          </tr>
+
         </c:if>
 
       </c:forEach>
@@ -285,9 +300,11 @@
         <td align="left" />
         <td align="left"><c:choose>
             <c:when test="${command == 'add'}">
-              <html-el:submit property="action">
-                <fmt:message key="button.add" />
-              </html-el:submit>
+              <tr>
+                <td><html-el:submit property="action">
+                    <fmt:message key="button.add" />
+                  </html-el:submit></td>
+              </tr>
             </c:when>
             <c:when test="${command == 'update'}">
               <tr>
@@ -299,7 +316,8 @@
                         <fmt:message key="button.teacher.resetPassword" />
                       </html-el:submit>
                     <td>
-                  </logic-el:present>
+                  </logic-el:present></td>
+              </tr>
             </c:when>
             <c:when test="${command == 'delete'}">
               <html-el:submit property="action">

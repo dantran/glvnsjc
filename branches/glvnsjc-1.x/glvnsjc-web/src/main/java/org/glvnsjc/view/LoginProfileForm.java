@@ -301,15 +301,26 @@ public class LoginProfileForm
     }
 
     // /////////////////////////////////////////////////////////////////////////
+
+    public boolean isEmptyCertificates()
+    {
+        return this.certificates.isEmpty();
+    }
+
     // required by logic:iterate
-    public List getCertificates()
+    public List getCertificateViews()
     {
         return this.certificates;
     }
 
-    public CertificateView getCertificate( int index )
+    // required by logic:iterate
+    public void setCertificateViews()
     {
+        //return this.certificates;
+    }
 
+    public CertificateView getCertificateView( int index )
+    {
         while ( index >= certificates.size() )
         {
             certificates.add( new CertificateView() );
@@ -318,18 +329,13 @@ public class LoginProfileForm
         return (CertificateView) certificates.get( index );
     }
 
-    public void setCertificate( int index, CertificateView certificate )
+    public void setCertificateView( int index, CertificateView certificate )
     {
         while ( index >= certificates.size() )
         {
-            certificates.add( new SchoolYearView() );
+            certificates.add( new CertificateView() );
         }
         this.certificates.set( index, certificate );
-    }
-
-    public int getCertificateSize()
-    {
-        return this.certificates.size();
     }
 
     // ////////////////////////////////////////////////////////////////////////

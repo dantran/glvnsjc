@@ -4,6 +4,8 @@ package org.glvnsjc.view;
 public class CertificateView
     implements java.io.Serializable
 {
+    private int id; //primary key
+
     private String certificateTypeId;
 
     private String descripion;
@@ -11,6 +13,16 @@ public class CertificateView
     private String certifiedDate;
 
     private boolean editAllow = false;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId( int id )
+    {
+        this.id = id;
+    }
 
     public String getCertificateTypeId()
     {
