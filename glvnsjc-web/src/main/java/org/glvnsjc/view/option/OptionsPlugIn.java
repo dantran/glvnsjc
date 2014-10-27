@@ -70,6 +70,8 @@ public final class OptionsPlugIn
                                                       TeacherTypeOptions.getInstance().getOptions() );
             servlet.getServletContext().setAttribute( "principalTeacherTypeOptions",
                                                       TeacherTypeOptions.getInstance().getPrincipalOptions() );
+            servlet.getServletContext().setAttribute( "certificateTypeOptions",
+                                                      CertificateTypeOptions.getInstance().getOptions() );
 
         }
         catch ( Throwable e )
