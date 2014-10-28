@@ -8,7 +8,7 @@ public class CertificateView
 
     private String certificateTypeId;
 
-    private String descripion;
+    private String description;
 
     private String certifiedDate;
 
@@ -34,18 +34,22 @@ public class CertificateView
         this.certificateTypeId = id;
     }
 
-    public String getDescripion()
+    public String getDescription()
     {
-        return descripion;
+        return description;
     }
 
+    public void setDescription( String description )
+    {
+        this.description = description;
+    }
 
-    public String getCertifiedDate()
+    public String getDate()
     {
         return certifiedDate;
     }
 
-    public void setCertifiedDate( String certifiedDate )
+    public void setDate( String certifiedDate )
     {
         this.certifiedDate = certifiedDate;
     }
