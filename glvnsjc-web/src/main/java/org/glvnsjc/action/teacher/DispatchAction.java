@@ -1,6 +1,7 @@
 package org.glvnsjc.action.teacher;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.glvnsjc.action.ActionUtil;
+import org.glvnsjc.model.CertificateType;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
@@ -27,6 +29,7 @@ import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.util.ProcessRunnables;
 import org.glvnsjc.util.SendMail;
 import org.glvnsjc.util.StringUtil;
+import org.glvnsjc.view.CertificateView;
 import org.glvnsjc.view.LoginProfileForm;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -256,10 +259,16 @@ public class DispatchAction
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        String cmd = theForm.getCommand();
+        CertificateView certificate = new CertificateView();
+        certificate.setDate( "10/10/2000" );
+        certificate.setDescription( CertificateType.UNASSIGNED.getDisplay() );
+
+        certificate.setSertificateTypeId( CertificateType.UNASSIGNED.getEnumCode().toString() );
+        theForm.getCertificateViews().add( certificate );
+
 
         //must return to the same CRUD state( ie add or update )
-        return ( mapping.findForward( cmd ) );
+        return ( mapping.findForward( theForm.getCommand() ) );
     }
 
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,

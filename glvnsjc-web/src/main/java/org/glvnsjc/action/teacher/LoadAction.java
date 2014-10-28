@@ -69,7 +69,7 @@ public class LoadAction
             }
         }
 
-        //less previledge than master can not search for other school
+        //less privilege than master can not search for other school
         if ( !request.isUserInRole( Privilege.COMMUNITY.toString() ) )
         {
             theForm.setSchoolPriviledgeOnly( true );
