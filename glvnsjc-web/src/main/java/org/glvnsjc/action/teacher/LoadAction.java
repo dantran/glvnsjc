@@ -9,10 +9,12 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.glvnsjc.model.CertificateType;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.securityfilter.AppPrincipal;
+import org.glvnsjc.view.CertificateView;
 import org.glvnsjc.view.LoginProfileForm;
 import org.hibernate.Session;
 
@@ -52,6 +54,11 @@ public class LoadAction
                 }
                 theForm.setConfirmPassword( theForm.getPassword() );
 
+                if ( action.equals( "update" ) )
+                {
+                    theForm.getCertificateViews().add( new CertificateView( CertificateType.UNKNOWN.getDisplay(), "" ) );
+                }
+
                 SessionUtil.end();
             }
             catch ( Exception e )
@@ -77,5 +84,4 @@ public class LoadAction
         }
         return ( mapping.findForward( "success" ) );
     }
-
 }

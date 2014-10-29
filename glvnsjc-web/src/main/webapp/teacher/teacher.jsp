@@ -259,17 +259,15 @@
       <tr>
         <th align="center"><fmt:message key="label.certificate.description" /></th>
         <th align="center"><fmt:message key="label.certificate.date" /></th>
-        <c:if test="${userForm.emptyCertificates == 'true'}">
-          <th align="center"><html-el:submit property="action">
-              <fmt:message key="button.teacher.addCertificate" />
-            </html-el:submit></th>
+        <c:if test="${userForm.editableCertificates == 'true'}">
+          <th align="center"><fmt:message key="button.teacher.addDeleteCertificates" /></th>
         </c:if>
 
       </tr>
 
       <c:forEach var="certificate" items="${userForm.certificateViews}">
 
-        <c:if test="${certificate.editAllow == 'false'}">
+        <c:if test="${userForm.editableCertificates == 'false'}">
           <tr>
             <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
                 property="certificateTypeId" indexed="true" /></td>
@@ -278,9 +276,8 @@
           </tr>
         </c:if>
 
-        <c:if test="${certificate.editAllow == 'true'}">
+        <c:if test="${userForm.editableCertificates == 'true'}">
 
-          <html-el:hidden name="certificate" property="editAllow" indexed="true" />
           <html-el:hidden name="certificate" property="id" indexed="true" />
 
           <tr>
@@ -288,6 +285,17 @@
                 property="certificateTypeId" indexed="true" /></td>
             <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
                 property="date" indexed="true" /></td>
+            <c:if test="${certificate.persisted == 'false'}">
+              <td align="center"><html-el:submit property="action">
+                  <fmt:message key="button.teacher.addCertificate" />
+                </html-el:submit></td>
+            </c:if>
+            <c:if test="${certificate.persisted == 'true'}">
+              <td align="center"><html-el:submit property="action">
+                  <fmt:message key="button.teacher.delCertificate" />
+                </html-el:submit></td>
+            </c:if>
+
           </tr>
 
         </c:if>

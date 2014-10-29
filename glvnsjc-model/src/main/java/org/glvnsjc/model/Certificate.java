@@ -61,6 +61,10 @@ public class Certificate
         this.teacher = teacher;
     }
 
+    public String getDisplay() {
+        return this.type.getDisplay();
+    }
+
     // ////////////////////////////////////////////////////////////////
 
     public String toString()
