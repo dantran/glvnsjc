@@ -66,6 +66,8 @@ public class LoginProfileForm
 
     private boolean loginable = false;
 
+    private boolean editableCertificates = true;
+
     private List certificates = new ArrayList( 1 );
 
     public LoginProfileForm()
@@ -301,6 +303,16 @@ public class LoginProfileForm
     }
 
     // /////////////////////////////////////////////////////////////////////////
+
+    public boolean isEditableCertificates()
+    {
+        return editableCertificates;
+    }
+
+    public void setEditableCertificates( boolean editableCertificates )
+    {
+        this.editableCertificates = editableCertificates;
+    }
 
     public boolean isEmptyCertificates()
     {

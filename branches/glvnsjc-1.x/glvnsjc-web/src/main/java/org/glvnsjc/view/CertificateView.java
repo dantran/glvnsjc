@@ -12,7 +12,17 @@ public class CertificateView
 
     private String certifiedDate;
 
-    private boolean editAllow = false;
+    private boolean persisted = false;
+
+    public CertificateView()
+    {
+    }
+
+    public CertificateView(String name, String date)
+    {
+        this.description = name;
+        this.certifiedDate = date;
+    }
 
     public int getId()
     {
@@ -54,14 +64,14 @@ public class CertificateView
         this.certifiedDate = certifiedDate;
     }
 
-    public boolean isEditAllow()
+    public boolean isPersisted()
     {
-        return editAllow;
+        return persisted;
     }
 
-    public void setEditAllow( boolean editAllow )
+    public void setPersisted( boolean persisted )
     {
-        this.editAllow = editAllow;
+        this.persisted = persisted;
     }
 
 }

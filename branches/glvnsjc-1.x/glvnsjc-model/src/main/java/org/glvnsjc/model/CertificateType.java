@@ -6,7 +6,7 @@ public class CertificateType
     extends PersistentIntegerEnum
 {
 
-    public static final CertificateType UNASSIGNED = new CertificateType( "", 0 );
+    public static final CertificateType UNKNOWN = new CertificateType( "Unknown", 0 );
 
     public static final CertificateType SEXUAL_MISCONDUCD_WORKSHOP = new CertificateType( "Sexual Misconduct Workshop",
                                                                                          1 );
@@ -20,7 +20,7 @@ public class CertificateType
 
     public static final CertificateType CATACHIST_CERTIFICATION = new CertificateType( "Catachist Certification", 6 );
 
-    public static final CertificateType[] certificateTypeList = { UNASSIGNED, SEXUAL_MISCONDUCD_WORKSHOP,
+    public static final CertificateType[] certificateTypeList = { UNKNOWN, SEXUAL_MISCONDUCD_WORKSHOP,
         FINGER_PRINT_PROCESS, INTRO_TO_CATACHIRST, FAITH_BEYOND_2000_PART_1, FAITH_BEYOND_2000_PART_2,
         CATACHIST_CERTIFICATION };
 
@@ -37,7 +37,7 @@ public class CertificateType
     {
         if ( strValue == null || strValue.toString().length() == 0 )
         {
-            return UNASSIGNED;
+            return UNKNOWN;
         }
 
         for ( int i = 0; i < certificateTypeList.length; ++i )
@@ -47,12 +47,12 @@ public class CertificateType
                 return certificateTypeList[i];
             }
         }
-        return UNASSIGNED;
+        return UNKNOWN;
 
     }
 
     public String getDisplay()
     {
-        return this.toString();
+        return name;
     }
 }
