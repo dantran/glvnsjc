@@ -33,15 +33,15 @@ public class LoadAction
         LoginProfileForm theForm = (LoginProfileForm) form;
         AppPrincipal principal = (AppPrincipal) request.getUserPrincipal();
 
-        //the first time the form is loaded, the 'command' is in request's param
-        //  set the command back to the form to be sent back later
+        // the first time the form is loaded, the 'command' is in request's param
+        // set the command back to the form to be sent back later
         String action = request.getParameter( "command" );
         theForm.setCommand( action );
         String id = request.getParameter( "id" );
 
-        //no need to load during a loading student for add
-        if ( action.equals( "delete" ) || action.equals( "update" ) )
+        if ( id != null )
         {
+            // update/delete case
             try
             {
                 Session session = SessionUtil.begin();
@@ -69,14 +69,17 @@ public class LoadAction
         }
         else
         {
-            //during add, load the default school based on user security principal
+            // add case
+
+            // the login user should have the privilege to create this teacher
+            // and therefore the teacher should belong to login user's school
             if ( principal.getLoginProfile().getSchool() != null )
             {
                 theForm.setSchoolId( principal.getLoginProfile().getSchool().getId().toString() );
             }
         }
 
-        //less privilege than master can not search for other school
+        // less privilege than master can not search for other school
         if ( !request.isUserInRole( Privilege.COMMUNITY.toString() ) )
         {
             theForm.setSchoolPriviledgeOnly( true );
