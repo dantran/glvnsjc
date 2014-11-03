@@ -260,7 +260,7 @@
         <th align="center"><fmt:message key="label.certificate.description" /></th>
         <th align="center"><fmt:message key="label.certificate.date" /></th>
         <c:if test="${userForm.editableCertificates == 'true'}">
-          <th align="center"><fmt:message key="button.teacher.addDeleteCertificates" /></th>
+          <th align="center"><fmt:message key="button.teacher.deleteCertificate" /></th>
         </c:if>
 
       </tr>
