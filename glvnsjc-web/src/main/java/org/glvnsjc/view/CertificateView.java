@@ -1,5 +1,6 @@
 package org.glvnsjc.view;
 
+import org.glvnsjc.model.Certificate;
 import org.glvnsjc.model.CertificateType;
 
 @SuppressWarnings( "serial" )
@@ -18,6 +19,12 @@ public class CertificateView
     {
     }
 
+    public CertificateView( Certificate rawCert )
+    {
+        this.id = rawCert.getId().toString();
+        this.typeId = rawCert.getType().getEnumCode().toString();
+        this.date = rawCert.getDisplay().toString();
+    }
     public CertificateView( CertificateType type, String date )
     {
         this.typeId = type.getEnumCode().toString();
@@ -69,5 +76,6 @@ public class CertificateView
     {
         this.persisted = persisted;
     }
+
 
 }

@@ -1,5 +1,7 @@
 package org.glvnsjc.action.teacher;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.glvnsjc.model.Certificate;
 import org.glvnsjc.model.CertificateType;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
@@ -54,9 +57,11 @@ public class LoadAction
                 }
                 theForm.setConfirmPassword( theForm.getPassword() );
 
-                if ( action.equals( "update" ) )
+                // load the certificates
+                for ( Certificate cert : (Set<Certificate>) ( loginProfile.getCertificates() ) )
                 {
-                    theForm.getCertificateViews().add( new CertificateView( CertificateType.UNKNOWN, "" ) );
+                    CertificateView certView = new CertificateView( cert );
+                    theForm.getCertificateViews().add( certView );
                 }
 
                 SessionUtil.end();
