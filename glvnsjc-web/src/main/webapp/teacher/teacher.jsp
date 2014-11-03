@@ -285,11 +285,6 @@
                 property="typeId" indexed="true" /></td>
             <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
                 property="date" indexed="true" /></td>
-            <c:if test="${certificate.persisted == 'false'}">
-              <td align="center"><html-el:submit property="action">
-                  <fmt:message key="button.teacher.addCertificate" />
-                </html-el:submit></td>
-            </c:if>
             <c:if test="${certificate.persisted == 'true'}">
               <td align="center"><html-el:submit property="action">
                   <fmt:message key="button.teacher.delCertificate" />
@@ -319,12 +314,20 @@
                 <td><html-el:submit property="action">
                     <fmt:message key="button.update" />
                   </html-el:submit>
-                <td><logic-el:present role="Principal">
-                    <td><html-el:submit property="action">
+                <td>
+                  <logic-el:present role="Principal">
+                    <td>
+                      <html-el:submit property="action">
                         <fmt:message key="button.teacher.resetPassword" />
                       </html-el:submit>
                     <td>
-                  </logic-el:present></td>
+                    <td>
+                      <html-el:submit property="action">
+                        <fmt:message key="button.teacher.addCertificate" />
+                      </html-el:submit>
+                    <td>
+                  </logic-el:present>
+                </td>
               </tr>
             </c:when>
             <c:when test="${command == 'delete'}">
