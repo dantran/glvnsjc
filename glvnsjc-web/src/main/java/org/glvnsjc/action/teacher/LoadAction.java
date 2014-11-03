@@ -56,7 +56,7 @@ public class LoadAction
 
                 if ( action.equals( "update" ) )
                 {
-                    theForm.getCertificateViews().add( new CertificateView( CertificateType.UNKNOWN.getDisplay(), "" ) );
+                    theForm.getCertificateViews().add( new CertificateView( CertificateType.UNKNOWN, "" ) );
                 }
 
                 SessionUtil.end();

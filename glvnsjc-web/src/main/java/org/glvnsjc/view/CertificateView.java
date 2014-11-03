@@ -1,16 +1,16 @@
 package org.glvnsjc.view;
 
+import org.glvnsjc.model.CertificateType;
 
+@SuppressWarnings( "serial" )
 public class CertificateView
     implements java.io.Serializable
 {
-    private int id; //primary key
+    private String id; // primary key
 
-    private String certificateTypeId;
+    private String typeId;
 
-    private String description;
-
-    private String certifiedDate;
+    private String date;
 
     private boolean persisted = false;
 
@@ -18,50 +18,46 @@ public class CertificateView
     {
     }
 
-    public CertificateView(String name, String date)
+    public CertificateView( CertificateType type, String date )
     {
-        this.description = name;
-        this.certifiedDate = date;
+        this.typeId = type.getEnumCode().toString();
+        this.date = date;
     }
 
-    public int getId()
+    public String getId()
     {
         return id;
     }
 
-    public void setId( int id )
+    public void setId( String id )
     {
         this.id = id;
     }
 
-    public String getCertificateTypeId()
+    public String getTypeId()
     {
-        return certificateTypeId;
+        return typeId;
     }
 
-    public void setSertificateTypeId( String id )
+    public void setTypeId( String id )
     {
-        this.certificateTypeId = id;
+        this.typeId = id;
     }
 
+    //for display only
     public String getDescription()
     {
-        return description;
-    }
-
-    public void setDescription( String description )
-    {
-        this.description = description;
+        return CertificateType.fromNumber( Integer.parseInt( typeId ) ).getDisplay();
     }
 
     public String getDate()
     {
-        return certifiedDate;
+        return date;
     }
 
     public void setDate( String certifiedDate )
     {
-        this.certifiedDate = certifiedDate;
+        this.date = certifiedDate;
     }
 
     public boolean isPersisted()
