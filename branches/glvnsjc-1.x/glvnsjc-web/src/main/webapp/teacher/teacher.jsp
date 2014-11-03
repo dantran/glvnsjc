@@ -270,7 +270,7 @@
         <c:if test="${userForm.editableCertificates == 'false'}">
           <tr>
             <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
-                property="certificateTypeId" indexed="true" /></td>
+                property="typeId" indexed="true" /></td>
             <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
                 property="date" indexed="true" /></td>
           </tr>
@@ -282,7 +282,7 @@
 
           <tr>
             <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
-                property="certificateTypeId" indexed="true" /></td>
+                property="typeId" indexed="true" /></td>
             <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
                 property="date" indexed="true" /></td>
             <c:if test="${certificate.persisted == 'false'}">

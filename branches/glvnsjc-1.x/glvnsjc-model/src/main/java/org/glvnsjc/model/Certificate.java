@@ -10,6 +10,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class Certificate
     implements Serializable
 {
+    private static final long serialVersionUID = 1L;
 
     /** identifier field */
     private Integer id;

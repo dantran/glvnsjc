@@ -260,11 +260,8 @@ public class DispatchAction
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        CertificateView certificate = new CertificateView();
-        certificate.setDate( "10/10/2000" );
-        certificate.setDescription( CertificateType.UNKNOWN.getDisplay() );
+        CertificateView certificate = new CertificateView( CertificateType.UNKNOWN, "10/10/2000" );
 
-        certificate.setSertificateTypeId( CertificateType.UNKNOWN.getEnumCode().toString() );
         theForm.getCertificateViews().add( certificate );
 
         // must return to the same CRUD state( ie add or update )
@@ -277,11 +274,8 @@ public class DispatchAction
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        CertificateView certificate = new CertificateView();
-        certificate.setDate( "10/10/2000" );
-        certificate.setDescription( CertificateType.UNKNOWN.getDisplay() );
+        CertificateView certificate = new CertificateView(CertificateType.UNKNOWN, "10/10/2000" );
 
-        certificate.setSertificateTypeId( CertificateType.UNKNOWN.getEnumCode().toString() );
         theForm.getCertificateViews().add( certificate );
 
         // must return to the same CRUD state( ie add or update )
