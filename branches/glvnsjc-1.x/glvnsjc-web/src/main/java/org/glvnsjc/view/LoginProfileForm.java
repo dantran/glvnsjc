@@ -331,7 +331,7 @@ public class LoginProfileForm
         //return this.certificates;
     }
 
-    public CertificateView getCertificateView( int index )
+    public CertificateView getCertificate( int index )
     {
         while ( index >= certificates.size() )
         {
@@ -341,7 +341,7 @@ public class LoginProfileForm
         return (CertificateView) certificates.get( index );
     }
 
-    public void setCertificateView( int index, CertificateView certificate )
+    public void setCertificate( int index, CertificateView certificate )
     {
         while ( index >= certificates.size() )
         {

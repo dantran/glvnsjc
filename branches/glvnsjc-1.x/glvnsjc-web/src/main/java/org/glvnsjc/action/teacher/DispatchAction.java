@@ -260,8 +260,7 @@ public class DispatchAction
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        CertificateView certificate = new CertificateView( CertificateType.UNKNOWN, "10/10/2000" );
-
+        CertificateView certificate = new CertificateView( CertificateType.UNKNOWN, "" );
         theForm.getCertificateViews().add( certificate );
 
         // must return to the same CRUD state( ie add or update )
@@ -274,9 +273,6 @@ public class DispatchAction
     {
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        CertificateView certificate = new CertificateView(CertificateType.UNKNOWN, "10/10/2000" );
-
-        theForm.getCertificateViews().add( certificate );
 
         // must return to the same CRUD state( ie add or update )
         return ( mapping.findForward( theForm.getCommand() ) );
