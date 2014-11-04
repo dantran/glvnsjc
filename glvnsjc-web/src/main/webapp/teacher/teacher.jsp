@@ -285,11 +285,9 @@
                 property="typeId" indexed="true" /></td>
             <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
                 property="date" indexed="true" /></td>
-            <c:if test="${certificate.persisted == 'true'}">
-              <td align="center"><html-el:submit property="action">
-                  <fmt:message key="button.teacher.delCertificate" />
-                </html-el:submit></td>
-            </c:if>
+            <td align="center"><html-el:submit property="action">
+                <fmt:message key="button.teacher.delCertificate" />
+            </html-el:submit></td>
 
           </tr>
 
