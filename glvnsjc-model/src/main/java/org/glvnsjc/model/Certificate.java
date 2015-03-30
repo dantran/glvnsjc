@@ -10,7 +10,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class Certificate
     implements Serializable
 {
-    private static final long serialVersionUID = 1L;
 
     /** identifier field */
     private Integer id;
@@ -60,10 +59,6 @@ public class Certificate
     public void setTeacher( org.glvnsjc.model.LoginProfile teacher )
     {
         this.teacher = teacher;
-    }
-
-    public String getDisplay() {
-        return this.type.getDisplay();
     }
 
     // ////////////////////////////////////////////////////////////////

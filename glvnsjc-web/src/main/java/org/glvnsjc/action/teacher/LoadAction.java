@@ -1,7 +1,5 @@
 package org.glvnsjc.action.teacher;
 
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,13 +9,10 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.glvnsjc.model.Certificate;
-import org.glvnsjc.model.CertificateType;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
 import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.securityfilter.AppPrincipal;
-import org.glvnsjc.view.CertificateView;
 import org.glvnsjc.view.LoginProfileForm;
 import org.hibernate.Session;
 
@@ -36,15 +31,15 @@ public class LoadAction
         LoginProfileForm theForm = (LoginProfileForm) form;
         AppPrincipal principal = (AppPrincipal) request.getUserPrincipal();
 
-        // the first time the form is loaded, the 'command' is in request's param
-        // set the command back to the form to be sent back later
+        //the first time the form is loaded, the 'command' is in request's param
+        //  set the command back to the form to be sent back later
         String action = request.getParameter( "command" );
         theForm.setCommand( action );
         String id = request.getParameter( "id" );
 
-        if ( id != null )
+        //no need to load during a loading student for add
+        if ( action.equals( "delete" ) || action.equals( "update" ) )
         {
-            // update/delete case
             try
             {
                 Session session = SessionUtil.begin();
@@ -57,13 +52,6 @@ public class LoadAction
                 }
                 theForm.setConfirmPassword( theForm.getPassword() );
 
-                // load the certificates
-                for ( Certificate cert : (Set<Certificate>) ( loginProfile.getCertificates() ) )
-                {
-                    CertificateView certView = new CertificateView( cert );
-                    theForm.getCertificateViews().add( certView );
-                }
-
                 SessionUtil.end();
             }
             catch ( Exception e )
@@ -74,17 +62,14 @@ public class LoadAction
         }
         else
         {
-            // add case
-
-            // the login user should have the privilege to create this teacher
-            // and therefore the teacher should belong to login user's school
+            //during add, load the default school based on user security principal
             if ( principal.getLoginProfile().getSchool() != null )
             {
                 theForm.setSchoolId( principal.getLoginProfile().getSchool().getId().toString() );
             }
         }
 
-        // less privilege than master can not search for other school
+        //less previledge than master can not search for other school
         if ( !request.isUserInRole( Privilege.COMMUNITY.toString() ) )
         {
             theForm.setSchoolPriviledgeOnly( true );
@@ -92,4 +77,5 @@ public class LoadAction
         }
         return ( mapping.findForward( "success" ) );
     }
+
 }

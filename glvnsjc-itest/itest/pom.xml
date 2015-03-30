@@ -19,8 +19,7 @@
  */
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <parent>
     <groupId>org.glvnsjc.itest</groupId>
@@ -28,71 +27,71 @@
     <version>1.10-SNAPSHOT</version>
   </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>itest</artifactId>
-  <packaging>jar</packaging>
-  <name>glvnsjc-itest-integration</name>
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>itest</artifactId>
+   <packaging>jar</packaging>
+   <name>glvnsjc-itest-integration</name>
 
-  <dependencies>
-
+   <dependencies>
+   
     <dependency>
       <groupId>org.glvnsjc</groupId>
       <artifactId>glvnsjc-test</artifactId>
       <version>${project.version}</version>
     </dependency>
+   
+      <dependency>
+         <groupId>htmlunit</groupId>
+         <artifactId>htmlunit</artifactId>
+         <version>1.10</version>
+         <exclusions>
+            <exclusion>
+               <groupId>javax.xml</groupId>
+               <artifactId>jsr173</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.codehaus.cargo</groupId>
+         <artifactId>cargo-core-uberjar</artifactId>
+         <version>0.8</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.codehaus.cargo</groupId>
+         <artifactId>cargo-ant</artifactId>
+         <version>0.8</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
-    <dependency>
-      <groupId>htmlunit</groupId>
-      <artifactId>htmlunit</artifactId>
-      <version>1.10</version>
-      <exclusions>
-        <exclusion>
-          <groupId>javax.xml</groupId>
-          <artifactId>jsr173</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.cargo</groupId>
-      <artifactId>cargo-core-uberjar</artifactId>
-      <version>0.8</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.cargo</groupId>
-      <artifactId>cargo-ant</artifactId>
-      <version>0.8</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemProperties>
-            <property>
-              <name>cargo.tomcat5x.home</name>
-              <value>${basedir}/../tomcat/target/dependency/apache-tomcat-5.5.17</value>
-            </property>
-            <property>
-              <name>cargo.servlet.port</name>
-              <value>1234</value>
-            </property>
-            <property>
-              <name>version</name>
-              <value>${project.version}</value>
-            </property>
-          </systemProperties>
-          <workingDirectory>${project.build.directory}</workingDirectory>
-          <includes>
-            <include>org/glvnsjc/itest/MainTest.java</include>
-          </includes>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+          <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <systemProperties>
+                        <property>
+                           <name>cargo.tomcat5x.home</name>
+                           <value>${basedir}/../tomcat/target/dependency/apache-tomcat-5.5.17</value>
+                        </property>
+                        <property>
+                           <name>cargo.servlet.port</name>
+                           <value>1234</value>
+                        </property>
+                        <property>
+                           <name>version</name>
+                           <value>${project.version}</value>
+                        </property>
+                     </systemProperties>
+                     <workingDirectory>${project.build.directory}</workingDirectory>
+                     <includes>
+                       <include>org/glvnsjc/itest/MainTest.java</include>              
+                     </includes>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
 
 </project>

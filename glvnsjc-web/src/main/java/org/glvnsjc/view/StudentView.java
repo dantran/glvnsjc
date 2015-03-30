@@ -6,9 +6,12 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.glvnsjc.model.Address;
+import org.glvnsjc.model.Baptism;
+import org.glvnsjc.model.Eucharist;
 import org.glvnsjc.model.Gender;
 import org.glvnsjc.model.Name;
 
+/** @author Hibernate CodeGenerator */
 public class StudentView
     implements Serializable
 {
@@ -21,13 +24,13 @@ public class StudentView
 
     /** nullable persistent field */
     private String saintName;
-
+    
     private String baptismDate;
-
+    
     private String baptismLocation;
-
+    
     private String eucharistDate;
-
+    
     private String eucharistLocation;
 
     /** nullable persistent field */
@@ -56,7 +59,7 @@ public class StudentView
         this.name = new Name();
         this.parentName = new Name();
         this.address = new Address();
-
+        
         this.baptismDate = null;
         this.baptismLocation = "";
         this.eucharistDate = null;
@@ -87,7 +90,7 @@ public class StudentView
     {
         return this.saintName;
     }
-
+    
     public void setSaintName( java.lang.String saintName )
     {
         this.saintName = saintName;
@@ -132,7 +135,7 @@ public class StudentView
     {
         this.address = address;
     }
-
+    
     public String getBaptismDate()
     {
         return baptismDate;
@@ -167,7 +170,7 @@ public class StudentView
     {
         return eucharistLocation;
     }
-
+    
 
     public String toString()
     {
