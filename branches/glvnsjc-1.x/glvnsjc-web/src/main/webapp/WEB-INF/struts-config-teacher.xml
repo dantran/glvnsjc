@@ -23,7 +23,7 @@
      <form-property name="vietnguClass" type="java.lang.String" />
      <form-property name="vietnguSubClass" type="java.lang.String" />
   </form-bean>
-
+  
   <form-bean name="schoolCalendarForm" type="org.glvnsjc.view.SchoolCalendarForm" />
 </form-beans>
 
@@ -42,7 +42,6 @@
       <forward name="success" path="/teacher.jsp" redirect="false" />
       <forward name="update" path="/teacher.jsp" redirect="false" />
       <forward name="list" path="/search.do" redirect="true" />
-      <forward name="add" path="/teacher.jsp" redirect="false" />
     </action>
     <action path="/loadsearch" name="userSearchForm" validate="false" scope="session" type="org.glvnsjc.action.teacher.LoadSearchAction">
       <forward name="success" path="/search.jsp" redirect="false" />

@@ -193,8 +193,8 @@
 
       <tr>
         <td><fmt:message key="label.DOB" /></td>
-        <td><html-el:text property="birthDate" readonly="${readonlyForm}" /> <fmt:message
-            key="label.dateFormat.short" /></td>
+        <td><html-el:text property="birthDate" readonly="${readonlyForm}" />
+          <fmt:message key="label.dateFormat.short" /></td>
       </tr>
 
       <tr>
@@ -253,80 +253,26 @@
       </tr>
     </table>
     <br>
-
-    <table cellpadding=2 cellspacing=2 border=2 align="center" width="50%">
-      <!-- Show table header -->
-      <tr>
-        <th align="center"><fmt:message key="label.certificate.description" /></th>
-        <th align="center"><fmt:message key="label.certificate.date" /></th>
-        <c:if test="${userForm.editableCertificates == 'true'}">
-          <th align="center"><fmt:message key="button.teacher.deleteCertificate" /></th>
-        </c:if>
-
-      </tr>
-
-      <c:forEach var="certificate" items="${userForm.certificateViews}">
-
-        <c:if test="${userForm.editableCertificates == 'false'}">
-          <tr>
-            <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
-                property="typeId" indexed="true" /></td>
-            <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
-                property="date" indexed="true" /></td>
-          </tr>
-        </c:if>
-
-        <c:if test="${userForm.editableCertificates == 'true'}">
-
-          <html-el:hidden name="certificate" property="id" indexed="true" />
-
-          <tr>
-            <td align="left"><c:out value="${certificate.description}" /> <html-el:hidden name="certificate"
-                property="typeId" indexed="true" /></td>
-            <td align="left"><c:out value="${certificate.date}" /> <html-el:hidden name="certificate"
-                property="date" indexed="true" /></td>
-            <td align="center"><html-el:submit property="action">
-                <fmt:message key="button.teacher.delCertificate" />
-            </html-el:submit></td>
-
-          </tr>
-
-        </c:if>
-
-      </c:forEach>
-    </table>
-
     <table align="center">
       <tr>
         <td align="left" />
         <td align="left"><c:choose>
             <c:when test="${command == 'add'}">
-              <tr>
-                <td><html-el:submit property="action">
-                    <fmt:message key="button.add" />
-                  </html-el:submit></td>
-              </tr>
+              <html-el:submit property="action">
+                <fmt:message key="button.add" />
+              </html-el:submit>
             </c:when>
             <c:when test="${command == 'update'}">
               <tr>
                 <td><html-el:submit property="action">
                     <fmt:message key="button.update" />
                   </html-el:submit>
-                <td>
-                  <logic-el:present role="Principal">
-                    <td>
-                      <html-el:submit property="action">
+                <td><logic-el:present role="Principal">
+                    <td><html-el:submit property="action">
                         <fmt:message key="button.teacher.resetPassword" />
                       </html-el:submit>
                     <td>
-                    <td>
-                      <html-el:submit property="action">
-                        <fmt:message key="button.teacher.addCertificate" />
-                      </html-el:submit>
-                    <td>
                   </logic-el:present>
-                </td>
-              </tr>
             </c:when>
             <c:when test="${command == 'delete'}">
               <html-el:submit property="action">

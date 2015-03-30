@@ -1,7 +1,5 @@
 package org.glvnsjc.action.teacher;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +17,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.glvnsjc.action.ActionUtil;
-import org.glvnsjc.model.CertificateType;
 import org.glvnsjc.model.GlobalConfig;
 import org.glvnsjc.model.LoginProfile;
 import org.glvnsjc.model.Privilege;
@@ -29,7 +26,6 @@ import org.glvnsjc.model.hibernate.SessionUtil;
 import org.glvnsjc.util.ProcessRunnables;
 import org.glvnsjc.util.SendMail;
 import org.glvnsjc.util.StringUtil;
-import org.glvnsjc.view.CertificateView;
 import org.glvnsjc.view.LoginProfileForm;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -47,8 +43,6 @@ public class DispatchAction
     {
         Map map = new HashMap();
         map.put( "button.add", "add" );
-        map.put( "button.teacher.addCertificate", "addCertificate" );
-        map.put( "button.teacher.delCertificate", "delCertificate" );
         map.put( "button.update", "update" );
         map.put( "button.delete", "delete" );
         map.put( "button.teacher.resetPassword", "resetPassword" );
@@ -115,7 +109,7 @@ public class DispatchAction
 
             SessionUtil.end();
 
-            // send the object id back to the form
+            //send the object id back to the form
             theForm.setId( loginProfile.getId().toString() );
             log.info( "Add Teacher: " + form );
             this.saveMessages( request, ActionUtil.createActionMessages( "message.add.success" ) );
@@ -140,11 +134,11 @@ public class DispatchAction
 
         LoginProfileForm theForm = (LoginProfileForm) form;
 
-        // assign a new random password
+        //assign a new random password
         Random random = new Random( System.currentTimeMillis() );
         String newPassword = Integer.toString( Math.abs( random.nextInt() ) );
 
-        // update the form to new password
+        //update the form to new password
         theForm.setPassword( newPassword );
         theForm.setConfirmPassword( newPassword );
 
@@ -152,15 +146,15 @@ public class DispatchAction
 
         if ( theForm.getLoginable() )
         {
-            // notify the user via email regarding the changes
-            // email notification to the db administrator
+            //notify the user via email regarding the changes
+            //email notification to the db administrator
 
             LoginProfile loginProfile = ActionUtil.getCurrentUserLoginProfile( request );
             String to = theForm.getAddress().getEmail();
             String from = loginProfile.getAddress().getEmail();
-            SendMail sendMail =
-                new SendMail( from, to, "GLVNSJC Account Notification",
-                              generateAccountResetEmailBody( loginProfile.getName().getFullName(), theForm ) );
+            SendMail sendMail = new SendMail( from, to, "GLVNSJC Account Notification",
+                                              generateAccountResetEmailBody( loginProfile.getName().getFullName(),
+                                                                             theForm ) );
 
             SiteConfig siteConfig = GlobalConfig.getInstance().getGlobalConfig();
 
@@ -208,14 +202,14 @@ public class DispatchAction
         {
             Session session = SessionUtil.begin();
 
-            LoginProfile loginProfile =
-                (LoginProfile) session.load( LoginProfile.class, new Integer( theForm.getId() ) );
+            LoginProfile loginProfile = (LoginProfile) session
+                .load( LoginProfile.class, new Integer( theForm.getId() ) );
             if ( isObjectEditAllowed( request, loginProfile ) )
             {
                 SessionUtil.rollback();
                 return mapping.getInputForward();
             }
-            // makesure hacker
+            //makesure hacker
             if ( !loginProfile.getUserId().equals( theForm.getUserId() ) )
             {
                 if ( this.isUserIdExist( session, theForm.getUserId() ) )
@@ -227,9 +221,7 @@ public class DispatchAction
                     return ( mapping.getInputForward() );
                 }
             }
-
-            copyProperties( theForm, loginProfile );
-
+            BeanUtils.copyProperties( loginProfile, theForm );
             if ( !StringUtil.isBlank( theForm.getSchoolId() ) )
             {
                 loginProfile.setSchool( SchoolList.getInstance().getSchool( Integer.valueOf( theForm.getSchoolId() ) ) );
@@ -254,30 +246,6 @@ public class DispatchAction
 
     }
 
-    public ActionForward addCertificate( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                         HttpServletResponse response )
-        throws Exception
-    {
-        LoginProfileForm theForm = (LoginProfileForm) form;
-
-        CertificateView certificate = new CertificateView( CertificateType.UNKNOWN, "" );
-        theForm.getCertificateViews().add( certificate );
-
-        // must return to the same CRUD state( ie add or update )
-        return ( mapping.findForward( theForm.getCommand() ) );
-    }
-
-    public ActionForward delCertificate( ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                         HttpServletResponse response )
-        throws Exception
-    {
-        LoginProfileForm theForm = (LoginProfileForm) form;
-
-
-        // must return to the same CRUD state( ie add or update )
-        return ( mapping.findForward( theForm.getCommand() ) );
-    }
-
     public ActionForward delete( ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response )
         throws Exception
@@ -288,8 +256,8 @@ public class DispatchAction
         try
         {
             Session session = SessionUtil.begin();
-            LoginProfile loginProfile =
-                (LoginProfile) session.load( LoginProfile.class, new Integer( theForm.getId() ) );
+            LoginProfile loginProfile = (LoginProfile) session
+                .load( LoginProfile.class, new Integer( theForm.getId() ) );
             if ( isObjectEditAllowed( request, loginProfile ) )
             {
                 SessionUtil.rollback();
@@ -306,7 +274,7 @@ public class DispatchAction
 
         log.info( "Remove Teacher: " + form );
 
-        // the record is gone, send the user back to search page
+        //the record is gone, send the user back to search page
         return ( mapping.findForward( "list" ) );
     }
 
@@ -316,7 +284,7 @@ public class DispatchAction
         boolean errorFound = false;
         if ( !request.isUserInRole( Privilege.PRINCIPAL.toString() ) )
         {
-            // user has teacher privilege or less, can't update/add/delete teacher object
+            //user has teacher privilege or less, can't update/add/delete teacher object
             errorFound = true;
         }
         if ( errorFound )
@@ -336,7 +304,7 @@ public class DispatchAction
         boolean errorFound = false;
         if ( !request.isUserInRole( Privilege.PRINCIPAL.toString() ) )
         {
-            // user has teacher privilege or less, can't update/add/delete teacher object
+            //user has teacher privilege or less, can't update/add/delete teacher object
             errorFound = true;
         }
         else
@@ -344,16 +312,16 @@ public class DispatchAction
             if ( request.isUserInRole( Privilege.PRINCIPAL.toString() )
                 && !request.isUserInRole( Privilege.COMMUNITY.toString() ) )
             {
-                // user is principal
+                //user is principal
                 LoginProfile currentUser = ActionUtil.getCurrentUserLoginProfile( request );
                 if ( !currentUser.getSchool().getId().equals( dbLoginProfile.getSchool().getId() ) )
                 {
-                    // user is a principal but tries to edit teacher object of other school, hack?
+                    //user is a principal but tries to edit teacher object of other school, hack?
                     log.warn( currentUser.getId() + " has no privilege to edit teacher object" + dbLoginProfile );
                     errorFound = true;
                 }
             }
-            // else user is Master, he/she can edit any teacher object
+            //else user is Master, he/she can edit any teacher object
 
         }
         if ( errorFound )
@@ -364,12 +332,6 @@ public class DispatchAction
         }
 
         return errorFound;
-    }
-
-    private void copyProperties( LoginProfileForm from, LoginProfile to )
-        throws IllegalAccessException, InvocationTargetException
-    {
-        BeanUtils.copyProperties( to, from );
     }
 
 }
