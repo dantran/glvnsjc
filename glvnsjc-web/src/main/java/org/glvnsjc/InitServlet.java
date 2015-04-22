@@ -27,7 +27,7 @@ public class InitServlet
 
     public void contextInitialized( ServletContextEvent servletContextEvent )
     {
-        log.info( "contextInitialized..." );
+        log.info( "contextInitialized..." + System.getProperty( "user.dir" ) );
 
         //work around for jar locking problem during undeploy
         //http://permalink.gmane.org/gmane.comp.jakarta.hivemind.user/2014

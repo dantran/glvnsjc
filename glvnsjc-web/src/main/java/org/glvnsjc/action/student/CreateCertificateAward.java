@@ -76,6 +76,10 @@ public class CreateCertificateAward
             Font font;
 
             document.add( emptyPara );
+            document.add( emptyPara );
+            document.add( emptyPara );
+            document.add( emptyPara );
+            document.add( emptyPara );
 
             font = new Font( verdanaBaseFont, 14, Font.ITALIC );
             para = new Paragraph( properties.getProperty( "award.diocese.name" ), font );
@@ -158,13 +162,13 @@ public class CreateCertificateAward
             document.add( emptyPara );
             document.add( emptyPara );
 
-            para = new Paragraph( getPrincipalName(), font );
-            para.setAlignment( Paragraph.ALIGN_CENTER );
-            document.add( para );
+            //para = new Paragraph( getPrincipalName(), font );
+            //para.setAlignment( Paragraph.ALIGN_CENTER );
+            //document.add( para );
 
-            para = new Paragraph( properties.getProperty( "award.principal" ), font );
-            para.setAlignment( Paragraph.ALIGN_CENTER );
-            document.add( para );
+            //para = new Paragraph( properties.getProperty( "award.principal" ), font );
+            //para.setAlignment( Paragraph.ALIGN_CENTER );
+            //document.add( para );
 
         }
         catch ( DocumentException de )
