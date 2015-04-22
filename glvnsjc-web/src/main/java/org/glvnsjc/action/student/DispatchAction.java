@@ -33,10 +33,10 @@ import org.glvnsjc.view.StudentView;
 /**
  * <tt>DispatchAction</tt> allow add/delete/update a school year record which
  * consists of a Student and a SchoolYear objects <br<br>
- * 
+ *
  * It is assummed that CMA allows only user with "teacher" privilege to access
  * this action <br>
- * 
+ *
  * @author Dan Tran
  */
 
@@ -204,8 +204,8 @@ public class DispatchAction
 
             if ( schoolYear.getYear() == currentSchoolYear )
             {
-                StudentUtil.deleteSchoolYear( schoolYear.getId() );
                 log.info( request.getUserPrincipal().getName() + " updated student:\n" + form );
+                StudentUtil.deleteSchoolYear( schoolYear.getId() );
                 theForm.getSchoolYears().remove( i );
                 theForm.setOptionToRemoveCurrentYear( false );
                 theForm.setOptionToAddSchoolYear( true );
@@ -257,9 +257,8 @@ public class DispatchAction
             break;
         }
 
-        StudentUtil.updateStudent( student, schoolYear, schoolId );
-
         log.info( request.getUserPrincipal().getName() + " updated student:\n" + form );
+        StudentUtil.updateStudent( student, schoolYear, schoolId );
 
         this.saveMessages( request, ActionUtil.createActionMessages( "message.update.success" ) );
 

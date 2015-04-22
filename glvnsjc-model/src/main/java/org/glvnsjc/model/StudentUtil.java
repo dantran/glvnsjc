@@ -19,7 +19,7 @@ import org.hibernate.type.Type;
 
 /**
  * Student facade
- * 
+ *
  * @author dtran
  *
  */
@@ -63,7 +63,7 @@ public class StudentUtil
         return student;
 
     }
-    
+
     public static Student updateStudent( Student student)
     {
         try
@@ -80,7 +80,7 @@ public class StudentUtil
         return student;
 
     }
-    
+
 
     public static void updateStudent( Student student, SchoolYear schoolYear, String schoolId )
     {
@@ -541,7 +541,7 @@ public class StudentUtil
 
         if ( buffer.toString().length() != 0 )
         {
-            log.info( "\r\n" + buffer.toString() );
+            log.info( "\r\n" + buffer.toString() + "\r\n" );
         }
     }
 

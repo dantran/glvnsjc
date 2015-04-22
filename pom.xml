@@ -3,20 +3,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  
+
   <groupId>org.glvnsjc</groupId>
   <artifactId>glvnsjc</artifactId>
   <version>1.10-SNAPSHOT</version>
-  
+
   <name>glvnsjc</name>
-  
+
   <organization>
     <name>Giao Ly Viet Ngu St. Patrick, Sanjose, CA</name>
   </organization>
-  
+
   <inceptionYear>2003</inceptionYear>
-  
-  
+
+
   <packaging>pom</packaging>
 
   <description>
@@ -63,33 +63,33 @@
     <module>glvnsjc-itest</module>
     <module>glvnsjc-test</module>
   </modules>
-    
+
   <reporting>
-  
+
     <plugins>
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>2.2</version>
       </plugin>
 
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>1.2</version>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
         <configuration>
           <aggregate>false</aggregate>
         </configuration>
-      </plugin>      
-      
-      
+      </plugin>
+
+
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
@@ -109,8 +109,8 @@
           </additionalparam>
         </configuration>
       </plugin>
-      
-      
+
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
@@ -119,19 +119,19 @@
           <sourceEncoding>utf-8</sourceEncoding>
           <minimumTokens>100</minimumTokens>
           <targetJdk>1.5</targetJdk>
-        </configuration>        
+        </configuration>
       </plugin>
-      
-      
+
+
     </plugins>
   </reporting>
 
 
   <build>
-    
+
     <pluginManagement>
       <plugins>
-      
+
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -169,7 +169,7 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
-      
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -179,19 +179,19 @@
             <source>1.5</source>
           </configuration>
         </plugin>
-        
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>2.4</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>2.4</version>
         </plugin>
-      
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-eclipse-plugin</artifactId>
@@ -204,7 +204,7 @@
             </workspaceCodeStylesURL>
           </configuration>
         </plugin>
-        
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
@@ -213,23 +213,23 @@
             <inputEncoding>utf-8</inputEncoding>
           </configuration>
         </plugin>
-        
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5</version>
           <configuration>
             <preparationGoals>clean</preparationGoals>
-            <autoVersionSubmodules>true</autoVersionSubmodules> 
+            <autoVersionSubmodules>true</autoVersionSubmodules>
             <tagBase>https://glvnsjc.googlecode.com/svn/tags</tagBase>
           </configuration>
         </plugin>
-        
 
-        
+
+
       </plugins>
     </pluginManagement>
-    
+
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -241,14 +241,14 @@
             </goals>
           </execution>
         </executions>
-        
-      </plugin>    
+
+      </plugin>
     </plugins>
   </build>
 
 
   <profiles>
-  
+
     <profile>
       <id>add-itest-module</id>
       <activation>
