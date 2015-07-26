@@ -41,8 +41,8 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:svn:https://github.com/dantran/glvnsjc.git</connection>
-    <developerConnection>scm:svn:https://github.com/dantran/glvnsjc.git</developerConnection>
+    <connection>scm:git:https://github.com/dantran/glvnsjc.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/dantran/glvnsjc.git</developerConnection>
     <url>https://github.com/dantran/glvnsjc</url>
   </scm>
 
