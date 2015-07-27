@@ -6,7 +6,7 @@
 
   <groupId>org.glvnsjc</groupId>
   <artifactId>glvnsjc</artifactId>
-  <version>1.10</version>
+  <version>1.11-SNAPSHOT</version>
 
   <name>glvnsjc</name>
 
@@ -44,7 +44,7 @@
     <connection>scm:git:https://github.com/dantran/glvnsjc.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/dantran/glvnsjc.git</developerConnection>
     <url>https://github.com/dantran/glvnsjc</url>
-    <tag>glvnsjc-1.10</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
