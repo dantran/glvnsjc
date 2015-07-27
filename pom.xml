@@ -28,12 +28,12 @@
 
   <distributionManagement>
     <repository>
-      <id>glvnsjc.release</id>
-      <url>file:///glvnsjc/repositories/releases/glvnsjc-releases</url>
+      <id>glvnsjc.releases</id>
+      <url>http://glvnsjc.dyndns.org/nexus/content/repositories/releases</url>
     </repository>
     <snapshotRepository>
-      <id>glvnsjc.snapshot</id>
-      <url>file:///glvnsjc/repositories/snapshots/glvnsjc-snapshots</url>
+      <id>glvnsjc.snapshots</id>
+      <url>http://glvnsjc.dyndns.org/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
       <id>glvnsjc.website</id>
