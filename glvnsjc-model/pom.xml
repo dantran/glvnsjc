@@ -3,18 +3,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  
+
   <parent>
     <groupId>org.glvnsjc</groupId>
     <artifactId>glvnsjc</artifactId>
     <version>1.10-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>glvnsjc-model</artifactId>
-  
+
   <name>glvnsjc-model</name>
-  
-  
+
+
   <dependencies>
 
     <dependency>
@@ -33,33 +33,33 @@
     <dependency>
       <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>1.8.0.7</version>
+      <version>1.8.0.7</version><!-- cant upgrade to 1.8.0.10 due to unit tests failures -->
     </dependency>
 
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate</artifactId>
-      <version>3.2.1.ga</version>
+      <version>3.2.6.ga</version>
       <exclusions>
         <exclusion>
-          <groupId>javax.transaction</groupId> 
-          <artifactId>jta</artifactId> 
+          <groupId>javax.transaction</groupId>
+          <artifactId>jta</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
 
     <dependency>
-      <groupId>geronimo-spec</groupId>
-      <artifactId>geronimo-spec-jta</artifactId>
-      <version>1.0.1B-rc4</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+      <version>1.1.1</version>
     </dependency>
-        
+
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>2.1</version>
     </dependency>
-                    
+
   </dependencies>
 
   <build>
@@ -82,5 +82,5 @@
       </plugin>
     </plugins>
   </build>
-  
+
 </project>

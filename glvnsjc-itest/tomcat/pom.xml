@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+
 <!--
 /*
  * Copyright 2005-2006 The Apache Software Foundation.
@@ -19,7 +20,8 @@
  */
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <parent>
     <groupId>org.glvnsjc.itest</groupId>
@@ -27,39 +29,39 @@
     <version>1.10-SNAPSHOT</version>
   </parent>
 
-   <modelVersion>4.0.0</modelVersion>
-   <artifactId>tomcat</artifactId>
-   <packaging>pom</packaging>
-   <name>glvnsjc-itest-container</name>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>tomcat</artifactId>
+  <packaging>pom</packaging>
+  <name>glvnsjc-itest-container</name>
 
 
-          <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>dependency-maven-plugin</artifactId>
-                  <executions>
-                     <execution>
-                        <id>unpack-tomcat</id>
-                        <phase>package</phase>
-                        <goals>
-                           <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                          <artifactItems>
-                            <artifactItem>
-                              <groupId>org.apache.tomcat</groupId>
-                              <artifactId>apache-tomcat</artifactId>
-                              <version>5.1.17</version>
-                              <!--classifier>embed</classifier-->
-                              <type>zip</type>
-                            </artifactItem>
-                          </artifactItems>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-            </plugins>
-         </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>dependency-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-tomcat</id>
+            <phase>package</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.tomcat</groupId>
+                  <artifactId>apache-tomcat</artifactId>
+                  <version>5.1.17</version>
+                  <!--classifier>embed</classifier -->
+                  <type>zip</type>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
