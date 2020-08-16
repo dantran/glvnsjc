@@ -68,8 +68,6 @@
     <module>glvnsjc-common</module>
     <module>glvnsjc-model</module>
     <module>glvnsjc-web</module>
-    <module>glvnsjc-itest</module>
-    <module>glvnsjc-test</module>
   </modules>
 
 
@@ -178,6 +176,16 @@
     </pluginManagement>
 
   </build>
+
+  <profiles>
+    <profile>
+      <id>run-its</id>
+      <modules>
+        <module>glvnsjc-test</module>
+        <module>glvnsjc-itest</module>
+      </modules>
+    </profile>
+  </profiles>
 
   <reporting>
 
