@@ -28,7 +28,7 @@
   <distributionManagement>
     <repository>
       <id>glvnsjc.releases</id>
-      <url>http://glvnsjc.dyndns.org/nexus/content/repositories/releases</url>
+      <url>file://glvnsjc.dyndns.org/nexus/content/repositories/releases</url>
     </repository>
     <snapshotRepository>
       <id>glvnsjc.snapshots</id>
@@ -39,6 +39,13 @@
       <url>file:///glvnsjc/repositories/site</url>
     </site>
   </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>public</id>
+      <url>file:./glvnsjc-maven</url>
+    </repository>
+  </repositories>
 
   <scm>
     <connection>scm:git:https://github.com/dantran/glvnsjc.git</connection>
@@ -214,22 +221,5 @@
 
   </reporting>
 
-
-  <profiles>
-
-    <profile>
-      <id>add-itest-module</id>
-      <activation>
-        <property>
-          <name>itest</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <modules>
-        <module>glvnsjc-itest</module>
-      </modules>
-    </profile>
-
-  </profiles>
 
 </project>

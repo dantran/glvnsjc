@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:prop="http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:X="http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!--xmlns:prop and xmlns:X are work around to make maven release happy during release:prepare -->
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.glvnsjc</groupId>
+    <artifactId>glvnsjc</artifactId>
+    <version>1.11-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>glvnsjc-docker</artifactId>
+
+  <packaging>pom</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.glvnsjc</groupId>
+      <artifactId>glvnsjc-web</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <properties>
+
+  </properties>
+
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>staging-war-file</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.glvnsjc</groupId>
+                  <artifactId>glvnsjc-web</artifactId>
+                  <type>war</type>
+                  <destFileName>glvnsjc.war</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <verbose>true</verbose>
+          <images>
+            <image>
+              <name>${project.artifactId}</name>
+              <build>
+                <from>tomcat:7-jdk8-corretto</from>
+                <tags>
+                  <tag>${project.version}</tag>
+                </tags>
+                <assembly>
+                  <basedir>/usr/local/tomcat/webapps</basedir>
+                  <descriptor>${project.basedir}/src/docker/assembly.xml</descriptor>
+                </assembly>
+                <cleanup>true</cleanup>
+              </build>
+            </image>
+          </images>
+        </configuration>
+        <executions>
+          <execution>
+            <id>build</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
