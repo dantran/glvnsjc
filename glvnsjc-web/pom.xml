@@ -3,19 +3,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  
+
   <parent>
     <groupId>org.glvnsjc</groupId>
     <artifactId>glvnsjc</artifactId>
     <version>1.11-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>glvnsjc-web</artifactId>
-  
+
   <name>glvnsjc-web</name>
-  
+
   <packaging>war</packaging>
-  
+
   <dependencies>
 
     <dependency>
@@ -32,7 +32,7 @@
     </dependency>
 
 <!-- struts -->
-    
+
     <dependency>
       <groupId>struts</groupId>
       <artifactId>struts</artifactId>
@@ -44,14 +44,14 @@
       <artifactId>struts-el</artifactId>
       <version>1.2.9</version>
     </dependency>
- 
+
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
       <version>3.2.2</version>
     </dependency>
 
-       
+
     <!-- JSTL -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -98,7 +98,7 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.8</version>
+      <version>1.2.27</version>
       <scope>runtime</scope>
     </dependency>
 
@@ -144,7 +144,7 @@
     </dependency>
 
 
-    
+
     <dependency>
       <groupId>poi</groupId>
       <artifactId>poi-2.0-final</artifactId>
@@ -171,25 +171,25 @@
       <artifactId>itext</artifactId>
       <version>1.4.8</version>
     </dependency>
-    
+
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>1.4</version>
     </dependency>
-        
+
     <dependency>
       <groupId>de.schlichtherle.io</groupId>
       <artifactId>truezip</artifactId>
       <version>6.6</version>
     </dependency>
-      
+
   </dependencies>
-  
+
   <build>
-  
+
     <finalName>glvnsjc</finalName>
-    
+
     <resources>
       <resource>
         <directory>${basedir}/target/resources</directory>
@@ -198,8 +198,8 @@
         <directory>${basedir}/src/main/resources</directory>
       </resource>
     </resources>
-    
-    
+
+
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -226,9 +226,9 @@
            <systemPath>${java.home}/../lib/tools.jar</systemPath>
          </dependency>
         </dependencies>
-        
-      </plugin> 
-      
+
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
@@ -259,8 +259,8 @@
                 <mkdir dir="${secondary.resource.directory}" />
                 <tstamp />
                 <echo file="${build.properties.file}">
-version=${project.version} 
-revision=${buildNumber} 
+version=${project.version}
+revision=${buildNumber}
 timestamp=${DSTAMP}-${TSTAMP}
                 </echo>
               </tasks>
@@ -269,15 +269,15 @@ timestamp=${DSTAMP}-${TSTAMP}
         </executions>
       </plugin>
 
-      
+
     </plugins>
-        
+
   </build>
-  
+
   <properties>
     <secondary.resource.directory>${project.build.directory}/resources/org/glvnsjc</secondary.resource.directory>
     <build.properties.file>${secondary.resource.directory}/build.properties</build.properties.file>
   </properties>
-  
+
 </project>
 
