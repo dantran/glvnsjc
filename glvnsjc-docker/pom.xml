@@ -45,6 +45,7 @@
               <goal>copy</goal>
             </goals>
             <configuration>
+              <outputDirectory>${project.build.directory}/staging/webapps</outputDirectory>
               <artifactItems>
                 <artifactItem>
                   <groupId>org.glvnsjc</groupId>
@@ -61,6 +62,7 @@
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
+        <version>0.33.0</version>
         <configuration>
           <verbose>true</verbose>
           <images>
@@ -72,9 +74,13 @@
                   <tag>${project.version}</tag>
                 </tags>
                 <assembly>
-                  <basedir>/usr/local/tomcat/webapps</basedir>
+                  <basedir>/usr/local/tomcat</basedir>
                   <descriptor>${project.basedir}/src/docker/assembly.xml</descriptor>
                 </assembly>
+                <ports>
+                  <port>8443</port>
+                  <port>8080</port>
+                </ports>
                 <cleanup>true</cleanup>
               </build>
             </image>

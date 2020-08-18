@@ -10,8 +10,12 @@
 
   <fileSets>
     <fileSet>
-      <outputDirectory/>
-      <directory>${project.build.directory}/dependency</directory>
+      <outputDirectory />
+      <directory>${project.build.directory}/staging</directory>
+    </fileSet>
+    <fileSet>
+      <outputDirectory />
+      <directory>${project.basedir}/src/main/runtime</directory>
     </fileSet>
   </fileSets>
 
